@@ -1,0 +1,87 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		sortDescending="true"
+		confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem key="preferencia" text="Preferencia" selected="true" />
+			<ViewSettingsItem key="codEmpleado" text="Legajo"/>
+			<ViewSettingsItem key="fullName" text="Apellido y Nombre" />
+			<ViewSettingsItem key="vCategoriaEmpleado" text="Categoría" />
+			<ViewSettingsItem key="pais/name" text="Pais" />
+			<ViewSettingsItem key="industria/name" text="Industria" />
+			<ViewSettingsItem key="practica/name" text="Práctica" />
+			<ViewSettingsItem key="subPractica/name" text="SubPráctica" />
+			<ViewSettingsItem key="level/name" text="Level" />
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem key="vCategoriaEmpleado" text="Categoría" />
+			<ViewSettingsItem key="pais/name" text="Pais" />
+			<ViewSettingsItem key="industria/name" text="Industria" />
+			<ViewSettingsItem key="practica/name" text="Práctica" />
+			<ViewSettingsItem key="subPractica/name" text="SubPráctica" />
+		</groupItems>
+		<filterItems>
+			<ViewSettingsFilterItem
+				text="Categoría"
+				key="codCategoriaEmpleado"
+				multiSelect="true"
+				items="{ path : 'CategoriaMasterModel>/', sorter : {path : 'name'} }">
+				<items>
+					<ViewSettingsItem text="{CategoriaMasterModel>name}" key="codCategoriaEmpleado___EQ___{CategoriaMasterModel>codCategoria}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="País"
+				key="pais"
+				multiSelect="true"
+				items="{ path : 'PaisMasterModel>/', sorter : {path : 'name'} }">
+				<items>
+					<ViewSettingsItem text="{PaisMasterModel>name}" key="pais/codPais___EQ___{PaisMasterModel>codPais}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Industria"
+				key="industria"
+				multiSelect="true"
+				items="{ path : 'IndustriaMasterModel>/', sorter : {path : 'name'} }">
+				<items>
+					<ViewSettingsItem text="{IndustriaMasterModel>name}" key="industria/codIndustria___EQ___{IndustriaMasterModel>codIndustria}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Práctica"
+				key="practica"
+				multiSelect="true"
+				items="{ path : 'PracticaMasterModel>/', sorter : {path : 'name'} }">
+				<items>
+					<ViewSettingsItem text="{PracticaMasterModel>name}" key="practica/codArea___EQ___{PracticaMasterModel>codArea}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="SubPráctica"
+				key="subPractica"
+				multiSelect="true"
+				items="{ path : 'SubPracticaMasterModel>/', sorter : {path : 'name'} }">
+				<items>
+					<ViewSettingsItem text="{SubPracticaMasterModel>name}" key="subPractica/codDivision___EQ___{SubPracticaMasterModel>codDivision}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Level"
+				key="level"
+				multiSelect="true"
+				items="{ path : 'KLevelMasterModel>/' }">
+				<items>
+					<ViewSettingsItem text="{KLevelMasterModel>KLevelDescription_Code}" key="mykSkillMatching/LevelID___EQ___{KLevelMasterModel>KLevelID}" />
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

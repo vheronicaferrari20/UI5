@@ -1,0 +1,82 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    controllerName="App.controller.employee.EmployeesActions"
+	xmlns:l="sap.ui.layout" 
+	xmlns:html="http://www.w3.org/1999/xhtml">
+  
+    <Toolbar>
+        
+        <ToolbarSpacer />
+
+        <BusyIndicator 
+            class="sapUiSmallMarginBottom" 
+            visible="{EmployeesModel>/loading}"/>
+
+        <Button 
+            icon="sap-icon://action-settings" 
+            press=".onPressConfig" 
+            type="Transparent"
+           >
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+
+        <Button 
+            icon="sap-icon://refresh" 
+            press="onPressRefresh"
+            type="Transparent"
+            enabled="{=!${EmployeesModel>/loading}}">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+
+        <Button 
+            icon="sap-icon://download" 
+            press="onDataExport" 
+            type="Transparent"
+            enabled="{=!${EmployeesModel>/loading}}">
+            <layoutData>
+                <OverflowToolbarLayoutData priority="NeverOverflow" />
+            </layoutData>
+        </Button>
+
+        <ToolbarSeparator />
+        
+        <SearchField
+            id="serchField"
+            search="onSearch"
+            width="40%"
+            enabled="{=!${EmployeesModel>/loading}}" />
+
+    </Toolbar>
+
+    
+        <Toolbar
+            height="auto"
+            id="infoFilterBar"
+            active="true"
+            visible="true"
+            design="Info">
+
+                <HBox
+                    width="100%"
+                    class="sapUiSmallMargin">
+                    <HBox
+                        width="80%"
+                        justifyContent="Start">
+                        <Text id="infoFilterLabel" text="" />  
+                    </HBox>
+                    <HBox
+                        width="20%"
+                        justifyContent="End">
+                        <Text id="infoFilterLabelTotal" text="" />   
+                    </HBox>
+                </HBox>
+
+        </Toolbar>
+
+</core:View>

@@ -1,0 +1,179 @@
+<core:View 
+    id="Employees"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.employee.EmployeesViewSettingsCustomTabFilters"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:cc="App.control"
+	height="100%">
+		<NavContainer
+			id="navContainer">
+			<Page
+				id="listCustomFilters"
+				showFooter="false"
+				showHeader="false">
+				<List
+					id="customFilters"
+					headerText="Custom Filters"
+					mode="SingleSelectLeft"
+					includeItemInSelection="true"
+					selectionChange="onItemPropertyChanged"
+					items="{
+						path: 'FiltersModel>/',
+						sorter: {
+							path: 'index',
+							descending: true
+						}
+					}">
+					<headerToolbar>
+						<Toolbar>
+							<ToolbarSpacer />
+							<Button icon="sap-icon://add" press="onPressAdd" id="addButton" >
+								<layoutData>
+									<OverflowToolbarLayoutData priority="NeverOverflow" />
+								</layoutData>
+							</Button>
+							<Button icon="sap-icon://edit" press="onPressEdit" enabled="false" id="editButton">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="NeverOverflow" />
+								</layoutData>
+							</Button>
+							<Button icon="sap-icon://delete" press="onPressDelete" enabled="false" id="deleteButton">
+								<layoutData>
+									<OverflowToolbarLayoutData priority="NeverOverflow" />
+								</layoutData>
+							</Button>
+						</Toolbar>
+					</headerToolbar>
+					
+					<StandardListItem
+						title="{FiltersModel>name}"
+						selected="{= ${UserPreferencesMasterModel>/employeeDefaultFilter} === ${FiltersModel>id}}"
+						
+						/>
+
+				</List>
+				
+			</Page>
+
+			<Page
+				id="detailCustomFilters"
+				showFooter="false"
+				showHeader="true"
+				showNavButton="true"
+				navButtonPress="toListCustomFilters">
+				<headerContent>
+					<!--
+					<Button icon="sap-icon://save" press="onUpdateFilter" />
+					-->
+				</headerContent>
+				
+				<VBox class="sapUiSmallMargin">
+
+					<f:Form id="FormChange354"
+						minWidth="240"
+						maxContainerCols="2"
+						editable="true">
+						<f:title>
+							<core:Title 
+								id="titleFilter" 
+								text="{DetailFilterModel>/name}" />
+						</f:title>
+						<f:layout>
+							<f:ResponsiveGridLayout
+								
+								columnsS="2"
+								columnsL="2"
+								columnsM="2" />
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="Público">
+										<f:fields>
+											<Switch 
+												type="AcceptReject" 
+												state="{DetailFilterModel>/public}"
+												change="onUpdateFilter"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Aplicar por defecto">
+										<f:fields>
+											<Switch
+												id="filterDefaultSwitch" 
+												type="AcceptReject" 
+												state="{= ${UserPreferencesMasterModel>/employeeDefaultFilter} === ${DetailFilterModel>/id}}"
+												change="onUpdateFilter"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Descripción">
+										<f:fields>
+											<Toolbar
+									            height="auto"
+									            id="infoFilterBar"
+									            active="true"
+									            visible="true"
+									            design="Info">
+							                        <Text id="filterByText" text="{DetailFilterModel>/filterString}" />   
+									        </Toolbar>
+											
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="Creado por">
+										<f:fields>
+											
+					                        <Text  text="{DetailFilterModel>/user_crea}" />   
+									       
+											
+										</f:fields>
+									</f:FormElement>
+									
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</VBox>
+				
+				<!--
+				<l:Grid defaultSpan="L3 M4 S6" class="sapUiSmallMarginTop">
+					<l:content>
+
+						<HBox>
+							<Label text="Público"/>
+							<Switch 
+								type="AcceptReject" 
+								state="{DetailFilterModel>/public}"
+								change="onUpdateFilter"/>
+							
+							
+							<layoutData>
+								<l:GridData span="L12 M12 S12" />
+							</layoutData>
+						</HBox>
+
+						<Label text="Aplicar por defecto"/>
+						<Switch
+							id="filterDefaultSwitch" 
+							type="AcceptReject" 
+							state="{= ${UserPreferencesMasterModel>/employeeDefaultFilter} === ${DetailFilterModel>/id}}"
+							change="onUpdateFilter"/>
+						
+					</l:content>
+				</l:Grid>
+				-->				
+
+
+			</Page>
+
+			
+
+		</NavContainer>
+
+		
+
+
+</core:View>
+				

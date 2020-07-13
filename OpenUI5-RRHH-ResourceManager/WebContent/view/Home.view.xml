@@ -1,0 +1,94 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    controllerName="App.controller.Home"
+    xmlns:l="sap.ui.layout" 
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    height="100%">
+
+    <ScrollContainer
+        class ="centerAuto"
+        horizontal="false"
+        vertical="true"
+        height="98%"
+        width="98%"
+        focusable="false">
+
+        <ObjectHeader
+            class="header-page"
+            title="Resource Management Tool"
+            titleLevel="H1"
+            condensed="true"
+            icon="sap-icon://home"
+            backgroundDesign="Transparent"
+            responsive="true">
+
+            <headerContainer>
+                <IconTabBar
+                    id="iconTabBar"
+                    select="handleIconTabBarSelect"
+                    applyContentPadding="false"
+                    expandable="false"
+                    expanded="true"
+                    height="100px"
+                    >
+                    <items>
+
+                        <IconTabFilter
+                            text="Mis Oportunidades"
+                            key="oportunidades"
+                            icon="sap-icon://opportunity">
+
+                            <content>
+                                
+                                 <mvc:XMLView 
+                                viewName="App.view.opportunity.MyOpportunities" />
+                            </content>
+                           
+                               
+                            
+                        </IconTabFilter>
+
+
+                        <IconTabFilter
+                            text="Novedades"
+                            key="novedades"
+                            icon="sap-icon://favorite-list">
+
+                            <content>
+
+                                 <mvc:XMLView 
+                                viewName="App.view.notificaciones.Novedades" />
+                            </content>
+                           
+                               
+                            
+                        </IconTabFilter>
+
+                        <IconTabFilter
+                            text="Histórico"
+                            key="historico"
+                            icon="sap-icon://list">
+
+                            <mvc:XMLView 
+                                viewName="App.view.notificaciones.Historico" />
+                           
+                        </IconTabFilter>
+                            
+                    </items>
+                </IconTabBar>
+
+            </headerContainer>
+        </ObjectHeader>
+
+    </ScrollContainer>
+	
+    
+
+
+
+
+
+
+</core:View>

@@ -1,0 +1,94 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem key="AccountName" text="Cuenta"/>
+			<ViewSettingsItem key="Name" text="Oportunidad" />
+			<ViewSettingsItem key="StageName" text="Etapa" />
+			<ViewSettingsItem key="Platform__c" text="Platform" />
+			<ViewSettingsItem key="ServiceType__c" text="Service Type" />
+			<ViewSettingsItem key="CreatedDate" text="Creado" selected="true"/>
+			<ViewSettingsItem key="CloseDate" text="Cierre" />
+			<ViewSettingsItem key="Project_Start_Date__c" text="Inicio SF" />
+			<ViewSettingsItem key="Commited__c" text="Committed / No Committed" />
+		</sortItems>
+		
+		<filterItems>
+			<ViewSettingsFilterItem
+				text="Etapa"
+				key="etapa"
+				multiSelect="true"
+				items="{OpportunitiesStagesMasterModel>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{OpportunitiesStagesMasterModel>MasterLabel}" 
+						key="StageName___EQ___{OpportunitiesStagesMasterModel>MasterLabel}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Platform"
+				key="platform"
+				multiSelect="true"
+				items="{OpportunitiesPlatformsMasterModel>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{OpportunitiesPlatformsMasterModel>Platform__c}" 
+						key="Platform__c___EQ___{OpportunitiesPlatformsMasterModel>Platform__c}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Service Type"
+				key="servicetype"
+				multiSelect="true"
+				items="{OpportunitiesServiceTypeMasterModel>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{OpportunitiesServiceTypeMasterModel>ServiceType__c}" 
+						key="ServiceType__c___EQ___{OpportunitiesServiceTypeMasterModel>ServiceType__c}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Committed"
+				key="committed"
+				multiSelect="true">
+				<items>
+					<ViewSettingsItem 
+						text="Committed" 
+						key="Commited__c___EQ___1" />
+					<ViewSettingsItem 
+						text="No Committed" 
+						key="Commited__c___EQ___0" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="Cuenta"
+				key="cuenta" 
+				multiSelect="true"
+				items="{path:'OpportunitiesAccountMasterModel>/',sorter: {path:'Name'}}">
+				<items>
+					<ViewSettingsItem 
+						text="{OpportunitiesAccountMasterModel>Name}" 
+						key="AccountName___EQ___{OpportunitiesAccountMasterModel>Name}" />
+				</items>
+			</ViewSettingsFilterItem>
+
+			<ViewSettingsFilterItem
+				text="País"
+				key="pais" 
+				multiSelect="true"
+				items="{path:'PaisSalesforceMasterModel>/',sorter: {path:'Name'}}">
+				<items>
+					<ViewSettingsItem 
+						text="{PaisSalesforceMasterModel>Name}" 
+						key="OpportunityPais___EQ___{PaisSalesforceMasterModel>Name}" />
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

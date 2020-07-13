@@ -1,0 +1,81 @@
+<core:View
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="App.controller.recruitings.RecruitingsMailsByZoneList"
+    xmlns:l="sap.ui.layout.form"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    >
+    <Table
+        id="recruitingsMailsByZoneListTable"
+        items="{MailsByZoneModel>/}"
+        enableBusyIndicator="true"
+        busyIndicatorDelay="0"
+        mode="SingleSelectLeft"
+        selectionChange="onSelectionChangeTable">
+        <headerToolbar>
+            <Toolbar>
+                <Button icon="sap-icon://add" press="onPressAdd" >
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <Button icon="sap-icon://delete" press="onPressDelete" enabled="false" id="deleteButton">
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+
+                <ToolbarSpacer />
+                <Button icon="sap-icon://action-settings" press="onPressConfig" >
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <Button icon="sap-icon://refresh" press="onPressRefresh" >
+                    <layoutData>
+                        <OverflowToolbarLayoutData priority="NeverOverflow" />
+                    </layoutData>
+                </Button>
+                <ToolbarSeparator />
+                <SearchField
+                        search="onSearch"
+                        width="40%" />
+            </Toolbar>
+        </headerToolbar>
+        <infoToolbar>
+            <Toolbar
+                id ="infoFilterBar"
+                active="true"
+                visible="false">
+                <Label id="infoFilterLabel" text="?" />
+            </Toolbar>
+        </infoToolbar>
+        <columns>
+            <Column>
+                <Text text="Zone" />
+            </Column>
+            <Column>
+                <Text text="Email" />
+            </Column>
+            <Column>
+                <Text text="CC" />
+            </Column>
+        </columns>
+        <items>
+            <ColumnListItem
+                type="Navigation"
+                press="onItemPressTable">
+                <cells>
+                    <Text
+                        text="{MailsByZoneModel>pais/name}" />
+                    <Text
+                        text="{MailsByZoneModel>to/fullName}" />
+                    <Text
+                        text="{ path : 'MailsByZoneModel>cc',
+                                formatter : '.ccFormatter'}" />
+                </cells>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:View>

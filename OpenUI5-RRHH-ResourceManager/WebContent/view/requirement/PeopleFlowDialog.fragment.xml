@@ -1,0 +1,270 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons">
+	<Dialog
+		title="People Flow"
+		contentWidth="50%"
+		contentHeight="80%"
+		resizable="true"
+		draggable="true">
+		<content>
+			<l:Grid defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+				<l:content>
+						<VBox>
+							<Title level="H2" text="Datos de perfil" />
+							<c:HorizontalDivider width="100%"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+						</VBox>
+						
+						<VBox>
+							<Label text ="Seniority"/>
+							<Select
+								width="100%"
+								id="senioritySelect"
+								items="{
+									path: 'CategoriaMasterModel>/',
+									sorter: {path:'name'}
+								}">
+								<core:Item 
+									key="{CategoriaMasterModel>codCategoria}" 
+									text="{CategoriaMasterModel>name}" />
+							</Select>
+						</VBox>
+
+						<VBox visible="{= !${/editMode}}">
+							<Label text ="Cantidad" />
+							<Input type="Number" id="cantidadInput" value="1"/>
+						</VBox>
+
+						<VBox>
+							<Label text ="Depende"/>
+							<ComboBox
+								id="dependeComboBox"
+								showSecondaryValues= "true"
+								width="100%"
+								items="{
+										path: 'PeopleFlowModel>/data',
+										sorter: [
+										{
+											path: 'seniority/name',
+											descending: false,
+											group: false
+										},
+										{
+											path: 'desde',
+											descending: false,
+											group: false
+										}		
+
+										]
+									}">
+								<core:ListItem 
+										key="{PeopleFlowModel>id}" 
+										text="{PeopleFlowModel>seniority/name}" 
+										additionalText = "{PeopleFlowModel>skill/skillCategory/name} - {PeopleFlowModel>skill/name}"/>
+							</ComboBox>
+							
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+
+							
+						</VBox>
+						
+						<VBox>
+							<Label text ="País"/>
+							<Select
+								width="100%"
+								id="paisSelect"
+								items="{
+									path: 'PaisMasterModel>/',
+									sorter: { path: 'name' }
+								}">
+
+								<core:Item 
+									key="{PaisMasterModel>codPais}" 
+									text="{PaisMasterModel>name}" />
+							</Select>
+						</VBox>
+					
+
+						<VBox>
+							<Title level="H2" text="Skills" />
+							<c:HorizontalDivider width="100%"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+						</VBox>
+						
+						<VBox>
+							<Label text ="Práctica"/>
+							<Select
+								width="100%"
+								id="practicaSelect"
+								items="{
+									path: 'MyKPracticeModules_KPracticeMasterModel>/',
+									sorter: { path: 'KPracticeDescription_Code' }
+									
+								}"
+								change="onChangePractica">
+
+								<core:Item 
+									key="{MyKPracticeModules_KPracticeMasterModel>KPracticeID}" 
+									text="{MyKPracticeModules_KPracticeMasterModel>KPracticeDescription_Code}" />
+							</Select>
+						</VBox>		
+						
+						<VBox>
+							<Label text ="Sub Práctica"/>
+							<Select
+								width="100%"
+								id="subPracticaSelect"
+								items="{
+									path: 'MyKPracticeModules_KSubPracticeMasterModel>/',
+									sorter: { path: 'KSubpracticeDescription_Code' }
+								}"
+								change="onChangeSubPractica">
+								<core:Item 
+									key="{MyKPracticeModules_KSubPracticeMasterModel>KSubpracticeID}" 
+									text="{MyKPracticeModules_KSubPracticeMasterModel>KSubpracticeDescription_Code}" />
+							</Select>
+						</VBox>
+
+						<VBox>
+							<Label text ="Modulo"/>
+							<Select
+								width="100%"
+								id="modulesSelect"
+								items="{
+									path: 'MyKPracticeModules_KModulesMasterModel>/',
+									sorter: { path: 'KModuleDescription_Code' }
+									
+								}"
+								change="onChangeModules">
+
+								<core:Item 
+									key="{MyKPracticeModules_KModulesMasterModel>KModuleID}" 
+									text="{MyKPracticeModules_KModulesMasterModel>KModuleDescription_Code}" />
+							</Select>
+						</VBox>
+
+						<VBox>
+							<Label text ="Sub Modulo"/>
+							<Select
+								width="100%"
+								id="subModulesSelect"
+								items="{
+									path: 'MyKPracticeModules_KSubModulesMasterModel>/',
+									sorter: { path: 'KSubmoduleDescription_Code' }
+									
+								}"
+								>
+
+								<core:Item 
+									key="{MyKPracticeModules_KSubModulesMasterModel>KSubmoduleID}" 
+									text="{MyKPracticeModules_KSubModulesMasterModel>KSubmoduleDescription_Code}" />
+							</Select>
+						</VBox>
+
+						<VBox>
+							<Title level="H2" text="Período" />
+							<c:HorizontalDivider width="100%"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+						</VBox>
+
+						<VBox>
+							<Label text="Desde" />
+							<DatePicker
+								id = "desdeTimePicker"
+								displayFormat="dd/MM/yyyy"
+								valueFormat="yyyy-MM-dd"
+								/>
+
+						</VBox>
+
+						<VBox>
+							<Label text="Hasta" />
+							<DatePicker
+								id = "hastaTimePicker"
+								displayFormat="dd/MM/yyyy"
+								/>
+
+						</VBox>
+
+						<VBox>
+							<Label text="Porcentaje" />
+							<Select
+								width="100%"
+								id = "porcentajeSelect"
+								items="{/porcentajes}"
+								selectedKey="100"
+								>
+								<core:Item key="{key}" text="{value}" />
+							</Select>
+							
+						</VBox>
+						<VBox></VBox>
+
+						<VBox>
+							<Title level="H2" text="Otros" />
+							<c:HorizontalDivider width="100%"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+						</VBox>
+
+						<VBox>
+							<CheckBox text="Viaje" id="viajeCheckBox"/>
+						</VBox>
+						
+						<VBox>
+							<Label text ="Idioma"/>
+							<Select
+								width="100%"
+								id="idiomaSelect"
+								selectedKey="0"
+								forceSelection="false"
+								items="{
+									path: 'MyKLanguagesMasterModel>/'
+								}">
+								<core:Item 
+									key="{MyKLanguagesMasterModel>Catalogue_Code}" 
+									text="{MyKLanguagesMasterModel>Description_Code}" />
+							</Select>
+						</VBox>
+						
+						
+						<VBox visible="{= !${/editMode}}">
+							<Label text ="Comentarios" />
+							<TextArea width="100%" rows="4" id="comentariosTextArea"/>
+							<layoutData>
+								<l:GridData span="L12 M12 S12" linebreakL="true" linebreakM="true" linebreakS="true" />
+							</layoutData>
+						</VBox>
+						
+				</l:content>
+			</l:Grid>
+			
+			
+		</content>
+
+		<buttons>
+            <Button
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAcept"/>
+             <Button
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

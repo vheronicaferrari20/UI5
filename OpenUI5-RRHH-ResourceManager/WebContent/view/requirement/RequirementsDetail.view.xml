@@ -1,0 +1,243 @@
+<!--
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+    xmlns:m="sap.m"
+    controllerName="App.controller.requirement.RequirementsDetail"
+    xmlns:l="sap.ui.layout" 
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    height="100%">
+
+    <ScrollContainer
+        class ="centerAuto"
+        horizontal="false"
+        vertical="true"
+        height="98%"
+        width="98%">
+
+        <ObjectHeader
+            class="header-page"
+            title="{Opportunity>/Name}"
+            titleLevel="H1"
+            condensed="true"
+            icon="sap-icon://opportunity"
+            backgroundDesign="Transparent"
+            responsive="true"
+            fullScreenOptimized="false">
+            <attributes>
+				<ObjectAttribute 
+					title="Cuenta" 
+					text="{Opportunity>/Account/Name}" />
+				
+				<ObjectAttribute 
+					title="Committed/No Committed" 
+					text="{
+							path : 'Opportunity>/Commited__c',
+							formatter : '.formatter.formatCommittedOpportunity'}" />
+				
+				<ObjectAttribute 
+					title="Etapa" 
+					text="{Opportunity>/StageName}" />
+
+				<ObjectAttribute 
+					title="Creado" 
+					text="{
+							path : 'Opportunity>/CreatedDate',
+							formatter : '.formatter.formatDate'
+							}" />
+
+				<ObjectAttribute 
+					title="Cierre" 
+					text="{
+							path : 'Opportunity>/CloseDate',
+							formatter : '.formatter.formatDate'
+							}" />
+
+				<ObjectAttribute 
+					title="Inicio SF" 
+					text="{
+							path : 'Opportunity>/Project_Start_Date__c',
+							formatter : '.formatter.formatDate'
+							}" />
+
+			</attributes>
+
+            <headerContainer>
+            	<m:IconTabBar
+					id="iconTabBarMaster">
+					<m:items>
+						<m:IconTabFilter
+							text='ADI SAP'
+							key="listado"
+							>
+
+							<m:IconTabBar
+					id="iconTabBar">
+					<m:items>
+						<m:IconTabFilter
+							key="listado"
+							icon="sap-icon://list">
+							<mvc:XMLView viewName="App.view.requirement.PeopleFlowList"/>
+						
+						</m:IconTabFilter>
+						
+						<m:IconTabFilter
+							key="orgdiagram"
+							icon="sap-icon://org-chart">
+							<mvc:XMLView viewName="App.view.requirement.PeopleFlowOrgDiagram"/>
+						</m:IconTabFilter>
+
+						<m:IconTabFilter
+							icon="sap-icon://gantt-bars"
+							key="gantt">
+
+							<mvc:XMLView viewName="App.view.requirement.PeopleFlowPlanningCalendar"/>
+
+						</m:IconTabFilter>
+					</m:items>
+				</m:IconTabBar>
+							
+						
+						</m:IconTabFilter>
+						
+						
+					</m:items>
+				</m:IconTabBar>
+            	
+                
+
+            </headerContainer>
+        </ObjectHeader>
+
+    </ScrollContainer>
+	
+    
+
+
+
+
+
+
+</core:View>
+
+-->
+
+
+
+<core:View xmlns:core="sap.ui.core"
+		   xmlns="sap.uxap"
+		   xmlns:layout="sap.ui.layout"
+		   xmlns:m="sap.m"
+		   height="100%"
+		   xmlns:mvc="sap.ui.core.mvc"
+		   controllerName="App.controller.requirement.RequirementsDetail" 
+		>
+ 
+	<ObjectPageLayout 
+		id="ObjectPageLayout" 
+		enableLazyLoading="false" 
+		showTitleInHeaderContent="{/isNotFullScreen}"
+		showHeaderContent="{/isNotFullScreen}">
+		<headerTitle >
+			<ObjectPageHeader
+				headerDesign="Light"
+				visible ="{/isNotFullScreen}"
+				objectImageURI="sap-icon://opportunity"
+				objectImageShape="Square"
+				objectTitle="{Opportunity>/Name}"
+				objectImageAlt="{Opportunity>/Account/Name} {Opportunity>/Name}"
+				id="ObjectPageLayoutHeaderTitle"
+				isObjectIconAlwaysVisible="false"
+				isObjectTitleAlwaysVisible="false"
+				showPlaceholder="true">
+				<actions>
+					<core:Icon
+						src="sap-icon://favorite"
+						visible="{= ${/showFovoriteIcon}}"
+						class="opportunity-fovorite-icon">
+					</core:Icon>
+					<ObjectPageHeaderActionButton 
+						icon="sap-icon://add-favorite" 
+						text="Ir al listado" 
+						type="Emphasized" 
+						press="onPressAddFavorite"
+						visible="{= ${/showFovoriteButton}}"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://nav-back" text="Ir al listado" type="Emphasized" press="onBack"/>
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+ 
+		<headerContent>
+			<layout:VerticalLayout>
+				<m:ObjectStatus title="Cuenta" text="{Opportunity>/Account/Name}"/>
+				<m:ObjectStatus title="Committed/No Committed" text="{
+							path : 'Opportunity>/Commited__c',
+							formatter : '.formatter.formatCommittedOpportunity'}"/>
+				<m:ObjectStatus title="Etapa" text="{Opportunity>/StageName}"/>
+			</layout:VerticalLayout>
+
+			<layout:VerticalLayout>
+
+				<m:ObjectStatus title="Creado" text="{
+							path : 'Opportunity>/CreatedDate',
+							formatter : '.formatter.formatDate'
+							}"/>
+				<m:ObjectStatus title="Cierre" text="{
+							path : 'Opportunity>/CloseDate',
+							formatter : '.formatter.formatDate'
+							}"/>			
+				<m:ObjectStatus title="Inicio SF" text="{
+							path : 'Opportunity>/Project_Start_Date__c',
+							formatter : '.formatter.formatDate'
+							}"/>
+			</layout:VerticalLayout>
+ 
+			
+		</headerContent>
+ 
+		<sections>
+			<ObjectPageSection 
+				title=""
+				showTitle="{/isNotFullScreen}">
+				<subSections>
+					<ObjectPageSubSection 
+						title="{
+							path : 'Opportunity>/OpportunityLineItem',
+							formatter : '.setTitleOLI'
+							}"
+						>
+						<blocks>
+							<m:IconTabBar
+								id="iconTabBar">
+								<m:items>
+									<m:IconTabFilter
+										key="listado"
+										icon="sap-icon://list">
+										<mvc:XMLView viewName="App.view.requirement.PeopleFlowList"/>
+									
+									</m:IconTabFilter>
+									
+									<m:IconTabFilter
+										key="orgdiagram"
+										icon="sap-icon://org-chart">
+										<mvc:XMLView viewName="App.view.requirement.PeopleFlowOrgDiagram"/>
+									</m:IconTabFilter>
+
+									<m:IconTabFilter
+										icon="sap-icon://gantt-bars"
+										key="gantt">
+
+										<mvc:XMLView viewName="App.view.requirement.PeopleFlowPlanningCalendar"/>
+
+									</m:IconTabFilter>
+								</m:items>
+							</m:IconTabBar>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</core:View> 

@@ -1,0 +1,233 @@
+{
+	"_version": "1.1.0",
+	"sap.app": {
+		"_version": "1.1.0",
+		"id": "App",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"ach": "ach",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.30.3"
+		},
+		"dataSources": {
+		  "nameDataSource": {
+			"uri": "/uri/",
+			"type": "OData",
+			"settings": {
+			  "odataVersion": "2.0"
+			}
+		  }
+		  
+		}
+	},
+
+	"sap.ui": {
+		"_version": "1.1.0",
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_bluecrystal"
+		]
+	},
+
+	"sap.ui5": {
+		"_version": "1.1.0",
+		"rootView": {
+			"viewName": "App.view.Main",
+			"type": "XML"
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+		  "config": {
+			"routerClass":"App.AppRouter" , 
+			"name" : "AppRouter",
+			"viewType": "XML",
+			"viewPath": "App.view",
+			"controlId": "app",
+			"transition": "slide",
+			"controlAggregation": "pages"
+		  },
+		  
+		  "routes": [
+		  		{
+				  "pattern": "",
+				  "name": "home",
+				  "target": "home"
+				},
+				{
+				  "pattern": "resources",
+				  "name": "resources",
+				  "target": "resources"
+				},
+              	{
+                  "pattern": "{id}/resources_form",
+				  "name": "resources_form",
+			      "target": "resources_form"				
+              	},
+              	{
+                  "pattern": "{id}/resources_form_dialog",
+				  "name": "resources_form_dialog",
+			      "target": "resources_form_dialog"				
+              	},
+               	{
+				  "pattern": "requirements",
+				  "name": "requirements",
+				  "target": "requirements"
+                },
+                {
+				  "pattern": "{opportunityId}_{opportunityLineItemId}/requirements_detail",
+				  "name": "requirements_detail",
+				  "target": "requirements_detail"
+                },
+                {
+				  "pattern": "{opportunityId}/requirements_detail",
+				  "name": "requirements_detail_without_oli",
+				  "target": "requirements_detail_without_oli"
+                },
+                {
+				  "pattern": "{opportunityId}_{opportunityLineItemId}/requirements_detail_asignacion/{asignacionId}",
+				  "name": "requirements_detail_asignacion",
+				  "target": "requirements_detail_asignacion"
+                },
+                {
+				  "pattern": "{opportunityId}/requirements_detail_asignacion/{asignacionId}",
+				  "name": "requirements_detail_asignacion_without_oli",
+				  "target": "requirements_detail_asignacion_without_oli"
+                },
+                {
+				  "pattern": "settings",
+				  "name": "settings",
+				  "target": "settings"
+				},
+				{
+				  "pattern": "users",
+				  "name": "users",
+				  "target": "users"
+				},
+				{
+				  "pattern": "idiomas",
+				  "name": "idiomas",
+				  "target": "idiomas"
+				},
+				{
+				  "pattern": "recruitings",
+				  "name": "recruitings",
+				  "target": "recruitings"
+				},
+                {
+				  "pattern": "mails_by_zone",
+				  "name": "mails_by_zone",
+				  "target": "mails_by_zone"
+                }
+
+				
+				 
+		  ],
+		  
+		  "targets": {
+		    "home": {
+			  "viewName": "Home"
+			},
+			"resources": {
+			  "viewName": "employee.Employees"
+			},
+
+			
+			"login": {
+			  "viewName": "Login"
+            },
+
+            "not_authorized": {
+			  "viewName": "NotAuthorized"
+            },
+
+			"resources_form": {
+			  "viewName": "employee.EmployeesForm"
+			},
+
+			"resources_form_dialog": {
+			  "viewName": "employee.EmployeeFormDialog.fragment.xml"
+			},
+
+			"requirements": {
+			  "viewName": "opportunity.Opportunities"
+			},
+
+			"requirements_detail": {
+			  "viewName": "requirement.RequirementsDetail"
+			},
+
+			"requirements_detail_without_oli" : {
+			  "viewName": "requirement.RequirementsDetail"	
+			},
+
+			"requirements_detail_asignacion": {
+			  "viewName": "requirement.RequirementsDetail"
+			},
+
+			"requirements_detail_asignacion_without_oli" : {
+			  "viewName": "requirement.RequirementsDetail"
+			},
+
+			"settings": {
+			  "viewName": "Settings"
+			},
+
+			"users": {
+			  "viewName": "user.Users"
+			},
+
+			"idiomas": {
+			  "viewName": "idioma.Idiomas"
+			},
+
+			"recruitings": {
+			  "viewName": "recruitings.Recruitings"
+			},
+
+            "mails_by_zone": {
+              "viewName": "recruitings.RecruitingsMailsByZone"
+            }
+		  }
+		}
+	}
+	
+
+}

@@ -1,0 +1,53 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.employee.EmployeeFormSkills"
+	xmlns:layout="sap.ui.layout"
+    xmlns:m="sap.m"
+    xmlns:forms="sap.ui.layout.form"
+	height="100%">
+ 	
+	
+			
+    	<forms:SimpleForm
+				maxContainerCols="1"
+				layout="ResponsiveGridLayout"
+				width="100%">
+			<layout:VerticalLayout>
+
+				<OverflowToolbar>
+					
+					<Button icon="sap-icon://add" type="Transparent" press="addSkill"/>
+					<Button 
+						icon="sap-icon://delete" 
+						type="Transparent" 
+						enabled="false" 
+						id="deleteIdioma"
+						press="onPressDelete"/>
+				
+				</OverflowToolbar>
+
+				<List
+					id="idiomasList" 
+					mode="SingleSelectLeft"
+					items= "{
+							path: 'EmployeeModel>/data/mykSkills',
+							sorter: {
+								path: 'KPracticeDescription_Code',
+								descending: false,
+								group: true
+							}}"
+					selectionChange="onSelectionChangeTable">
+
+					<InputListItem 
+						label="{EmployeeModel>KSubpracticeDescription_Code} {EmployeeModel>KModuleDescription_Code} {EmployeeModel>KSubmoduleDescription_Code}">
+					</InputListItem>
+					
+				</List>
+
+			</layout:VerticalLayout>
+		</forms:SimpleForm>
+
+	
+</core:View>

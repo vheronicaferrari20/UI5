@@ -1,0 +1,77 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" >
+	<Dialog
+		title="Empleado"
+		resizable="true"
+		draggable="true"
+		stretch="false"
+		contentWidth="80%"
+		contentHeight="80%">
+		<content>
+
+				<ObjectHeader
+					title="{EmployeeModel>/data/fullName}"
+					backgroundDesign="Translucent"
+					responsive="true"
+					>
+					<attributes>
+						<ObjectAttribute 
+							text="{EmployeeModel>/data/vCategoriaEmpleado}"/>
+						
+					</attributes>
+					<statuses>
+						
+					</statuses>
+					<headerContainer>
+					<IconTabBar
+						
+						class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter
+								text="Detalle">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormDetalle"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Skills">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormSkills"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Idiomas">
+								<mvc:XMLView viewName="App.view.employee.EmployeesIdiomas"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Disponibilidad de viaje">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormDisponibilidadViaje"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Proyecto Asignado">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormProyectoAsignado"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Gantt">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormGantt"/>
+							</IconTabFilter>
+							<IconTabFilter
+								text="Comentarios">
+								<mvc:XMLView viewName="App.view.employee.EmployeeFormComentarios"/>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+		</headerContainer>
+				</ObjectHeader>
+
+
+			
+		</content>
+		
+		<buttons>
+             <Button
+		       type="Emphasized"
+		       width="100px"
+	           text="Ok"
+	           press="onCloseDialog"/>
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

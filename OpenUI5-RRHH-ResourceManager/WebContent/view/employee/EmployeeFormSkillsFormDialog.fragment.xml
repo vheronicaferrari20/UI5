@@ -1,0 +1,99 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:l="sap.ui.layout">
+	<Dialog
+		title="">
+		<content>
+			<l:Grid defaultSpan="L6 M6 S12" class="sapUiSmallMarginTop">
+				<l:content>
+				
+					<VBox>
+						<Label text ="Práctica"/>
+						<Select
+							width="100%"
+							id="practicaSelect"
+							items="{
+								path: 'MyKPracticeModules_KPracticeMasterModel>/',
+								sorter: { path: 'KPracticeDescription_Code' }
+								
+							}"
+							change="onChangePractica">
+
+							<core:Item 
+								key="{MyKPracticeModules_KPracticeMasterModel>KPracticeID}" 
+								text="{MyKPracticeModules_KPracticeMasterModel>KPracticeDescription_Code}" />
+						</Select>
+					</VBox>
+
+					
+					
+					<VBox>
+						<Label text ="Sub Práctica"/>
+						<Select
+							width="100%"
+							id="subPracticaSelect"
+							items="{
+								path: 'MyKPracticeModules_KSubPracticeMasterModel>/',
+								sorter: { path: 'KSubpracticeDescription_Code' }
+							}"
+							change="onChangeSubPractica">
+							<core:Item 
+								key="{MyKPracticeModules_KSubPracticeMasterModel>KSubpracticeID}" 
+								text="{MyKPracticeModules_KSubPracticeMasterModel>KSubpracticeDescription_Code}" />
+						</Select>
+					</VBox>
+
+					<VBox>
+						<Label text ="Modulo"/>
+						<Select
+							width="100%"
+							id="modulesSelect"
+							items="{
+								path: 'MyKPracticeModules_KModulesMasterModel>/',
+								sorter: { path: 'KModuleDescription_Code' }
+								
+							}"
+							change="onChangeModules">
+
+							<core:Item 
+								key="{MyKPracticeModules_KModulesMasterModel>KModuleID}" 
+								text="{MyKPracticeModules_KModulesMasterModel>KModuleDescription_Code}" />
+						</Select>
+					</VBox>
+
+					<VBox>
+						<Label text ="Sub Modulo"/>
+						<Select
+							width="100%"
+							id="subModulesSelect"
+							items="{
+								path: 'MyKPracticeModules_KSubModulesMasterModel>/',
+								sorter: { path: 'KSubmoduleDescription_Code' }
+								
+							}"
+							>
+
+							<core:Item 
+								key="{MyKPracticeModules_KSubModulesMasterModel>KSubmoduleID}" 
+								text="{MyKPracticeModules_KSubModulesMasterModel>KSubmoduleDescription_Code}" />
+						</Select>
+					</VBox>
+				</l:content>
+			</l:Grid>
+		</content>
+
+		<buttons>
+            <Button
+               id="acceptButton"	
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAccept"/>
+             <Button
+               id="rejectButton" 	
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

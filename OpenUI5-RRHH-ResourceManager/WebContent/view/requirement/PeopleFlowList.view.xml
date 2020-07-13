@@ -1,0 +1,157 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.requirement.PeopleFlowList"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:cc="App.control"
+	>
+	<Table id="requirementsPeopleFlowTable"
+		selectionChange="onSelectionChange"
+		mode="SingleSelectLeft"
+		inset="false"
+		items="{
+			path: 'PeopleFlowModel>/data',
+			sorter: [{
+				path: 'skill/name',
+				descending: false,
+				group: true
+			},
+			{
+				path: 'seniority/name',
+				descending: false,
+				group: false
+			},
+			{
+				path: 'desde',
+				descending: false,
+				group: false
+			}		
+
+			]
+		}">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://add" press="onPressAddPeopleFlow" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button id="deleteButton" icon="sap-icon://delete" press="onPressDelete" enabled="false">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<Button
+					icon="sap-icon://calendar"  
+					type="Emphasized"
+					text="Mover Fechas"
+					press=".moverFechaOnPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<ToolbarSpacer/>
+				<SearchField
+					liveChange="onSearch"
+					width="40%" />
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="Seniority" />
+			</Column>
+			<Column
+				>
+				<Text text="Skill" />
+			</Column>
+			<Column
+				>
+				<Text text="País" />
+			</Column>
+			<Column
+				>
+				<Text text="Estado" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Desde" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Hasta" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Idioma" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Viaje" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Comentarios" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Depende de" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Navigation"
+				press="onItemPressTable">
+				<cells>
+					<Text
+						text="{PeopleFlowModel>seniority/name}" />
+					<Text
+						text="{
+							parts : [
+								{path : 'PeopleFlowModel>skills'}
+							],
+							formatter : '.formatter.toSkill'
+						}"/>
+
+					<Text
+						text="{PeopleFlowModel>pais/name}" />
+
+					<Text
+						text="{
+							parts : [
+								{path : 'PeopleFlowModel>'}
+							],
+							formatter : '.getEstado'
+						}" />
+
+					<Text
+						text="{ path : 'PeopleFlowModel>desde',
+								formatter : '.formatter.formatDate'}" />
+					<Text
+						text="{ path : 'PeopleFlowModel>hasta',
+								formatter : '.formatter.formatDate'}" />
+					<Text
+						text="{PeopleFlowModel>idioma/Description_Code}" />
+					<Text
+						text="{ path : 'PeopleFlowModel>viaje',
+								formatter : '.formatter.formatBool'}" />
+					<Text
+						text="{ path : 'PeopleFlowModel>comentarios',
+								formatter : '.formatter.arrayToString'}" />
+					<Text
+						text="{PeopleFlowModel>parent/vSeniority} {PeopleFlowModel>parent/vSkillCategory} - {PeopleFlowModel>parent/vSkill}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+
+</core:View>

@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<meta charset="UTF-8">
+		
+		<link rel="stylesheet" type="text/css" href="css/load.css">
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Karla' rel='stylesheet' type='text/css'>
+        
+		<link rel="shortcut icon" href="http://www.grupoassa.com/favicon.ico">
+		<script src="resources/sap-ui-core.js"
+				id="sap-ui-bootstrap"
+				data-sap-ui-libs="sap.m"
+				data-sap-ui-bindingSyntax="complex"
+				data-sap-ui-theme="sap_bluecrystal"
+				data-sap-ui-compatVersion="edge"
+				data-sap-ui-preload="async"
+				data-sap-ui-resourceroots='{"App": "./"}'>
+		</script>
+		
+		
+		<!-- only load the mobile lib "sap.m" and the "sap_bluecrystal" theme -->
+        <script 
+			type="text/javascript" 
+			src="http://api.grupoassa.com:1337/js/dependencies/sails.io.js"
+			url="http://api.grupoassa.com:1337"
+			autoConnect="false">
+				
+		</script>
+		
+            <!-- src="http://localhost:1337/js/dependencies/sails.io.js" -->
+			<!-- url="http://localhost:1337" -->
+		<script>
+			var SOCKET;
+
+			// web
+			//var PROXY = "http://localhost:1337"; --->Se comenta para testing en localhost
+			var PROXY = "http://api.grupoassa.com:1337"
+			var SERVER_DELIVERY_TOOLS = "http://api.grupoassa.com:3001"
+			
+			var ESTADOS = {
+				'DRAFT' : {
+					text : 'DRAFT',
+					color : '#99B2BD',
+					icon : 'sap-icon://edit',
+					appointmentType : 'Type01'
+				},
+				'RESERVADO' : {
+					text : 'RESERVADO',
+					color : '#00B2BD',
+					icon : 'sap-icon://calendar',
+					appointmentType : 'Type02'
+				},
+				'ASIGNADO' : {
+					text : 'ASIGNADO',
+					color : '#4169e1',
+					icon : 'sap-icon://locked',
+					appointmentType : 'Type03'
+				},
+				'RECRUITING' : {
+					text : 'RECRUITING',
+					color : '#EC8B4B',
+					icon : 'sap-icon://employee-lookup',
+					appointmentType : 'Type04'
+				}
+			}
+			sap.ui.getCore().attachInit(function() {
+				sap.ui.require([
+					"sap/m/Shell",
+					"sap/ui/core/ComponentContainer"
+					],function(Shell, ComponentContainer){
+						removeLoad();
+						                      
+						new Shell({
+						app : new ComponentContainer({
+							height: "100%",
+							name: "App"
+						})
+					}).placeAt("content");
+				});
+			});
+			
+			function removeLoad(){
+				if (window.setTimeout) {
+					setTimeout(function(){
+						$("#splash-screen").remove();
+					},500);
+				} else {
+					$("#splash-screen").remove();
+				}
+			}
+			
+		</script>
+
+
+	</head>
+	
+	<body class="sapUiBody" role="application">
+		<div id="splash-screen">
+		    <div class="splash-screen-text"></div>
+		    <div class="splash-screen-circle-outer"></div>
+		    <div class="splash-screen-circle-inner"></div>
+		</div>
+		<div id="content"></div>
+		
+	</body>
+</html>

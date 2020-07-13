@@ -1,0 +1,16 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	height="100%"
+	xmlns:cc="App.control"
+	controllerName="App.controller.employee.EmployeesAnalytics">
+
+	<cc:Chart
+		config="{/configChart}">
+
+	</cc:Chart>
+
+    
+
+</core:View>

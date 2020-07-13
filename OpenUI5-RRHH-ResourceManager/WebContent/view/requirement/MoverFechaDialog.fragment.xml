@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons">
+	<Dialog
+		title="Mover Fechas">
+		<content>
+			<FlexBox
+				height="100px"
+				alignItems="Center"
+				justifyContent="Center">
+				<items>
+					<Label text="Cantidad de días" class="sapUiTinyMargin"/>
+					<Input id="cantidadDiasInput" type="Number"/>
+				</items>
+			</FlexBox>
+		</content>
+
+		<buttons>
+            <Button
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAcept"/>
+             <Button
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

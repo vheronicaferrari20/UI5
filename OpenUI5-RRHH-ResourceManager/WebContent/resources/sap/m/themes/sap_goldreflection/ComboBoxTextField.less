@@ -1,0 +1,52 @@
+/* =============================================== */
+/* CSS for control sap.m/ComboBoxTextField         */
+/* =============================================== */
+
+/* ------------------------------ */
+/* text field                     */
+/* ------------------------------ */
+
+input.sapMComboBoxTextFieldInner {
+	border: none;
+	margin: 0;
+	height: 100% !important;
+}
+
+.sapUiSizeCondensed .sapUiTableCell .sapMComboBoxTextField {
+	margin: 0;
+}
+
+.sapUiSizeCondensed .sapUiTableCell .sapMComboBoxTextField:not(.sapMComboBoxTextFieldState) {
+	border-color: transparent;
+}
+
+/* ------------------------------ */
+/* arrow                          */
+/* ------------------------------ */
+
+.sapMComboBoxTextFieldArrow {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: center;
+	cursor: pointer;
+	outline: none;
+	padding: 0;
+	height: 100%;
+	border: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	background: transparent;
+	font-size: inherit;
+}
+
+.sapMComboBoxTextFieldArrow::before {
+	font-family: "SAP-icons";
+	speak: none;
+	content: "\e1ef";
+}
+
+.sapMComboBoxTextFieldReadonly .sapMComboBoxTextFieldArrow {
+	display: none;
+}

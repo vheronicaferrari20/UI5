@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="">
+		<content>
+			<VBox
+				class="sapUiResponsiveMargin"
+				width="auto">
+				
+				<Label text ="Idioma"/>
+				<Select
+					id="idiomaSelect"
+					items="{IdiomasModel>/}"
+                    forceSelection="true">
+					<core:Item 
+						key="{IdiomasModel>id}" 
+						text="{IdiomasModel>name}" 
+						enabled="{IdiomasModel>visible}"/>
+				</Select>
+
+				<Label text ="Nivel"/>
+				<RatingIndicator 
+					id="nivelRating"
+					maxValue="5" 
+					class="sapUiSmallMarginBottom" 
+					tooltip="Nivel" 
+					visualMode="Full" />
+
+			</VBox>
+		</content>
+
+		<buttons>
+            <Button
+               id="acceptButton"	
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAccept"/>
+             <Button
+               id="rejectButton" 	
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

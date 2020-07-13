@@ -1,0 +1,37 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m"
+		   controllerName="App.controller.employee.EmployeeFormGantt"
+		   xmlns:unified="sap.ui.unified"
+		   >
+		<PlanningCalendar
+			id="employeePlannigCalendar"
+			startDate="{EmployeeModel>/startDate}"
+			rows="{EmployeeModel>/data/planningCalendar}"
+			appointmentSelect="handleAppointmentSelect"
+			viewKey="Month"
+			rowSelectionChange="onRowSelectionChange"
+			singleSelection="true">
+			
+			<rows>
+				<PlanningCalendarRow
+					icon="{pic}"
+					title="{EmployeeModel>title}"
+					text="{EmployeeModel>text}"
+					appointments="{EmployeeModel>appointments}">
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{EmployeeModel>startDate}"
+							endDate="{EmployeeModel>endDate}"
+							key="{EmployeeModel>key}"
+							title="{EmployeeModel>title}"
+							text="{EmployeeModel>text}"
+							type="{EmployeeModel>type}"
+							icon="{EmployeeModel>icon}">
+						</unified:CalendarAppointment>
+					</appointments>
+					
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+</core:View>

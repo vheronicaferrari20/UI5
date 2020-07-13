@@ -1,0 +1,90 @@
+/* ============================================= */
+/* CSS for control sap.m/RadioButton.control     */
+/* ============================================= */
+
+.sapMRb {
+	float: left;
+	clear: left;
+	outline: none;
+	text-overflow: ellipsis;
+	position: relative;
+	white-space: nowrap;
+	max-width: 100%;
+
+	> .sapMLabel {
+		// Safari rounds CSS subpixels with about 1px mistake
+		max-width: calc(~"100% - 3rem + 1px");
+	}
+}
+
+.sapMILI-CTX .sapMRb {
+	float: right;
+}
+
+.sapMRbHasLabel .sapMRbB {
+	width: 3rem;
+}
+
+.sapMRbB {
+	display: inline-block; /* for ie*/
+	font-size: 1rem; /* override font size of the message dialog */
+}
+
+.sapMRbB .sapMRbBOut {
+	height: 1.03em;
+	width: 1.03em;
+	border-radius: 1em;
+}
+
+.sapMRbBLabel {
+	vertical-align: top;
+	height: 3em;
+	line-height: 3em;
+	cursor: default;
+}
+
+.sapMRbB input {
+	margin: 0; /* FF puts margin */
+	-webkit-appearance: none;
+	visibility: hidden;
+}
+
+.sapMRbB:focus {
+	outline: none;
+}
+
+.sapMRb:focus:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: .75rem;
+	bottom: .625rem;
+	left: .75rem;
+	right: .625rem;
+	pointer-events: none;
+}
+
+.sapMRbHasLabel.sapMRb:focus:before {
+	right: 0;
+}
+
+.sapMRbDis:focus:before {
+	display: none;
+}
+
+.sapUiSizeCompact {
+	.sapMRb:focus:before {
+		top: .4375rem;
+		bottom: .3125rem;
+		left: .4375rem;
+		right: .325rem;
+	}
+
+	.sapMRbHasLabel .sapMRbB {
+		width: 2rem;
+	}
+
+	.sapMRb > .sapMLabel {
+		max-width: calc(~"100% - 2rem");
+	}
+}

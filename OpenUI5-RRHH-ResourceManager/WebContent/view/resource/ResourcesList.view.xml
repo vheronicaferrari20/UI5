@@ -1,0 +1,93 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.resource.ResourcesList"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	>
+	
+   
+	    <Table id="resourcesTable"
+			growing="true"
+			growingScrollToLoad="true"
+			items="{
+				path: 'ResourcesModel>/'
+			}">
+			<headerToolbar>
+				<Toolbar>
+					<Button icon="sap-icon://refresh" press="onPersoButtonPressed" >
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" />
+						</layoutData>
+					</Button>
+					<Button icon="sap-icon://action-settings" press="onPersoButtonPressed" >
+						<layoutData>
+							<OverflowToolbarLayoutData priority="NeverOverflow" />
+						</layoutData>
+					</Button>
+					<ToolbarSpacer/>
+					<SearchField
+						liveChange="onSearch"
+						width="40%" />
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column
+					width="4em">
+					<Text text="Legajo" />
+				</Column>
+				<Column>
+					<Text text="Apellido y Nombre" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Categoría" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Proyecto Actual" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Fecha Inicio de Proyecto" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Fecha Liberación" />
+				</Column>
+				<Column
+					minScreenWidth="Tablet"
+					demandPopin="true">
+					<Text text="Comentarios" />
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem
+					type="Navigation"
+					press="onItemPressTableResource">
+					<cells>
+						<Text
+							text="{ResourcesModel>codEmpleado}" />
+						<Text
+							text="{ResourcesModel>fullName}" />
+						<Text
+							text="{ResourcesModel>vCategoriaEmpleado}" />
+						<Text
+							text="{ResourcesModel>proyecto_actual}" />
+						<Text
+							text="{ResourcesModel>fecha_inicio_nuevo_proyecto}" />
+						<Text
+							text="{ResourcesModel>fecha_liberacion}" />
+						<Text
+							text="{ResourcesModel>comentarios}" />
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	
+</core:View>

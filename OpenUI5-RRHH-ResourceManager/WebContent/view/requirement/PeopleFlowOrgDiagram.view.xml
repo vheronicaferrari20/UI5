@@ -1,0 +1,48 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.requirement.PeopleFlowOrgDiagram"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:cc="App.control">
+
+	
+	<Panel width="100%">
+		<headerToolbar>
+			<Toolbar class="" id="toolbar">
+				<Button icon="sap-icon://add" press="onPressAddPeopleFlow" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button
+					icon="sap-icon://calendar"  
+					type="Emphasized"
+					text="Mover Fechas"
+					press="moverFechaOnPress">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSpacer/>
+				<Slider value="3" min="0" max="4" width="15em" change="onChangeSlider"/>
+
+				<Button 
+					id="fullScreenButton"
+					icon="sap-icon://full-screen" 
+					press="onPressFullScreen"/>
+			</Toolbar>
+		</headerToolbar>
+
+		<content>
+			<cc:OrgDiagram 
+				id="orgDiagram"
+				zoom="3"
+				dataConfig="{PeopleFlowModel>/dataOrgDiagram/}"
+				onPressAdd="onPressAdd">
+			</cc:OrgDiagram>
+		</content>
+	</Panel>
+
+</core:View>

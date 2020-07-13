@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified">
+		<u:Menu
+			items="{PreferenciasToAddModel>/}">
+			<u:MenuItem
+				text="{PreferenciasToAddModel>text}"
+				select="handleMenuItemPress"/>
+		</u:Menu>
+</core:FragmentDefinition>

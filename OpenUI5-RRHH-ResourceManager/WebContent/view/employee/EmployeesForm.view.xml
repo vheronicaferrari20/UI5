@@ -1,0 +1,121 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.uxap"
+		   xmlns:layout="sap.ui.layout"
+		   xmlns:m="sap.m"
+		   xmlns:forms="sap.ui.layout.form"
+           xmlns:cc="App.control"
+		   height="100%"
+           widht="98%"
+		   controllerName="App.controller.employee.EmployeesForm"
+		   id="EmployeeForm">
+
+			<ObjectPageLayout 
+				id="resourcesFormContainer" 
+				isChildPage="true"
+				enableLazyLoading="false" subSectionLayout="TitleOnLeft"
+					  showTitleInHeaderContent="true" showHeaderContent="true">
+				<headerTitle>
+					<ObjectPageHeader 
+									  objectImageURI=""
+									  objectImageShape="Circle"
+									  objectTitle="{EmployeeModel>/data/fullName}"
+									  objectSubtitle="{EmployeeModel>/data/vCategoriaEmpleado}"
+									  objectImageAlt="{EmployeeModel>/data/vCategoriaEmpleado}"
+									  id="ObjectPageLayoutHeaderTitle"
+									  isObjectIconAlwaysVisible="false"
+									  isObjectTitleAlwaysVisible="false"
+									  isObjectSubtitleAlwaysVisible="false"
+									  isActionAreaAlwaysVisible="true"
+									  showPlaceholder="true">
+						<actions>
+							<ObjectPageHeaderActionButton icon="sap-icon://nav-back" text="Ir al listado" type="Emphasized" press="onPressGoResources"/>
+						</actions>
+					</ObjectPageHeader>
+				</headerTitle>
+		 
+				<headerContent>
+					<layout:VerticalLayout>
+						<m:Text text="Legajo {EmployeeModel>/data/codEmpleado}" />
+						<m:Link text="{EmployeeModel>/data/userNameGA}@grupoassa.com"/>
+					</layout:VerticalLayout>
+					
+				</headerContent>
+		 
+				<sections>
+					<ObjectPageSection title="Detalle">
+						
+							<ObjectPageSubSection >
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeeFormDetalle"/>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Skills">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeeFormSkills"/>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Idiomas">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeesIdiomas"/>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection title="Disponibilidad de viaje">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeeFormDisponibilidadViaje"/>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Proyecto Asignado">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeeFormProyectoAsignado"/>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+                    <ObjectPageSection title="Gantt">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+                                    <mvc:XMLView viewName="App.view.employee.EmployeeFormGantt"/>
+
+
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+
+					<ObjectPageSection title="Comentarios">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<mvc:XMLView viewName="App.view.employee.EmployeeFormComentarios"/>
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+				</sections>
+			</ObjectPageLayout>
+</core:View>

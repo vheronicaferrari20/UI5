@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="Asignar Vacante">
+		<content>
+			<VBox
+				class="sapUiResponsiveMargin"
+				width="auto"
+				>
+				<Label text ="Legajo"/>
+				<Input id="legajoInput"/>
+
+			</VBox>
+		</content>
+
+		<buttons>
+            <Button
+               id="acceptButton"	
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAccept"
+	           />
+             <Button
+               id="rejectButton" 	
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"
+	           /> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,33 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m"
+		   xmlns:forms="sap.ui.layout.form"
+		   controllerName="App.controller.employee.EmployeeFormComentarios"
+		   >
+		<VBox>
+			<List
+				growing="true"
+				growingScrollToLoad="true"
+				items="{ path : 'EmployeeModel>/data/comentarios',
+						 sorter : [{ path : 'createdAt', descending: false, type:'date'}] }" 
+				visible="true">
+				<FeedListItem
+					sender="{EmployeeModel>vUserCrea}"
+					icon="{AuthorPicUrl}"
+					senderPress="onSenderPress"
+					iconPress="onIconPress"
+					iconDensityAware="false"
+					info="{Type}"
+					timestamp="{ path : 'EmployeeModel>createdAt', 
+									formatter : '.formatter.formatDateTimeComentarios'}"
+					text="{EmployeeModel>nota}" />
+			</List>
+
+			<FeedInput
+				width="50%"
+				post="onPostComentario"
+				icon="sap-icon://group"
+				class="sapUiSmallMarginTopBottom"
+				visible="true" />
+		</VBox>
+</core:View>

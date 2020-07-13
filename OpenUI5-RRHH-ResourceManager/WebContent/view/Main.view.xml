@@ -1,0 +1,86 @@
+<core:View height="100%"
+		   xmlns:core="sap.ui.core"
+		   xmlns="sap.m"
+		   xmlns:tnt="sap.tnt"
+		   xmlns:html="http://www.w3.org/1999/xhtml"
+		   controllerName="App.controller.Main"
+		   xmlns:c="sap.ui.commons"
+		   xmlns:l="sap.ui.layout">
+	<Page
+		showHeader="{App>/headerVisible}"
+		class="sapUiContentPadding"
+		showNavButton="false" >
+		<customHeader>
+		    <Bar>
+		    	<contentLeft>
+		    		<ToggleButton text="" type="Transparent" press="navTo" id="home" class="botonHeaderLogo1  botonHeaderHover" icon="img/logoHeader.png">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low" />
+						</layoutData>
+					</ToggleButton>
+
+					<ToggleButton text="Empleados" type="Transparent" press="navTo" id="resources" class="botonResponsive botonHeaderMenu1  botonHeaderHover" icon="sap-icon://group">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low" />
+						</layoutData>
+					</ToggleButton>
+
+					<ToggleButton text="Vacantes" type="Transparent" press="navTo" id="recruitings" class="botonResponsive botonHeaderMenu1 botonResponsive botonHeaderHover" icon="sap-icon://employee-lookup">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low" />
+						</layoutData>
+					</ToggleButton>
+
+					<ToggleButton text="Oportunidades" type="Transparent" press="navTo" id="requirements" class="botonResponsive botonHeaderMenu1 botonResponsive botonHeaderHover" icon="sap-icon://my-sales-order">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low" />
+						</layoutData>
+					</ToggleButton>
+
+					<ToggleButton text="Settings" type="Transparent" press="navTo" id="settings" class="botonResponsive botonHeaderMenu1 botonHeaderHover" icon="sap-icon://settings">
+						<layoutData>
+							<OverflowToolbarLayoutData priority="Low" />
+						</layoutData>
+					</ToggleButton>
+		            
+		        </contentLeft>
+
+		        <contentMiddle>
+		           <Text  text=""/>
+		        </contentMiddle>
+		        
+		        <contentRight>
+		        		
+		        	<Button 
+		        		text="+{NotificacionesCountModel>/count}" 
+		        		title="Nuevas Notificaciones"
+		        		id="HOME" 
+		        		type="Transparent" 
+		        		press="navTo" 
+		        		class="botonHeaderLogo1 botonHeaderHover count-notificaciones" 
+		        		icon="sap-icon://world"
+		        		visible="{= ${NotificacionesCountModel>/count} > 0}">
+					</Button>
+		        	
+	        		
+		        	<Button text="" title="Logoff" type="Transparent" press="onPressLogout" class="botonHeaderLogo1 botonHeaderHover" icon="sap-icon://log">
+					</Button>
+
+					<Button text="{DataUser>/full_name}" type="Transparent" class="botonResponsive botonHeaderLogo1 botonHeaderHover" icon="sap-icon://person-placeholder">
+						
+					</Button>
+
+		        </contentRight>
+		    </Bar>
+		</customHeader>
+		
+		<content>
+			<NavContainer id="app">
+				
+			</NavContainer>
+			
+		</content>
+	</Page>
+
+	
+</core:View>

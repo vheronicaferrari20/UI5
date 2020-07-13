@@ -1,0 +1,78 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.user.UsersList"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	>
+    <Table
+    	id="usersListTable" 
+		items="{UsersModel>/}"
+		enableBusyIndicator="true"
+		busyIndicatorDelay="0"
+		mode="SingleSelectLeft"
+		selectionChange="onSelectionChangeTable">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://add" press="onPressAdd" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button icon="sap-icon://delete" press="onPressDelete" enabled="false" id="deleteButton">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<ToolbarSpacer />
+				<Button icon="sap-icon://action-settings" press="onPressConfig" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button icon="sap-icon://refresh" press="onPressRefresh" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSeparator />
+				<SearchField
+					search="onSearch"
+					width="40%" />
+			</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar
+				id="infoFilterBar"
+				active="true"
+				visible="false">
+				<Label id="infoFilterLabel" text="?" />
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column>
+				<Text text="Apellido y Nombre" />
+			</Column>
+			<Column>
+				<Text text="Categoría" />
+			</Column>
+			<Column>
+				<Text text="User Name gA" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text
+						text="{UsersModel>employee/fullName}" />
+					<Text
+						text="{UsersModel>employee/vCategoriaEmpleado}" />	
+					<Text
+						text="{UsersModel>userNameGA}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:View>

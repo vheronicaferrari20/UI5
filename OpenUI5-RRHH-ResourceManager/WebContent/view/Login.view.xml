@@ -1,0 +1,84 @@
+<core:View 
+    id="idApp1"
+    xmlns:semantic="sap.m.semantic"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.LoginCuit" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	displayBlock="true">
+    
+							 
+        <FlexBox
+	        height="100%"
+			alignItems="Center"
+			justifyContent="Center"
+			
+			>
+			<items>
+				<Panel>
+				
+					<content>
+						<VBox xmlns="sap.m"  width="320px" class="sapUiSmallMargin">
+			    	
+				    	<HBox xmlns="sap.m"
+							justifyContent="Center">
+							<!-- 
+							<Icon 
+					    		xmlns="sap.ui.core"
+					    		src="sap-icon://customer"
+					    		size="150px"
+					    		color="color">
+					    		
+					    	</Icon>
+					    	-->
+					    	<Image
+								src="img/logoHeader.png"
+								densityAware="false"
+								width="280px" >
+								
+							</Image>
+						</HBox>
+				    	
+								       
+                            <Input xmlns="sap.m"
+                                id="userNameGAInput"
+                                placeholder="username ..."
+                                width="100%">
+                            </Input>
+
+                            
+                            <Input xmlns="sap.m"
+                                id="passwordInput"
+                                text="password"
+                                placeholder="password ..."
+                                type="Password"
+                                class="borderRounded1"
+                                change="onLogin"
+                                width="100%">
+                            </Input>
+						
+						<Button xmlns="sap.m"
+						    busyIndicatorDelay="0"
+						    width="100%"
+							id="idButtonLogin"
+							class= "borderRounded1 bold"
+							press="onLogin"
+							text="Login"
+							type="Emphasized">
+						</Button>
+						
+						
+						
+					</VBox>
+					
+					</content>
+				
+				</Panel>
+				
+			</items>
+		</FlexBox>
+    
+			
+</core:View>

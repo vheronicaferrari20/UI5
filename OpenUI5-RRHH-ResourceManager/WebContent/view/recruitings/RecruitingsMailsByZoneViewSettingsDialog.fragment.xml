@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+    <ViewSettingsDialog
+            confirm="handleConfirm">
+        <sortItems>
+            <ViewSettingsItem key="pais/name" text="Zona" selected="true" />
+            <ViewSettingsItem key="to/fullName" text="Email" />
+        </sortItems>
+        <groupItems>
+            <ViewSettingsItem key="pais/name" text="Zona" />
+        </groupItems>
+        <filterItems>
+            <ViewSettingsFilterItem
+                text="Pais"
+                key="codPais"
+                multiSelect="true"
+                items="{PaisMasterModel>/}">
+                <items>
+                    <ViewSettingsItem
+                        key="pais/name___EQ___{PaisMasterModel>name}"
+                        text="{PaisMasterModel>name}"/>
+                </items>
+            </ViewSettingsFilterItem>
+        </filterItems>
+    </ViewSettingsDialog>
+</core:FragmentDefinition>

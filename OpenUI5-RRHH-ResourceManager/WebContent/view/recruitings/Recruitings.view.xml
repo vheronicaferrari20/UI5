@@ -1,0 +1,50 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.recruitings.Recruitings"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%">
+
+    <ScrollContainer
+        class ="centerAuto"
+        horizontal="false"
+        vertical="true"
+        height="98%"
+        width="98%">
+ 	
+        <ObjectHeader
+            class="header-page"
+            title="Vacantes"
+            titleLevel="H1"
+            condensed="true"
+            icon="sap-icon://employee-lookup"
+            backgroundDesign="Transparent"
+            responsive="true">
+
+            <headerContainer>
+                
+                <IconTabBar
+                    id="iconTabBar"
+                    select="handleIconTabBarSelect"
+                    applyContentPadding="false"
+                    expandable="false">
+                    <items>
+                        <IconTabFilter
+                            key="oportunidades"
+                            icon="sap-icon://list">
+
+                            <mvc:XMLView viewName="App.view.recruitings.RecruitingsList"/>
+                        
+                        </IconTabFilter>
+                    </items>
+                </IconTabBar>
+
+            </headerContainer>
+
+        </ObjectHeader>
+        
+    </ScrollContainer>	
+
+</core:View>

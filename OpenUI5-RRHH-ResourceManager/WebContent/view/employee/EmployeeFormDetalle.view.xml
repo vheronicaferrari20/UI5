@@ -1,0 +1,67 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m"
+		   xmlns:forms="sap.ui.layout.form"
+		   controllerName="App.controller.employee.EmployeeFormDetalle"
+		   >
+		<forms:SimpleForm 
+			minWidth="1024"
+			maxContainerCols="2"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			
+			labelSpanL="4"
+			labelSpanM="4"
+			emptySpanL="0"
+			emptySpanM="0"
+			columnsL="2"
+			columnsM="2">
+			<forms:content>
+				<core:Title text="" />
+				
+				<Label text="Legajo" design="Bold"/>
+				<Text text="{EmployeeModel>/data/codEmpleado}" />
+				
+				<Label text="Apellido y Nombre" design="Bold"/>
+				<Text text="{EmployeeModel>/data/fullName}" />
+
+				<Label text="País" design="Bold"/>
+				<Text text="{EmployeeModel>/data/pais/name}" />
+					
+				<Label text="Site" design="Bold"/>
+				<Text text="{EmployeeModel>/data/site/siteEmplDescri}"/>
+				
+				<Label text="Coach" design="Bold"/>
+				<Text text="{EmployeeModel>/data/coach/fullName}" />
+				
+				<Label text="Mentor" design="Bold"/>
+				<Text text="{EmployeeModel>/data/mentor/fullName}" />
+				
+				<core:Title text="" />
+				<Label text="Categoría" design="Bold"/>
+				<Text text="{EmployeeModel>/data/vCategoriaEmpleado}" />
+													
+				<Label text="Fecha de Ingreso" design="Bold"/>
+				<Text text="{
+					path : 'EmployeeModel>/data/fechaIngresoEmpleado',
+					formatter : '.formatter.formatDateMagma'
+					}" />
+				
+				<Label text="Industria" design="Bold"/>
+				<Text text="{EmployeeModel>/data/industria/name}" />
+				
+				<Label text="Sub-Práctica" design="Bold"/>
+				<Text text="{EmployeeModel>/data/subPractica/name}" />
+				
+				<Label text="Práctica" design="Bold"/>
+				<Text text="{EmployeeModel>/data/practica/name}" />
+		
+				<Label text="Estructura" design="Bold"/>
+				<Text text="{EmployeeModel>/data/estructura}"/>
+
+				<Label text="Equipo" design="Bold"/>
+				<Text text="{EmployeeModel>/data/equipo}"/>
+
+			</forms:content>
+		</forms:SimpleForm>
+</core:View>

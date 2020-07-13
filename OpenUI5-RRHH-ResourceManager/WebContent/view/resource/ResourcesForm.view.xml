@@ -1,0 +1,244 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns="sap.uxap"
+		   xmlns:layout="sap.ui.layout"
+		   xmlns:m="sap.m"
+		   xmlns:forms="sap.ui.layout.form"
+		   height="100%"
+		   controllerName="App.controller.resource.ResourcesForm"
+		>
+		
+	
+			
+			<ObjectPageLayout id="resourcesFormContainer" enableLazyLoading="false" subSectionLayout="TitleOnLeft"
+					  showTitleInHeaderContent="true" showHeaderContent="true">
+				<headerTitle>
+					<ObjectPageHeader objectImageURI=""
+									  objectImageShape="Circle"
+									  objectTitle="{ResourceModel>/fullName}"
+									  objectSubtitle="{ResourceModel>/categoria}"
+									  objectImageAlt="{ResourceModel>/categoria}"
+									  id="ObjectPageLayoutHeaderTitle"
+									  isObjectIconAlwaysVisible="false"
+									  isObjectTitleAlwaysVisible="false"
+									  isObjectSubtitleAlwaysVisible="false"
+									  isActionAreaAlwaysVisible="true"
+									  showPlaceholder="true">
+						<actions>
+							<ObjectPageHeaderActionButton icon="sap-icon://nav-back" text="Ir al listado" type="Emphasized" press="onBack"/>
+						</actions>
+					</ObjectPageHeader>
+				</headerTitle>
+		 
+				<headerContent>
+					<layout:VerticalLayout>
+						<m:Text text="Legajo {ResourceModel>/legajo}" />
+						<m:Link text="mail@grupoassa.com"/>
+					</layout:VerticalLayout>
+					
+				</headerContent>
+		 
+				<sections>
+					<ObjectPageSection title="Detalle">
+						
+							<ObjectPageSubSection >
+								<blocks>
+									<forms:SimpleForm 
+										minWidth="1024"
+										maxContainerCols="2"
+										editable="false"
+										layout="ResponsiveGridLayout"
+										
+										labelSpanL="4"
+										labelSpanM="4"
+										emptySpanL="0"
+										emptySpanM="0"
+										columnsL="2"
+										columnsM="2">
+										<forms:content>
+											<core:Title text="Detalle" />
+											
+											<m:Label text="Legajo" design="Bold"/>
+											<m:Text text="{ResourceModel>/legajo}" />
+											
+											<m:Label text="Unidad" design="Bold"/>
+											<m:Text text="{ResourceModel>/unidad}" />
+											
+											<m:Label text="Apellido y Nombre" design="Bold"/>
+											<m:Text text="{ResourceModel>/fullName}" />
+											
+											<m:Label text="Delivery Center" design="Bold"/>
+											<m:Text text="{ResourceModel>/delivery_center}" />
+											
+											<m:Label text="Couch" design="Bold"/>
+											<m:Text text="{ResourceModel>/couch}" />
+											
+											<m:Label text="Mentor" design="Bold"/>
+											<m:Text text="{ResourceModel>/mentor}" />
+											
+											<core:Title text="" />
+											<m:Label text="Código de Categoría" design="Bold"/>
+											<m:Text text="{ResourceModel>/categoria_id}" />
+											
+											<m:Label text="Categoría" design="Bold"/>
+											<m:Text text="{ResourceModel>/categoria}" />
+																				
+											<m:Label text="Fecha de Ingreso" design="Bold"/>
+											<m:Text text="{ResourceModel>/fecha_ingreso}" />
+											
+											<m:Label text="Industria" design="Bold"/>
+											<m:Text text="{ResourceModel>/industria}" />
+											
+											<m:Label text="Sub-Práctica" design="Bold"/>
+											<m:Text text="{ResourceModel>/subpractica}" />
+											
+											<m:Label text="Práctica" design="Bold"/>
+											<m:Text text="{ResourceModel>/practica}" />
+											
+										</forms:content>
+									</forms:SimpleForm>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Skill">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<forms:SimpleForm
+										maxContainerCols="1"
+										layout="ResponsiveGridLayout"
+										width="100%">
+									<layout:VerticalLayout>
+										<m:List mode="SingleSelectLeft">
+											<m:InputListItem label="ABAP">
+												
+											</m:InputListItem>
+											<m:InputListItem label="SAPUI5">
+												
+											</m:InputListItem>
+										</m:List>
+										<m:OverflowToolbar  >
+											
+											<m:ToolbarSpacer/>
+											<m:Button icon="sap-icon://add" type="Transparent"/>
+											<m:Button icon="sap-icon://delete" type="Transparent"/>
+											<m:ToolbarSeparator/>
+											
+											<m:Button text="Guardar" type="Transparent"/>
+											<m:Button text="Cancelar" type="Transparent"/>
+
+										</m:OverflowToolbar>
+										
+									</layout:VerticalLayout>
+								</forms:SimpleForm>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Idiomas">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<forms:SimpleForm
+										maxContainerCols="1"
+										layout="ResponsiveGridLayout"
+										width="100%">
+									<layout:VerticalLayout>
+
+										<m:List mode="SingleSelectLeft">
+											<m:InputListItem label="Ingles">
+												<m:RatingIndicator maxValue="5" class="sapUiSmallMarginBottom" value="2" tooltip="Rating Tooltip" visualMode="Full" />
+											</m:InputListItem>
+											<m:InputListItem label="Portugues">
+												<m:RatingIndicator maxValue="5" class="sapUiSmallMarginBottom" value="3" tooltip="Rating Tooltip" visualMode="Full" />
+											</m:InputListItem>
+										</m:List>
+										<m:OverflowToolbar  >
+											
+											<m:ToolbarSpacer/>
+											<m:Button icon="sap-icon://add" type="Transparent"/>
+											<m:Button icon="sap-icon://delete" type="Transparent"/>
+											<m:ToolbarSeparator/>
+											
+											<m:Button text="Guardar" type="Transparent"/>
+											<m:Button text="Cancelar" type="Transparent"/>
+
+										</m:OverflowToolbar>
+										
+
+										
+									</layout:VerticalLayout>
+								</forms:SimpleForm>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Proyecto Asignado">
+						<subSections>
+							<ObjectPageSubSection >
+								<blocks>
+									<forms:SimpleForm
+										maxContainerCols="1"
+										layout="ResponsiveGridLayout"
+										width="100%">
+									<layout:VerticalLayout>
+										<m:Label text="{ResourceModel>/proyecto_actual}" design="Bold"/>
+										<m:Text text=" "/>
+										<m:Label text="Fecha de Inicio" design="Bold"/>
+										<m:Text text="{ResourceModel>/fecha_inicio_nuevo_proyecto}"/>
+										<m:Text text=" "/>
+										<m:Label text="Fecha de Liberación" design="Bold"/>
+										<m:Text text="{ResourceModel>/fecha_liberacion}"/>
+										<m:Text text=" "/>
+										<m:Label text="Localidad" design="Bold"/>
+										<m:Text text="{ResourceModel>/localidad}"/>
+										<m:Text text=" "/>
+										<m:Label text="Gerente / Lider" design="Bold"/>
+										<m:Text text="{ResourceModel>/gerente_lider}"/>
+										
+									</layout:VerticalLayout>
+								</forms:SimpleForm>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+					
+					<ObjectPageSection title="Comentarios">
+						<subSections>
+							<ObjectPageSubSection>
+								<blocks>
+									<m:List>
+						 
+										<m:NotificationListItem
+												title="Comentario #1"
+												description="{ResourceModel>/comentarios}"
+												datetime="3 days"
+												unread="true"
+												priority="High"
+												authorName="Office Notification"
+												authorPicture="sap-icon://group">
+										</m:NotificationListItem>
+		
+									</m:List>
+									
+								</blocks>
+							</ObjectPageSubSection>
+						</subSections>
+					</ObjectPageSection>
+		 
+					
+				</sections>
+			</ObjectPageLayout>
+		
+
+	
+ 
+	
+</core:View>

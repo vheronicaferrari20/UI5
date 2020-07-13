@@ -1,0 +1,167 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.opportunity.OpportunitiesList"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	>
+    <Table
+    	id="opportunitiesListTable" 
+		items="{OpportunityModel>/data}"
+		enableBusyIndicator="true"
+		busyIndicatorDelay="0"
+		growing="true"
+		growingScrollToLoad="true"
+		growingTriggerText="Mas"
+		growingThreshold="20"
+		updateStarted = "updateStarted">
+		<headerToolbar>
+			<Toolbar>
+				
+				<ToolbarSpacer />
+                <Button icon="sap-icon://action-settings" press="onPressConfig" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button icon="sap-icon://refresh" press="onPressRefresh" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSeparator />
+				<SearchField
+					search="onSearch"
+					width="40%" />
+			</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar
+				id="infoFilterBar"
+				active="true"
+				visible="false">
+				<Label id="infoFilterLabel" text="?" />
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column
+                minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Cuenta" />
+			</Column>
+			<Column>
+				<Text text="Oportunidad" />
+			</Column>
+			<Column>
+				<Text text="País" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Etapa" />
+			</Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Platform" />
+			</Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="ServiceType" />
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Cierre" />
+			</Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Inicio SF" />
+			</Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Committed/No Committed" />
+			</Column>
+			
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Perfiles" />
+			</Column>
+			<!--
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Candidatos Reservados"/>
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="false">
+				<Text text="Candidatos Asignados"/>
+			</Column>
+			-->
+
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Navigation"
+				press="onItemPressTable">
+				<cells>
+					<Text
+						text="{OpportunityModel>AccountName}" />
+					<Text
+						text="{OpportunityModel>Name}" />
+					<Text
+						text="{OpportunityModel>OpportunityPais}" />
+					<Text
+						text="{OpportunityModel>StageName}" />
+
+					<Text
+						text="{OpportunityModel>Platform__c}" />
+
+					<Text
+						text="{OpportunityModel>ServiceType__c}" />
+					
+					<Text
+						text="{
+							path : 'OpportunityModel>CloseDate' , 
+							formatter : '.formatter.formatDate'
+							}" />
+
+					<Text
+						text="{
+							path : 'OpportunityModel>Project_Start_Date__c' , 
+							formatter : '.formatter.formatDate'
+							}" />
+
+					<Text
+						text="{
+							path : 'OpportunityModel>Commited__c',
+							formatter : '.formatter.formatCommittedOpportunity'
+							}" />
+
+					<Text
+						text="{ 
+						parts : [ 
+							{path : 'OpportunityModel>CountPerfiles'},
+							{path : 'OpportunityModel>CountPerfilesDraft'},
+							{path : 'OpportunityModel>CountPerfilesReservados'},
+							{path : 'OpportunityModel>CountPerfilesAsignados'},
+							{path : 'OpportunityModel>CountPerfilesRecruiting'}
+							],
+							formatter : '.perfiles'}" />
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:View>

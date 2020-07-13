@@ -1,0 +1,194 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.employee.EmployeesPopulatedList"
+	xmlns:l="sap.ui.layout.form" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:cc="App.control"
+	>
+    <Table
+    	id="employeesPopulatedListTable" 
+		items="{EmployeesModel>/data}"
+		enableBusyIndicator="true"
+		busyIndicatorDelay="0"
+		growing="true"
+		growingScrollToLoad="true"
+		mode="{= ${EmployeesModel>/loading} ? 'None' : 'SingleSelectLeft'}"
+		includeItemInSelection="false"
+		rememberSelections="false"
+		updateFinished="updateFinished">
+		<headerToolbar>
+			<Toolbar>
+				<Button icon="sap-icon://action-settings" press="onPressConfig" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<ToolbarSpacer />
+				<BusyIndicator class="busy-indicator-hidden"/>
+				<BusyIndicator class="sapUiSmallMarginBottom" visible="{EmployeesModel>/loading}"/>
+				<BusyIndicator id="busyIndicator" class="sapUiSmallMarginBottom" visible="false"/>
+				<Button icon="sap-icon://refresh" press="onPressRefresh" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<ToolbarSeparator />
+				<SearchField
+					search="onSearch"
+					width="40%" />
+			</Toolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<Toolbar
+				id="infoFilterBar"
+				active="true"
+				visible="false">
+				<Label id="infoFilterLabel" text="?" />
+			</Toolbar>
+		</infoToolbar>
+		<columns>
+			<Column>
+				<Text text="Leg" />
+			</Column>
+			<Column
+				width="15%">
+				<Text text="Ap. y Nom."/>
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="CAT" />
+			</Column>
+			<Column
+                minScreenWidth="Tablet"
+                demandPopin="true">
+                <Text text="País" />
+            </Column>
+
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="true">
+                <Text text="COE/IND" />
+            </Column>
+
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="true">
+                <Text text="PRA" />
+            </Column>
+
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="true">
+                <Text text="SUB" />
+            </Column>
+
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true"
+				width="15%">
+				<Text text="Skill" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Level" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Id" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Viaja" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="DISP" />
+			</Column>
+			<Column
+				minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Pref" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem
+				type="Navigation"
+				press="onItemPressTable">
+				<customData>
+					<core:CustomData 
+						key="custom-style" 
+						value="{path : 'EmployeesModel>codEmpleado', 
+								formatter:'.formatter.addCSS'}" 
+						writeToDom="true"/>
+				</customData>
+				<cells>
+					<Text
+						text="{EmployeesModel>codEmpleado}" />
+					<Text
+						text="{ parts : [{path:'EmployeesModel>fullName'}],
+								formatter : '.limitTextTo30'
+								}" />
+					<Text
+						text="{EmployeesModel>codCategoriaEmpleado}" />
+
+					<Text
+                        text="{EmployeesModel>pais/codPais}" />
+                    
+                    <Text
+                        text="{parts: [{path:'EmployeesModel>cluster'},
+                        			   {path:'EmployeesModel>industria/codIndustria'}], 
+                        	   formatter : '.toCoeInd'}" />
+
+                    <Text
+                        text="{EmployeesModel>practica/codArea}" />
+
+                    <Text
+                        text="{EmployeesModel>subPractica/codDivision}" />
+
+					<Text
+						text="{	parts : [
+							{path : 'EmployeesModel>mykSkillMatching/Filler02'}]}" />
+
+					<Text
+						text="{	parts : [
+							{path : 'EmployeesModel>mykSkillMatching'}],
+							formatter : '.toLevelSkill'}" />
+					
+					<!--<Text
+						text="{	parts : [
+							{path : 'EmployeesModel>idiomaMatching'}, 
+							{path : '/idiomaFieldName'}],
+								formatter : '.formatter.arrayToText'}" />-->
+					<Text
+                        text="{EmployeesModel>idiomaMatching/LanguageDescription_Code} {EmployeesModel>idiomaMatching/ActivityDescription_Code} {EmployeesModel>idiomaMatching/LevelDescription_Code}" />		
+
+					<Text
+						text="{path : 'EmployeesModel>viaja/0/value',
+								formatter : '.formatter.formatBool'}" />
+
+					
+					<cc:ItemStatus
+						value="{path : 'EmployeesModel>_asignaciones', 
+							   formatter : '.calcularDisponibilidad'}"
+						>
+						
+					</cc:ItemStatus>
+
+					<RatingIndicator 
+						maxValue="{EmployeesModel>maxStars}" 
+						class="sapUiSmallMarginBottom" 
+						value="{EmployeesModel>stars}"/>
+
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:View>

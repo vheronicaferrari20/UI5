@@ -1,0 +1,60 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.notificaciones.Historico"
+	xmlns:l="sap.ui.layout" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%">
+ 	
+	<l:VerticalLayout width="100%" >
+        <l:BlockLayout>
+            <l:BlockLayoutRow>
+                <l:BlockLayoutCell
+                    width="25%">
+
+                    <List
+                        class="sapUiSmallMarginEnd"
+                        id="tiposNotificacionesList"
+                        mode="MultiSelect"
+                        includeItemInSelection="true"
+                        items="{TipoNotificaciones>/}"
+                        showSeparators="None"
+                        selectionChange="onSelectionChange">
+                        <headerToolbar>
+                            <Toolbar>
+                                <content>
+                                    <Title text="Tipos de Notificaciones" level="H2" />
+                                    
+                                </content>
+                            </Toolbar>
+                        </headerToolbar>
+                        <StandardListItem
+                            class="text-tipo-notificaciones"
+                            title="{TipoNotificaciones>title}"/>
+                    </List>
+                   
+                </l:BlockLayoutCell>
+                <l:BlockLayoutCell
+                    width="75%">
+
+                    <List 
+                        id = "notificacionesList"  
+                        class="sapUiSmallMarginEnd hideDescriptionGrowing"
+                        enableBusyIndicator="true"
+                        busyIndicatorDelay="0"
+                        growing="true"
+                        growingScrollToLoad="false"
+                        growingTriggerText="Ver Mas"
+                        growingThreshold="10"
+                        updateStarted = "updateStarted"/>
+                    
+                </l:BlockLayoutCell>
+            </l:BlockLayoutRow>
+        </l:BlockLayout>
+    </l:VerticalLayout>
+			
+    	
+
+	
+</core:View>

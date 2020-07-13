@@ -1,0 +1,64 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        title="">
+        <content>
+            <VBox
+                class="sapUiResponsiveMargin"
+                width="auto"
+                >
+                <Label text ="Zona"/>
+                <ComboBox
+                    id = "zoneComboBox"
+                    items="{
+                        path: 'PaisMasterModel>/',
+                        sorter: { path: 'name' }
+                    }">
+                    <core:Item key="{PaisMasterModel>codPais}" text="{PaisMasterModel>name}" />
+                </ComboBox>
+
+
+                <Label text ="To"/>
+                <MultiInput
+                    id="toInput"
+                    type="Text"
+                    showSuggestion="true"
+                    suggest="handdleSuggestTo"
+                    suggestionItems="{/SuggestToCollection}"
+                    maxTokens="1">
+                    <suggestionItems>
+                      <core:ListItem key="{codEmpleado}" text="{userNameGA}@grupoassa.com" additionalText="{fullName}"  />
+                    </suggestionItems>
+                </MultiInput>
+
+                <Label text ="CC"/>
+                <MultiInput
+                        id="ccInput"
+                        type="Text"
+                        showSuggestion="true"
+                        suggest="handdleSuggestTo"
+                        suggestionItems="{/SuggestToCollection}"
+                        enableMultiLineMode="true">
+                    <suggestionItems>
+                        <core:ListItem key="{codEmpleado}" text="{userNameGA}@grupoassa.com" additionalText="{fullName}"  />
+                    </suggestionItems>
+                </MultiInput>
+
+            </VBox>
+        </content>
+
+        <buttons>
+            <Button
+                id="acceptButton"
+                type="Accept"
+                text="Aceptar"
+                press="onPressAccept"/>
+            <Button
+                id="rejectButton"
+                type="Reject"
+                text="Cancelar"
+                press="onCloseDialog"/>
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

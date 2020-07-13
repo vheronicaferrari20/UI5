@@ -1,0 +1,80 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.resource.Resources"
+	xmlns:l="sap.ui.layout" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:cc="App.control"
+	>
+	
+	<ScrollContainer
+		 horizontal="false"
+         class="fondoBlancoTransp1"
+
+         vertical="true"
+		 height="100%">
+
+		 <Title
+			class="sapUiContentPadding" 
+			text="Gestor de Empleados" 
+			level="H1" 
+			titleStyle="H1" 
+			textAlign="Center"
+			width="100%"/>
+
+
+		<IconTabBar
+			id="iconTabBar"
+			select="handleIconTabBarSelect">
+			<items>
+				<IconTabFilter
+					text="Listado"
+					icon="sap-icon://list"
+					key="listado">
+
+					<mvc:XMLView viewName="App.view.resource.ResourcesList" id="xml_sample" />
+				       
+				</IconTabFilter>
+				<IconTabSeparator />
+				<IconTabFilter
+					icon="sap-icon://gantt-bars"
+					text="Gantt"
+					key="gantt">
+
+					<cc:DhtmlxGantt
+						data="{ModelGantt>/}"
+						height="400px">
+					</cc:DhtmlxGantt>
+				    	
+				</IconTabFilter>
+			</items>
+		</IconTabBar>	
+
+
+
+
+
+
+
+
+
+
+
+
+			
+		
+		
+		
+			
+		
+		
+
+
+	</ScrollContainer>	
+		
+	   
+		
+
+	   
+</core:View>

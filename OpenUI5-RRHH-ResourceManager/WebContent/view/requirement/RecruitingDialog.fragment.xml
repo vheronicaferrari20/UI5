@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons">
+	<Dialog
+		title="Vacante">
+		<content>
+			<FlexBox
+				height="100px"
+				alignItems="Center"
+				justifyContent="Center">
+				<items>
+					<Label text="Tipo de Vacante" class="sapUiTinyMargin"/>
+					<Select
+		                forceSelection="true"
+		                id="tipoRecruitingSelect">
+						<core:Item key="NOMINA" text="Nómina"/>
+						<core:Item key="EXTERNO" text="Externo"/>
+					</Select>	
+				</items>
+			</FlexBox>
+		</content>
+
+		<buttons>
+            <Button
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAcept"/>
+             <Button
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

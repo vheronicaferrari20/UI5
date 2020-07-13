@@ -1,0 +1,180 @@
+<core:View 
+    xmlns:core="sap.ui.core" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m"
+	controllerName="App.controller.opportunity.MyOpportunities"	
+	xmlns:l="sap.ui.layout" 
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	displayBlock="true"
+	height="100%">
+
+    <Panel
+    	showHeader="false"
+		enableScrolling="false"
+    	backgroundDesign="Transparent"
+    	expanded="true"
+    	>
+
+    <content>
+
+    <TileContainer
+		id="tileContainer"
+		tileDelete="onPressTileDelete"
+		tileMove="onTileMove"
+		tiles="{path: 'MyOpportunitiesModel>/data',
+				sorter: { path: 'index' }}"
+		height="500px"
+		editable="false">
+
+		<CustomTile
+			
+			class="sapMTile "
+			press="onPressTile">
+			<content>
+				<VBox class="opportunity-custom-tile opportunity-custom-tile-content">
+
+					<HBox class="opportunity-tile-row-header">
+
+						<HBox class="opportunity-tile-row-header-seccion-1">
+
+							<Text
+								text="{MyOpportunitiesModel>_opportunity/AccountName}"
+								/>
+							
+						</HBox>
+
+						<HBox 
+							class="opportunity-tile-row-header-seccion-2"
+							justifyContent="End">
+
+							<VBox
+								visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfiles} > 0 }"
+								class="opportunity-tile-row-header-seccion-2-content">
+								<Text
+									text="{MyOpportunitiesModel>_opportunity/CountPerfiles}"
+									/>
+								<Text
+									class="opportunity-tile-text-perfiles"
+									text="{= ${MyOpportunitiesModel>_opportunity/CountPerfiles} > 1 ? 'perfiles' : 'perfil' }"
+									/>
+								
+							</VBox>
+							
+						</HBox>
+						
+					</HBox>
+
+					<HBox class="opportunity-tile-row-center">
+
+						<VBox 
+							class="opportunity-tile-title-content">
+							<Text
+								class="opportunity-tile-title"
+								textAlign="Center"
+								text="{MyOpportunitiesModel>_opportunity/Name}"
+								/>
+
+							<Text
+								class="opportunity-tile-description"
+								textAlign="Begin"
+								text="{MyOpportunitiesModel>_opportunity/Platform__c}\n{MyOpportunitiesModel>_opportunity/ServiceType__c}"
+								/>
+
+						</VBox>
+						
+					</HBox>
+
+					<HBox
+						visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfiles} > 0 }" 
+						class="opportunity-tile-row-footer"
+						justifyContent="Center">
+
+						<Text
+							class="opportunity-tile-row-footer-p"
+							text="["
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesDraft} > 0}"
+							class="opportunity-tile-row-footer-count"
+							text="{MyOpportunitiesModel>_opportunity/CountPerfilesDraft}"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesDraft} > 0}"
+							class="opportunity-tile-row-footer-desc"
+							text="D"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesReservados} > 0}"
+							class="opportunity-tile-row-footer-count"
+							text="{MyOpportunitiesModel>_opportunity/CountPerfilesReservados}"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesReservados} > 0}"
+							class="opportunity-tile-row-footer-desc"
+							text="R"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesAsignados} > 0}"
+							class="opportunity-tile-row-footer-count"
+							text="{MyOpportunitiesModel>_opportunity/CountPerfilesAsignados}"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesAsignados} > 0}"
+							class="opportunity-tile-row-footer-desc"
+							text="A"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesRecruiting} > 0}"
+							class="opportunity-tile-row-footer-count"
+							text="{MyOpportunitiesModel>_opportunity/CountPerfilesRecruiting}"
+							/>
+
+						<Text
+							visible="{= ${MyOpportunitiesModel>_opportunity/CountPerfilesRecruiting} > 0}"
+							class="opportunity-tile-row-footer-desc"
+							text="Rc"
+							/>
+
+						<Text
+							class="opportunity-tile-row-footer-p"
+							text="]"
+							/>
+
+					</HBox>
+					
+				</VBox>
+
+
+
+				
+			</content>
+		</CustomTile>
+						
+	</TileContainer>
+
+
+	<HBox
+		justifyContent="Center">
+
+		<Button
+			id="editButton" 
+			icon="sap-icon://edit"
+			press="onPressEdit"
+			visible="{= ${MyOpportunitiesModel>/count} > 0 ? true : false }"/>
+		
+	</HBox>
+
+
+
+	</content>
+
+	</Panel>
+    
+</core:View>

@@ -1,0 +1,43 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m"
+		   xmlns:layout="sap.ui.layout"
+		   xmlns:forms="sap.ui.layout.form"
+		   controllerName="App.controller.employee.EmployeeFormDetalle"
+		   >
+		<forms:SimpleForm
+				maxContainerCols="1"
+				layout="ResponsiveGridLayout"
+				width="100%">
+			<layout:VerticalLayout>
+				<Label text="Cliente" design="Bold"/>
+				<Text text="{EmployeeModel>/data/proyectosActuales/0/opportunity/_account/Name}"/>
+				<Text text=" "/>
+
+				<Label text="Oportunidad" design="Bold"/>
+				<Text text="{EmployeeModel>/data/proyectosActuales/0/opportunity/Name}"/>
+				<Text text=" "/>
+
+				<Label text="Fecha de Inicio" design="Bold"/>
+				<Text text="{
+						path : 'EmployeeModel>/data/proyectosActuales/0/desde',
+						formatter : '.formatter.formatDate'
+					}"/>
+				<Text text=" "/>
+
+				<Label text="Fecha de Liberación" design="Bold"/>
+				<Text text="{
+						path : 'EmployeeModel>/data/proyectosActuales/0/hasta',
+						formatter : '.formatter.formatDate'
+					}"/>
+				<Text text=" "/>
+
+				<Label text="Localidad" design="Bold"/>
+				<Text text="{EmployeeModel>/data/localidad}"/>
+				<Text text=" "/>
+				<Label text="Gerente / Lider" design="Bold"/>
+				<Text text="{EmployeeModel>/data/gerente_lider}"/>
+				
+			</layout:VerticalLayout>
+		</forms:SimpleForm>
+</core:View>

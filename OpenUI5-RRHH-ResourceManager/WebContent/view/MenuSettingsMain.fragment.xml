@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified">
+		<u:Menu>
+
+			<u:MenuItem
+				id="users"
+				text="Usuarios"
+				select="handleMenuItemPress"
+				icon="sap-icon://company-view"/>
+			
+			<u:MenuItem
+				id="idiomas"
+				text="Idiomas"
+				select="handleMenuItemPress"
+				icon="sap-icon://hello-world"/>
+
+			<u:MenuItem
+				id="mails_by_zone"
+				text="Envío de emails por zona"
+				select="handleMenuItemPress"
+				icon="sap-icon://hello-world"/>				
+
+		</u:Menu>
+ 
+</core:FragmentDefinition>

@@ -1,0 +1,387 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons"
+	xmlns:unified="sap.ui.unified">
+	<Dialog
+		
+		resizable="true"
+		draggable="true"
+		stretch="false"
+		contentWidth="80%"
+		contentHeight="80%">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="Asignación {AsignacionModel>/estado}"></Title>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://nav-back" type="Emphasized" press="onBack" visible="{/visibleButtonBack}"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Page
+				showHeader="false"
+				showNavButton="false">
+
+				<l:DynamicSideContent
+					class="sapUiDSCExplored sapUiContentPadding"
+					sideContentFallDown="BelowM"
+					containerQuery="true"
+					breakpointChanged="updateToggleButtonState">
+					<l:mainContent>
+						<Panel>
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Detalle de la asignación" level="H2" />
+									<ToolbarSpacer />
+									<Button
+										icon="sap-icon://edit"
+										press="onPressEditAsignacion" />
+									
+								</Toolbar>
+							</headerToolbar>
+							<l:Grid defaultSpan="L6 M6 S6" class="sapUiSmallMarginTop">
+								<l:content>
+
+									<f:SimpleForm 
+										width="400px"
+										minWidth="1024"
+										editable="false"
+										layout="ResponsiveGridLayout"
+										labelSpanS="2"
+										labelSpanL="2"
+										labelSpanM="2"
+										emptySpanS="0"
+										emptySpanL="0"
+										emptySpanM="0"
+										columnsS="2"
+										columnsL="2"
+										columnsM="2">
+										<f:content>
+											
+											<Label text ="Seniority"/>
+											<Text text="{AsignacionModel>/seniority/name}"/>
+
+											<Label text ="Depende"/>
+											<Text text="{AsignacionModel>/parent/vSeniority} {AsignacionModel>/parent/vSkillCategory} - {AsignacionModel>/parent/vSkill}" />
+
+											<Label text ="País"/>
+											<Text text="{AsignacionModel>/pais/name}"/>
+
+											<Label text ="Skill"/>
+											<Text text="{
+												parts : [
+													{path : 'AsignacionModel>/skills'}
+												],
+												formatter : '.formatter.toSkill'
+											}"/>
+
+											<Label text="Viaje" />			   
+											<Text text="{ path: 'AsignacionModel>/viaje',
+														   formatter : '.formatter.formatBool'	}"/>
+
+										</f:content>
+									</f:SimpleForm>
+
+									<f:SimpleForm 
+										width="400px"
+										minWidth="1024"
+										editable="false"
+										layout="ResponsiveGridLayout"
+										labelSpanS="2"
+										labelSpanL="2"
+										labelSpanM="2"
+										emptySpanS="0"
+										emptySpanL="0"
+										emptySpanM="0"
+										columnsS="2"
+										columnsL="2"
+										columnsM="2">
+										<f:content>
+											
+											<Label text="Desde" />
+											<Text text="{ path: 'AsignacionModel>/desde',
+														   formatter : '.formatter.formatDate'	}"/>
+
+											<Label text="Hasta" />
+											<Text text="{ path: 'AsignacionModel>/hasta',
+														   formatter : '.formatter.formatDate'	}"/>
+
+											<Label text="Porcentaje" />
+											<Text text="{AsignacionModel>/porcentaje}%"/>
+
+											<Label text="Idioma" />			   
+											<Text text="{AsignacionModel>/idioma/Description_Code}"/>	
+													
+
+										</f:content>
+									</f:SimpleForm>
+
+								</l:content>
+							</l:Grid>
+
+						</Panel>
+
+						
+
+						<IconTabBar visible="{/isDraft}">
+							<items>
+								<IconTabFilter
+									key="listado"
+									icon="sap-icon://list">
+									<List
+										items="{
+											path: 'AsignacionModel>/candidatosPopulated'
+										}"
+										selectionChange="onCandidatosSelectionChange"
+										mode="SingleSelectLeft" 
+										id="candidatosList"
+										>
+										<headerToolbar>
+											<Toolbar>
+												<Title text="Candidatos" level="H2" />
+												<ToolbarSpacer />
+												<Button
+													visible="{/isDraft}"
+													icon="sap-icon://add"
+													press="onPressAddCandidato" />
+												<Button
+													visible="{/isDraft}"
+													icon="sap-icon://delete"
+													press="onPressDeleteCandidato" />
+												<ToolbarSeparator />
+												<Button
+													visible="{/isDraft}"
+													type="Emphasized"
+													text="Reservar"
+													press="onPressReservarCandidato" />
+												<Button
+													visible="{/isDraft}"
+													type="Emphasized"
+													text="Asignar"
+													press="onPressDratfToAsignarCandidato" />
+												<Button
+													visible="{/isCandidatoRecruiting}"
+													type="Emphasized"
+													text="Vacante"
+													press="onPressRecruiting" />
+												<Button
+													visible="{/isGenerarRecruiting}"
+
+													type="Emphasized"
+													text="Generar Vacante"
+													press="onPressGenerarRecruiting" />
+											</Toolbar>
+										</headerToolbar>
+										<StandardListItem
+
+											title="{AsignacionModel>employee/fullName}"
+											description="
+													{AsignacionModel>employee/vCategoriaEmpleado}
+													{	parts : [
+													{path : 'AsignacionModel>employee/skills'}, 
+													{path : '/skillFieldName'}],
+														formatter : '.formatter.arrayToText'}"/>
+									</List>
+								
+								</IconTabFilter>
+								
+								<IconTabFilter
+									key="orgdiagram"
+									icon="sap-icon://gantt-bars">
+									<PlanningCalendar
+										id="asignacionPlanningCalendar"
+										rowSelectionChange="onRowSelectionChange"
+										singleSelection="true"
+										startDate="{AsignacionModel>/startDate}"
+										rows="{AsignacionModel>/candidatosPlannnigCalendar}"
+										appointmentSelect="handleAppointmentSelect"
+										appointments="{AsignacionModel>appointments}"
+										viewKey="Month">
+										<toolbarContent>
+											
+										</toolbarContent>
+										<rows>
+											<PlanningCalendarRow
+												icon="{pic}"
+												title="{AsignacionModel>title}"
+												text="{AsignacionModel>text}"
+												role="{AsignacionModel>role}"
+												appointments="{AsignacionModel>appointments}">
+												<appointments>
+													<unified:CalendarAppointment
+														startDate="{AsignacionModel>startDate}"
+														endDate="{AsignacionModel>endDate}"
+														key="{AsignacionModel>key}"
+														title="{AsignacionModel>title}"
+														text="{AsignacionModel>text}"
+														type="{AsignacionModel>type}"
+														icon="{AsignacionModel>icon}">
+													</unified:CalendarAppointment>
+												</appointments>
+												
+											</PlanningCalendarRow>
+										</rows>
+									</PlanningCalendar>
+								</IconTabFilter>
+								
+							</items>
+						</IconTabBar>
+						
+						
+						
+						
+								
+							
+
+						<Panel
+							visible="{/isReservado}"
+							>
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Candidato Reservado" level="H2" />
+									<ToolbarSpacer />
+									<Button
+										type="Emphasized"
+										text="Asignar"
+										press="onPressAsignarCandidato" />
+									<Button
+										type="Emphasized"
+										text="Volver a Draft"
+										press="onPressVolverDraft" />
+								</Toolbar>
+							</headerToolbar>
+
+							<content>
+								<StandardListItem
+
+								title="{AsignacionModel>/candidato/fullName}"
+								description="
+										{AsignacionModel>/candidato/vCategoriaEmpleado}
+										{	parts : [
+										{path : 'AsignacionModel>/candidato/skills'}, 
+										{path : '/skillFieldName'}],
+											formatter : '.formatter.arrayToText'}"/>
+								
+							</content>
+						</Panel>
+
+						<Panel
+							visible="{/isRecruiting}"
+							>
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Vacante generada" level="H2" />
+									<ToolbarSpacer />
+
+									<Button
+										type="Emphasized"
+										text="Asignar Vacante"
+										press="onPressVincularRecruiting" />
+									
+									<Button
+										type="Emphasized"
+										text="Volver a Draft"
+										press="onPressVolverDraft" />
+								</Toolbar>
+							</headerToolbar>
+
+							<content>
+								<StandardListItem
+
+								title="Vacante"
+								description="{AsignacionModel>/tipoRecruiting}"/>
+								
+							</content>
+						</Panel>
+
+						<Panel
+							visible="{/isAsignado}"
+							>
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Candidato Asignado" level="H2" />
+									<ToolbarSpacer />
+									<Button
+										type="Emphasized"
+										text="Volver a Draft"
+										press="onPressVolverDraft" />
+								</Toolbar>
+							</headerToolbar>
+
+							<content>
+								<StandardListItem
+
+								title="{AsignacionModel>/candidato/fullName}"
+								description="
+										{AsignacionModel>/candidato/vCategoriaEmpleado}
+										{	parts : [
+										{path : 'AsignacionModel>/candidato/skills'}, 
+										{path : '/skillFieldName'}],
+											formatter : '.formatter.arrayToText'}"/>
+								
+							</content>
+						</Panel>
+
+
+
+					</l:mainContent>
+					<l:sideContent>
+						<FeedInput
+							id="feedInput"
+							post="onPostComentario"
+							icon="sap-icon://group"
+							class="sapUiSmallMarginTopBottom"
+							visible="true" />
+						<ScrollContainer
+							 horizontal="false"
+							 vertical="true"
+							 height="50%">
+						<List
+							growing="true"
+							growingScrollToLoad="true"
+							items="{ path : 'AsignacionModel>/comentarios',
+									 sorter : [{ path : 'createdAt', descending: true, type:'date'}] }" 
+							visible="true">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="Comentarios" level="H2" />
+									<ToolbarSpacer />
+									
+								</Toolbar>
+							</headerToolbar>
+							<FeedListItem
+								sender="{AsignacionModel>vUserCrea}"
+								icon="{AuthorPicUrl}"
+								senderPress="onSenderPress"
+								iconPress="onIconPress"
+								iconDensityAware="false"
+								info="{Type}"
+								timestamp="{ path : 'AsignacionModel>createdAt', 
+												formatter : '.formatter.formatDateTimeComentarios'}"
+								text="{AsignacionModel>nota}" />
+						</List>
+
+						</ScrollContainer>
+						
+							
+					</l:sideContent>
+				</l:DynamicSideContent>
+			</Page>
+
+		</content>
+
+		<buttons>
+            <Button
+		       type="Emphasized"
+		       width="100px"
+	           text="Ok"
+	           press="onCloseDialog"/>
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>

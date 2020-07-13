@@ -1,0 +1,22 @@
+<core:View xmlns:core="sap.ui.core"
+		   xmlns:mvc="sap.ui.core.mvc" 
+		   xmlns="sap.m"
+		   controllerName="App.controller.employee.EmployeeFormDisponibilidadViaje"
+		   >
+		   <VBox>
+				<RadioButton
+					id="radioButtonViaja" 
+					groupName="GroupA" 
+					text="Si" 
+					select="onSelectViaja"
+					selected="{ path : 'EmployeeModel>/data/viaja/0/value',
+								formatter : '.toViaja'}"/>
+				<RadioButton 
+					id="radioButtonNoViaja" 
+					groupName="GroupA" 
+					text="No" 
+					select="onSelectNoViaja"
+					selected="{ path : 'EmployeeModel>/data/viaja/0/value',
+								formatter : '.toNoViaja'}"/>
+			</VBox>
+</core:View>

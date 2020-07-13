@@ -1,0 +1,154 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons">
+	<Dialog
+		title="Candidatos"
+		resizable="true"
+		draggable="true"
+		stretch="true"
+		contentWidth="100%"
+		contentHeight="80%">
+		<customHeader>
+		    <Bar>
+		    	<contentLeft>
+		    		<Button icon="sap-icon://menu2" press="onPressToggleSlideContent"/>
+		        </contentLeft>
+
+		        <contentMiddle>
+		           <Text  text="Candidatos"/>
+		        </contentMiddle>
+		    </Bar>
+		</customHeader>
+		<content>
+			<Page
+				id="sideContentContainer"
+				showHeader="false"
+				showNavButton="false">
+
+			<l:DynamicSideContent
+				id="DynamicSideContent"
+				class="sapUiDSCExplored sapUiContentPadding"
+				sideContentFallDown="BelowM"
+				sideContentPosition="Begin"
+				containerQuery="true"
+				breakpointChanged="updateToggleButtonState">
+				<l:mainContent>
+					<ScrollContainer
+						 horizontal="false"
+						 vertical="true"
+						 height="100%">
+						<mvc:XMLView viewName="App.view.employee.EmployeesPopulatedList"  />
+					</ScrollContainer>
+					
+				</l:mainContent>
+				<l:sideContent>
+					<f:SimpleForm
+						title="Detalle de la asignación" 
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanS="2"
+						labelSpanL="2"
+						labelSpanM="2"
+						emptySpanS="0"
+						emptySpanL="0"
+						emptySpanM="0"
+						columnsS="2"
+						columnsL="2"
+						columnsM="2">
+						<f:content>
+							
+							<Label text ="Seniority"/>
+							<Text text="{AsignacionModel>/seniority/name}"/>
+
+							<Label text ="Depende"/>
+							<Text text="{AsignacionModel>/parent/seniority/nom_categ_emp} {AsignacionModel>/parent/skill/skillCategory/name} - {AsignacionModel>/parent/skill/name}" />
+							
+							<Label text ="País"/>
+							<Text text="{AsignacionModel>/pais/name}"/>
+
+							<Label text ="Skill"/>
+							<Text text="{
+								parts : [
+									{path : 'AsignacionModel>/skills'}
+								],
+								formatter : '.formatter.toSkill'
+							}"/>
+
+							<Label text="Viaje" />			   
+							<Text text="{ path: 'AsignacionModel>/viaje',
+										   formatter : '.formatter.formatBool'	}"/>
+
+												
+							<Label text="Desde" />
+							<Text text="{ path: 'AsignacionModel>/desde',
+										   formatter : '.formatter.formatDate'	}"/>
+
+							<Label text="Hasta" />
+							<Text text="{ path: 'AsignacionModel>/hasta',
+										   formatter : '.formatter.formatDate'	}"/>
+
+							<Label text="Porcentaje" />
+							<Text text="{AsignacionModel>/porcentaje}%"/>
+
+							<Label text="Idioma" />			   
+							<Text text="{AsignacionModel>/idioma/Description_Code}"/>	
+									
+
+						</f:content>
+					</f:SimpleForm>
+
+					<List
+						class="sapUiTinyMargin"
+						mode="Delete"
+						delete="onPressDeletePreferencia"
+						items="{
+							path: 'PreferenciasModel>/'
+						}"
+						>
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Preferencia de busqueda" level="H2" />
+								<ToolbarSpacer />
+								<Button
+									id="addPreferenciaButton"
+									icon="sap-icon://add"
+									press="onPressAddPreferencia"
+									visible="{/isVisibleToAddPreferencia}" 
+									/>
+							</Toolbar>
+						</headerToolbar>
+						<StandardListItem
+							class="sapUiTinyMargin"
+							title="{PreferenciasModel>text}"
+							description="{PreferenciasModel>description}"
+							counter="{PreferenciasModel>total}"
+							icon="sap-icon://{PreferenciasModel>icon}"
+							type="Active"
+							press="onPressEditSkills"
+							/>
+					</List>
+						
+				</l:sideContent>
+			</l:DynamicSideContent>
+			</Page>
+						
+
+		</content>
+
+		<buttons>
+            <Button
+		       type="Accept"
+	           text="Aceptar"
+	           press="onPressAcept"/>
+             <Button
+		       type="Reject" 
+	           text="Cancelar"
+	           press="onCloseDialog"/> 
+        </buttons>
+	</Dialog>
+</core:FragmentDefinition>
