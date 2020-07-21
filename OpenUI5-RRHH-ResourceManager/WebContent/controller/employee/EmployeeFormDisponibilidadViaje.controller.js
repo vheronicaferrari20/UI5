@@ -33,7 +33,8 @@ sap.ui.define([
 		_createOrUpdateViaja : function(value){
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + '/employeeViaja',
+				//url : PROXY + '/employeeViaja',//-->Se comenta para pruebas -Vero
+				url:'http://api.grupoassa.com:1337/employeeViaja',
 				method : 'POST',
 				dataType : 'JSON',
 				data  : {

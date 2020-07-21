@@ -77,7 +77,8 @@ sap.ui.define([
 				if (this.id === undefined) {
 					// CREATE
 					jQuery.ajax({
-						url : PROXY + "/user",
+						//url : PROXY + "/user",  //-->Se comenta para test- Vero
+						url : 'http://api.grupoassa.com:1337/user',  // --->Test Vero
 						method : "POST",
 						dataType : "JSON",
 						data : {
@@ -105,7 +106,8 @@ sap.ui.define([
 				} else {
 					//UPDATE
 					jQuery.ajax({
-						url : PROXY + "/user/" + that.id,
+						//url : PROXY + "/user/" + that.id,  //-->Se comenta para test- Vero
+						url : 'http://api.grupoassa.com:1337/user' + that.id,  // --->Test Vero
 						method : "PUT",
 						dataType : "JSON",
 						data : {

@@ -55,6 +55,8 @@
 	var config = $.cookie = function (key, value, options) {
 
 		// Write
+		//console.log('Pasa x $.cookie = function (key, value, options)');
+		//console.log('key: '+ key+' value: '+value+' options: '+ options );
 
 		if (value !== undefined && !$.isFunction(value)) {
 			options = $.extend({}, config.defaults, options);
@@ -64,6 +66,8 @@
 				t.setTime(+t + days * 864e+5);
 			}
 
+			//console.log('Pasa x if linea 61');
+			//console.log('key: '+ key+' value: '+value+' options: '+ options );
 			return (document.cookie = [
 				encode(key), '=', stringifyCookieValue(value),
 				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
@@ -76,6 +80,7 @@
 		// Read
 
 		var result = key ? undefined : {};
+		//console.log('result: '+ result);
 
 		// To prevent the for loop in the first place assign an empty array
 		// in case there are no cookies at all. Also prevents odd result when
@@ -87,18 +92,24 @@
 			var name = decode(parts.shift());
 			var cookie = parts.join('=');
 
+			//console.log('Pasa x if linea 90');
+			//console.log('cookies: '+ cookies );
 			if (key && key === name) {
 				// If second argument (value) is a function it's a converter...
 				result = read(cookie, value);
+				console.log('Pasa x if linea 97');
+				console.log('result: '+ result );
 				break;
 			}
 
 			// Prevent storing a cookie that we couldn't decode.
 			if (!key && (cookie = read(cookie)) !== undefined) {
+				//console.log('Pasa x if linea 106');
+				//console.log('cookie: '+ cookie );
 				result[name] = cookie;
 			}
 		}
-
+		//console.log('result FINAL: '+ result );
 		return result;
 	};
 

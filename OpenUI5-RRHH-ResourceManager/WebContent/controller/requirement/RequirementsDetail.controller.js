@@ -99,7 +99,8 @@ sap.ui.define([
 		getDataOpportunity : function() {
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + "/opportunitySalesforce/" + this._OpportunityId,
+				//url : PROXY + "/opportunitySalesforce/" + this._OpportunityId,  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/opportunitySalesforce/' + this._OpportunityId,  // --->Test Vero
 				method : "GET",
 				dataType : "JSON",
 				data : {
@@ -133,7 +134,8 @@ sap.ui.define([
 			var that = this;
 
 			jQuery.ajax({
-				url : PROXY + '/MyOpportunity',
+				//url : PROXY + '/MyOpportunity',  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/MyOpportunity',  // --->Test Vero
 				method : 'POST',
 				data : {
 					opportunity : this._OpportunityId,
@@ -156,7 +158,8 @@ sap.ui.define([
 			this._DataModel.setProperty('/showFovoriteButton', false);
 			this._DataModel.setProperty('/showFovoriteIcon', false);
 			jQuery.ajax({
-				url : PROXY + '/MyOpportunity/isMyFavorite',
+				//url : PROXY + '/MyOpportunity/isMyFavorite',  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/MyOpportunity/isMyFavorite',  // --->Test Vero
 				data : {
 					opportunity : this._OpportunityId,
 					opportunityLineItem : this._OpportunityLineItemId

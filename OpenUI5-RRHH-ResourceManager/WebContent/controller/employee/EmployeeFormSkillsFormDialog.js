@@ -168,7 +168,8 @@ sap.ui.define([
 				if (this.id === undefined) {
 					// ADD SKILL
 					jQuery.ajax({
-						url : PROXY + "/myKKnowPracticeModuleConsultants",
+						//url : PROXY + "/myKKnowPracticeModuleConsultants",//--->Se comenta para testing -Vero
+						url: 'http://api.grupoassa.com:1337/myKKnowPracticeModuleConsultants',
 						method : "POST",
 						data:{
 							codEmpleado : that._codEmpleado,

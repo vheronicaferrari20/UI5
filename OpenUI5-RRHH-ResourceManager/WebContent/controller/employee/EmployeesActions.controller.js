@@ -42,7 +42,7 @@ sap.ui.define([
 
 		onSuscribeBinding : function(channel, event, data) {
 			
-			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")");
+			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")"); // Comentado para testing-Vero
 
 		},
 
@@ -63,6 +63,7 @@ sap.ui.define([
 			this._eventBus.publish(
 				dataEvents.refresh_employee_actions.channel,
 				dataEvents.refresh_employee_actions.name);
+			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")");
 
 		},
 

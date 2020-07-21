@@ -19,7 +19,7 @@
 					iconDensityAware="false"
 					info="{Type}"
 					timestamp="{ path : 'EmployeeModel>createdAt', 
-									formatter : '.formatter.formatDateTimeComentarios'}"
+								formatter : '.formatter.formatDateTimeComentarios'}"
 					text="{EmployeeModel>nota}" />
 			</List>
 

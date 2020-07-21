@@ -125,7 +125,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este Usuario',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/user/' + data.userNameGA,
+						//url : PROXY + '/user/' + data.userNameGA,  //-->Se comenta para test- Vero
+						url : 'http://api.grupoassa.com:1337/user/' + data.userNameGA,  // --->Test Vero
 						method : 'DELETE',
 						dataType : 'JSON',
 						success : function(data){
@@ -186,7 +187,8 @@ sap.ui.define([
 			this._Table.setBusy(true);
 
 			jQuery.ajax({
-				url : PROXY + "/user",
+				//url : PROXY + "/user",  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/user',  // --->Test Vero
 				method : "GET",
 				dataType : "JSON",
 				data : {

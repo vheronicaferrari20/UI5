@@ -10,7 +10,8 @@ sap.ui.define([
 		
 		new Promise(function(resolve, reject){
 			jQuery.ajax({
-				url : PROXY + "/opportunitySalesforce/"+data.datos.opportunityId+"/opportunityLineItems",
+				//url : PROXY + "/opportunitySalesforce/"+data.datos.opportunityId+"/opportunityLineItems",  // Se comenta para pruebas
+				url : 'http://api.grupoassa.com:1337/opportunitySalesforce/'+ data.datos.opportunityId +'/opportunityLineItems', //-->Test Vero
 				method : "GET",
 				dataType : "JSON",
 				success : function(opportunityLineItems){

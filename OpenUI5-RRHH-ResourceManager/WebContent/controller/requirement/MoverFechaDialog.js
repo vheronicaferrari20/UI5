@@ -52,7 +52,8 @@ sap.ui.define([
 				var that = this;
 
 				jQuery.ajax({
-					url : PROXY + '/asignacionCambioFechaByOpportunity',
+					//url : PROXY + '/asignacionCambioFechaByOpportunity',  //-->Se comenta para test- Vero
+					url : 'http://api.grupoassa.com:1337/asignacionCambioFechaByOpportunity',  // --->Test Vero
 					method : 'POST',
 					dataType : 'JSON',
 					data : {

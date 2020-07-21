@@ -126,7 +126,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este Idioma',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/idioma/' + data.id,
+						//url : PROXY + '/idioma/' + data.id, // Se comenta para pruebas - Vero
+						url : 'http://api.grupoassa.com:1337/idioma/' + data.id, //-->Test Vero
 						method : 'DELETE',
 						dataType : 'JSON',
 						success : function(data){
@@ -195,7 +196,8 @@ sap.ui.define([
 			this._Table.setBusy(true);
 
 			jQuery.ajax({
-				url : PROXY + "/idioma",
+				//url : PROXY + "/idioma",   // Se comenta para pruebas - Vero
+				url : 'http://api.grupoassa.com:1337/idioma', //-->Test Vero
 				method : "GET",
 				dataType : "JSON",
 				success : function(data){

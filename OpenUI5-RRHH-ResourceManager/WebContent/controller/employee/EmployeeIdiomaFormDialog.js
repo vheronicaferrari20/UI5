@@ -106,7 +106,8 @@ sap.ui.define([
 				if (this.id === undefined) {
 					// CREATE
 					jQuery.ajax({
-						url : PROXY + "/idiomaxemployee",
+						//url : PROXY + "/idiomaxemployee", //--->Se comenta para testing-Vero
+						url:'http://api.grupoassa.com:1337/idiomaxemployee',
 						method : "POST",
 						dataType : "JSON",
 						data : {
@@ -125,7 +126,8 @@ sap.ui.define([
 				} else {
 					//UPDATE
 					jQuery.ajax({
-						url : PROXY + "/idiomaxemployee/" + that.id,
+						//url : PROXY + "/idiomaxemployee/" + that.id,  //--->Se comenta para testing-Vero
+						url:'http://api.grupoassa.com:1337/idiomaxemployee' + that.id,
 						method : "PUT",
 						dataType : "JSON",
 						data : {

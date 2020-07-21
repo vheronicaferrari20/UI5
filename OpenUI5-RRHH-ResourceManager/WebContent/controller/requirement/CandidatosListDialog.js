@@ -295,7 +295,8 @@ sap.ui.define([
 					'Se asignara a '+ this._employeeSelected.fullName +' como posible candidato para la asignación. \n ¿Desea Continuar?',
 					function(){
 						jQuery.ajax({
-							url : PROXY + '/asignacion/' + that._AsignacionId + '/candidatos',
+							//url : PROXY + '/asignacion/' + that._AsignacionId + '/candidatos',  //-->Se comenta para test- Vero
+							url : 'http://api.grupoassa.com:1337/asignacion/' + this._AsignacionId + '/candidatos',  // --->Test Vero
 							method : 'POST',
 							dataType : 'JSON',
 							data : {

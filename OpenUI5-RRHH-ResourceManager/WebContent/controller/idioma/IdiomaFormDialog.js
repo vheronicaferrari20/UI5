@@ -78,7 +78,8 @@ sap.ui.define([
 				if (this.id === undefined) {
 					// CREATE
 					jQuery.ajax({
-						url : PROXY + "/idioma",
+						//url : PROXY + "/idioma", // Se comenta para pruebas- Vero
+						url : 'http://api.grupoassa.com:1337/idioma',  // ---> Test Vero
 						method : "POST",
 						dataType : "JSON",
 						data : {
@@ -96,7 +97,8 @@ sap.ui.define([
 				} else {
 					//UPDATE
 					jQuery.ajax({
-						url : PROXY + "/idioma/" + that.id,
+						//url : PROXY + "/idioma/" + that.id, // Se comenta para pruebas- Vero
+						url : 'http://api.grupoassa.com:1337/idioma' + that.id,  // ---> Test Vero
 						method : "PUT",
 						dataType : "JSON",
 						data : {

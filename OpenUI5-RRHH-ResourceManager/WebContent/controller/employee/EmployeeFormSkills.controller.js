@@ -55,7 +55,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este Skill',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/myKKnowPracticeModuleConsultants/'+ data.ID,
+						//url : PROXY + '/myKKnowPracticeModuleConsultants/'+ data.ID, //--->Se comenta para testing-Vero
+						url : 'http://api.grupoassa.com:1337/myKKnowPracticeModuleConsultants/'+ data.ID,
 						method : 'DELETE',
 						success : function(data){
 							that._Table.removeSelections(true);

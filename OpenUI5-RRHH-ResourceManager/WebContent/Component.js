@@ -18,6 +18,7 @@ sap.ui.define([
     'App/model/myopportunities',
     'App/controller/employee/EmployeesViewSettingsDialog',
     'App/AppRouter',
+   
 
 ], function(UIComponent, models, Device, JSONModel, MessageToast,dataModel,dataEvents, employeeModel,jqueryCookie, notificacion, notificacionHistorico, employee, employeeDetail, requirements, opportunities, formatter, myopportunities, EmployeesViewSettingsDialog, AppRouter) {
 	"use strict";
@@ -47,23 +48,26 @@ sap.ui.define([
 			
 			this.setModel(new JSONModel({headerVisible:false}),'App');
 			
-			//var DataUser = this.getOwnerComponent().getDataUser();
-	    	console.log('jqueryCookie: '+jqueryCookie);
-
 			$.ajaxSetup({
 				crossDomain: true,
 				useDefaultHeader :false,
 			    beforeSend: function (xhr, settings)
 			    {
-			    	//console.log('settings: '+ Object.values(settings));
+			    	var _token = sap.ui.getCore()._token; //-->Testing Vero
 			    	//console.log('jqueryCookie: '+jqueryCookie);
 			    	if (settings.url.indexOf('?') >= 0) {
 			    		settings.url += '&';
 			    	} else {
 			    		settings.url += '?';
 			    	}
-			    	settings.url += 'token=' + jQuery.cookie('api_token');
-			    	console.log('settings.url: '+settings.url);
+			    	//settings.url += 'token=' + jQuery.cookie('api_token'); //-->comentado para tenting Vero
+			    	var _data = sap.ui.getCore()._data; //-->Testing Vero
+			    	if( !_data ){                       //-->Testing Vero
+			    		that.setDataUser(_data);        //-->Testing Vero
+			    	};
+			    	settings.url += 'token=' + _token; //-->Testing Vero
+			    	//console.log('settings.url: '+settings.url);
+			    	
 			       	//xhr.setRequestHeader("Authorization","Token " + jQuery.cookie('token'));        
 			    },
 			    statusCode: {
@@ -78,12 +82,12 @@ sap.ui.define([
 			var that = this;
 
 			if (!jQuery.cookie('api_token')) {
-				console.log('Paso por !jQuery.cookie');
+				//console.log('Paso por !jQuery.cookie');
 				that.setHeaderVisible(false); 
 				that.getRouter().getTargets().display("login");	
 			}else{
-				// verifico el token
-				
+
+				// verifico el token				
 				jQuery.ajax({
 					//url : PROXY + '/auth/verifyToken', --->Se comenta para pruebas en localhost
 					url: 'http://api.grupoassa.com:1337/auth/verifyToken',
@@ -92,8 +96,7 @@ sap.ui.define([
 						token : jQuery.cookie('api_token')
 					},
 					success : function(data){
-						
-						//console.log('Token en component: ' + jQuery.cookie('api_token'));
+						//console.log('Pasa por: http://api.grupoassa.com:1337/auth/verifyToken');
 						that.setDataUser(data);
 						that.configIO();
 						that.getRouter().initialize();
@@ -128,7 +131,7 @@ sap.ui.define([
 		},
 
 		setDataUser : function(data) {
-			this.setModel(new JSONModel(data),'DataUser');
+			this.setModel(new JSONModel(data),'DataUser'); 
 		},
 
 		setMastersModels : function(){

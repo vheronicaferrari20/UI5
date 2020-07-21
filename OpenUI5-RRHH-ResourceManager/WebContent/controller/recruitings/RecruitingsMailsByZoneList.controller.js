@@ -125,7 +125,8 @@ sap.ui.define([
                 '¿¿¿Ud. esta seguro que desea realizar esta acción???',
                 function(){
                     jQuery.ajax({
-                        url : PROXY + '/recruitingEmail/' + data.id,
+                       // url : PROXY + '/recruitingEmail/' + data.id, //-->Se comenta para test- Vero
+        				url : 'http://api.grupoassa.com:1337/recruitingEmail/' + data.id, // --->Test Vero
                         method : 'DELETE',
                         dataType : 'JSON',
                         success : function(data){
@@ -194,7 +195,8 @@ sap.ui.define([
             this._Table.setBusy(true);
 
             jQuery.ajax({
-                url : PROXY + "/recruitingEmail",
+                //url : PROXY + "/recruitingEmail",  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/recruitingEmail', // --->Test Vero
                 method : "GET",
                 data : {
                     populate : "pais,cc,to"

@@ -73,7 +73,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este requerimiento',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/asignacion/' + asignacion.id,
+						//url : PROXY + '/asignacion/' + asignacion.id,  //-->Se comenta para test- Vero
+						url : 'http://api.grupoassa.com:1337/asignacion/'+ asignacion.id,  // --->Test Vero
 						method : 'DELETE',
 						dataType : 'JSON',
 						success : function(data) {

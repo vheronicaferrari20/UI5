@@ -17,7 +17,8 @@ sap.ui.define([
 										var path = oItem.getBindingContext("NotificacionesModel").getPath();
 										var data = oController._NotificacionesModel.getProperty(path);
 										jQuery.ajax({
-											url : PROXY + '/notificacion/marcarVisto',
+											//url : PROXY + '/notificacion/marcarVisto', // Se comenta para pruebas
+											url : 'http://api.grupoassa.com:1337/notificacion/marcarVisto', //-->Test Vero
 											method : 'POST',
 											data : {
 												id : data.id

@@ -51,7 +51,8 @@ sap.ui.define([
 			var that = this;
 
 			jQuery.ajax({
-				url : PROXY + '/asignacion/' + this._asignacionId + '/generarRecruitingDraft',
+				//url : PROXY + '/asignacion/' + this._asignacionId + '/generarRecruitingDraft',  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/asignacion/'+ this._asignacionId + '/generarRecruitingDraft',  // --->Test Vero
 				method : 'POST',
 				data : {
 					tipoRecruiting : this._tipoRecruitingSelect.getSelectedKey()

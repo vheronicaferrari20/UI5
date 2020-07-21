@@ -33,7 +33,8 @@ sap.ui.define([
 		getData : function(){
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + '/employee',
+				//url : PROXY + '/employee',  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/employee',  // --->Test Vero
 				method : 'GET',
 				dataType : 'JSON',
 				success : function(data){

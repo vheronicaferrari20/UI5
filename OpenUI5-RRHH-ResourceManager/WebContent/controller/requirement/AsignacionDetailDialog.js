@@ -189,7 +189,8 @@ sap.ui.define([
 						'Se procedera a eliminar a ' + candidato.employee.fullName + ' como candidato de la asignación. \n ¿Desea Continuar?',
 						function() {
 							jQuery.ajax({
-								url : PROXY + '/asignacion/' + that._AsignacionId + '/candidatos',
+								//url : PROXY + '/asignacion/' + that._AsignacionId + '/candidatos',  //-->Se comenta para test- Vero
+			    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId + '/candidatos',   // --->Test Vero
 								method : 'DELETE',
 								dataType : 'JSON',
 								data : {
@@ -212,7 +213,8 @@ sap.ui.define([
 						'Se procedera a eliminar el recruiting como candidato de la asignación. \n ¿Desea Continuar?',
 						function() {
 							jQuery.ajax({
-								url : PROXY + '/asignacion/' + that._AsignacionId ,
+								//url : PROXY + '/asignacion/' + that._AsignacionId , //-->Se comenta para test- Vero
+			    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId ,   // --->Test Vero
 								method : 'PUT',
 								dataType : 'JSON',
 								data : {
@@ -251,7 +253,8 @@ sap.ui.define([
 						'Se reservara a ' + candidato.employee.fullName + ' como candidato de la asignación. \n ¿Desea Continuar?',
 						function() {
 							jQuery.ajax({
-								url : PROXY + '/asignacion/' + that._AsignacionId ,
+								//url : PROXY + '/asignacion/' + that._AsignacionId , //-->Se comenta para test- Vero
+			    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId,   // --->Test Vero
 								method : 'PUT',
 								dataType : 'JSON',
 								data : {
@@ -294,7 +297,8 @@ sap.ui.define([
 						'Se asignara a ' + candidato.employee.fullName + '. \n ¿Desea Continuar?',
 						function() {
 							jQuery.ajax({
-								url : PROXY + '/asignacion/' + that._AsignacionId ,
+								//url : PROXY + '/asignacion/' + that._AsignacionId , //-->Se comenta para test- Vero
+			    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId,   // --->Test Vero
 								method : 'PUT',
 								dataType : 'JSON',
 								data : {
@@ -329,7 +333,8 @@ sap.ui.define([
 				'Se asignara a ' + candidato.fullName + '. \n ¿Desea Continuar?',
 				function() {
 					jQuery.ajax({
-						url : PROXY + '/asignacion/' + that._AsignacionId ,
+						//url : PROXY + '/asignacion/' + that._AsignacionId , //-->Se comenta para test- Vero
+	    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId ,   // --->Test Vero
 						method : 'PUT',
 						dataType : 'JSON',
 						data : {
@@ -356,7 +361,8 @@ sap.ui.define([
 				'Se procedera a volver al modo DRAFT. \n ¿Desea Continuar?',
 				function() {
 					jQuery.ajax({
-						url : PROXY + '/asignacion/' + that._AsignacionId + '/toDraft',
+						//url : PROXY + '/asignacion/' + that._AsignacionId + '/toDraft', //-->Se comenta para test- Vero
+	    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId + '/toDraft',   // --->Test Vero
 						method : 'POST',
 						success : function() {
 							MessageToast.show('La asignación ahora esta en modo DRAFT');
@@ -383,7 +389,8 @@ sap.ui.define([
 				'Se procedera a generar la Vacante para esta asignación. \n ¿Desea Continuar?',
 				function() {
 					jQuery.ajax({
-						url : PROXY + '/asignacion/' + that._AsignacionId + "/generarRecruiting" ,
+						//url : PROXY + '/asignacion/' + that._AsignacionId + "/generarRecruiting" , //-->Se comenta para test- Vero
+	    				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId + '/generarRecruiting',  // --->Test Vero
 						method : 'POST',
 						success : function() {
 							MessageToast.show('Recruiting generado');
@@ -424,7 +431,8 @@ sap.ui.define([
 			var that = this;
 
 			jQuery.ajax({
-				url : PROXY + "/asignacion/" + this._AsignacionId + "/comentarios",
+				//url : PROXY + "/asignacion/" + this._AsignacionId + "/comentarios", //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/asignacion/' + that._AsignacionId + '/comentarios',  // --->Test Vero
 				method : 'POST',
 				data : { nota : oEvent.getParameter('value')},
 				success : function(data){
@@ -445,7 +453,8 @@ sap.ui.define([
 		getCandidatos : function() {
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + "/candidatoAsignacion",
+				//url : PROXY + "/candidatoAsignacion",  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/candidatoAsignacion',  // --->Test Vero
 				method : 'GET',
 				data : { 
 					asignacion : this._AsignacionId,
@@ -506,7 +515,8 @@ sap.ui.define([
 		getComentarios : function() {
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + '/asignacion/' + this._AsignacionId + '/comentarios',
+				//url : PROXY + '/asignacion/' + this._AsignacionId + '/comentarios',  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/asignacion/' + this._AsignacionId + '/comentarios',  // --->Test Vero
 				method : 'GET',
 				dataType : 'JSON',
 				data : {

@@ -24,6 +24,7 @@ sap.ui.define([
 			this._ModelName = "EmployeesModel";
 
 			this._Table = this.getView().byId("employeesListTable");
+			console.log('OnInit del controler de EmployeeList');
 
 			//this._infoFilterBar = this.getView().byId("infoFilterBar");
 
@@ -91,17 +92,21 @@ sap.ui.define([
 		*/
 
 		search : function (sQuery) {
- 
+			console.log('search: '+ sQuery);
+			//this.getData();
 			// add filter for search
 			var aFilters = [];
 			var binding = this._Table.getBinding("items");
+			console.log('binding: '+ binding);
 			if (sQuery && sQuery.length > 0) {
 				var filter1 = new Filter("codEmpleado", sap.ui.model.FilterOperator.Contains, sQuery);
 				var filter2 = new Filter("fullName", sap.ui.model.FilterOperator.Contains, sQuery);
 				var filter3 = new Filter("vCategoriaEmpleado", sap.ui.model.FilterOperator.Contains, sQuery);
+				//var filter4 = new Filter("pais", sap.ui.model.FilterOperator.Contains, sQuery); //Test Vero:"ARG"				
 				aFilters.push(filter1);
 				aFilters.push(filter2);
 				aFilters.push(filter3);
+				//aFilters.push(filter4); //Test Vero:"ARG"
 				this._filterSearh = new Filter(aFilters);
 				//binding.filter(new Filter(aFilters));
 			} else {
@@ -162,6 +167,7 @@ sap.ui.define([
 		},
 
 		getData : function() {
+			console.log('llamada al getData ');
 			var that = this;
 			//that._infoFilterLabelTotal.setText("");
 			employeeModel
@@ -175,8 +181,10 @@ sap.ui.define([
 		},
 
 		settings : function() {
+			console.log('llamada al settings ');
 			jQuery.ajax({
-				url : PROXY + "/UserPreferences/myPreferences",
+				//url : PROXY + "/UserPreferences/myPreferences", //http://api.grupoassa.com:1337/ //-->Se comenta para test- Vero
+				url : "http://api.grupoassa.com:1337/UserPreferences/myPreferences", // --->Test Vero
 				method : "GET",
 				data : {populate : "employeeDefaultFilter"},
 				context : this,

@@ -14,7 +14,7 @@ sap.ui.define([
 	return Controller.extend("App.controller.employee.EmployeesViewSettingsCustomTabFilters", {
 		
 		onInit : function() {
-
+			console.log('onInit en CustomTabFilters');
 			this._navContainer = this.getView().byId("navContainer");
 			this._customFilters = this.getView().byId("customFilters");
 
@@ -39,6 +39,7 @@ sap.ui.define([
 		},
 
 		onBeforeRendering : function() {
+			console.log('onBeforeRendering en CustomTabFilters');
 			if (!this._defineComponenet) {
 				this._defineComponenet = true;
 				var AppComponent = sap.ui.getCore().getComponent("__component0");
@@ -75,6 +76,7 @@ sap.ui.define([
 		},
 
 		onAfterRendering : function() {
+			console.log('onAfterRendering en CustomTabFilters');
 			if (!this._initialState) {
 				this._initialState = this._customFilters.getSelectedItem();
 				if (!this._initialState) {
@@ -90,7 +92,7 @@ sap.ui.define([
 		},
 
 		onItemPropertyChanged : function(oEvent) {
-
+			console.log('onItemPropertyChanged en CustomTabFilters');
 			var oItem = oEvent.getParameters().listItem;
 			var path = oItem.getBindingContext(this._ModelName).getPath();
 			var filter = this._Model.getProperty(path);
@@ -111,6 +113,7 @@ sap.ui.define([
 
 
 		onPressAdd : function(oEvent) {
+			console.log('onPressAdd en CustomTabFilters');
 			var that = this;
 
 			var oInput = new Input({
@@ -140,6 +143,7 @@ sap.ui.define([
 			this._addButton.setEnabled(false);
 
 			function onSubmitAdd(oEvent) {
+				console.log('onSubmitAdd en CustomTabFilters');
 				// validamos el texto
 				var value = oEvent.getParameters().value;
 				if (value.length == 0 ) {
@@ -221,7 +225,8 @@ sap.ui.define([
 			obj.default = this._filterDefaultSwitch.getState();
 			obj.settings = this.getStatusViewSettings();
 			jQuery.ajax({
-				url : PROXY + "/filter/" + obj.id,
+				//url : PROXY + "/filter/" + obj.id, //-->se comenta para pruebas - Vero
+				url: 'http://api.grupoassa.com:1337/filter/' + obj.id, // ---> Test Vero
 				method : "PUT",
 				data : obj,
 				context : this,
@@ -242,7 +247,8 @@ sap.ui.define([
 			var filter = this._Model.getProperty(path);
 			if ('id' in filter) {
 				jQuery.ajax({
-					url : PROXY + "/filter/" + filter.id,
+					//url : PROXY + "/filter/" + filter.id, //-->se comenta para pruebas - Vero
+					url: 'http://api.grupoassa.com:1337/filter/' + filter.id, // ---> Test Vero
 					method : "DELETE",
 					context : this,
 					success : function(data) {
@@ -254,14 +260,72 @@ sap.ui.define([
 		},
 
 		getAll : function() {
+			console.log('getAll en CustomTabFilters');
+			//Inicio ajax --->Test pruebas locales	
+			/**
+			var where ='{"fechaEgresoEmpleado" : null, "codEmpleado" : {"!" : "0"} }';
 			jQuery.ajax({
-				url : PROXY + "/filter",
+				url:'http://api.grupoassa.com:1337/employee',
+				method : 'GET',
+				data: {
+					where : where, //'{"fechaEgresoEmpleado" : null, "codEmpleado" : {"!" : "0"}, "pais":"ARG" }',
+					populate : 'mentor,coach,pais,industria,myk,myk.skills,myk.languages,viaja,proyectosActuales,practica,subPractica,comentarios,site,estructura,equipo',
+					//skip : skip,
+					//limit : limit
+				},
+				success : function(data){
+					this.setDataFilterList(data);
+					
+					if (data.length > 0) {
+						var dataObj = model.getProperty('/data');
+						if (dataObj.length == 0) {
+							dataObj = {};
+						}
+						for (var i=0; i < data.length; i++){
+							dataObj[data[i].codEmpleado] = data[i];
+						}
+						
+						model.setProperty('/data',dataObj);
+						//model.refresh(true);
+						if (data.length == limit) {
+							return _loadData(skip + limit, model, resolve, reject);
+						} else {
+							model.setProperty('/loading',false);
+							currentPromise = null;
+							return resolve(dataObj);
+							//model.refresh(true);
+						}
+						model.setProperty('/loading',false);
+						currentPromise = null;
+						return resolve(model.getProperty('/data'));
+					} else {
+						model.setProperty('/loading',false);
+						currentPromise = null;
+						return resolve(model.getProperty('/data'));
+						//model.refresh(true);
+					}
+					
+					 * 
+					
+				}, 
+				error : function(error){
+					console.log("error", error);
+				}
+			});
+	 */// Fin ajax --->Test pruebas locales	
+			
+			
+		
+			jQuery.ajax({
+				//url : PROXY + "/filter", // --->Se comenta para pruebas en locales http://api.grupoassa.com:1337
+				url : "http://api.grupoassa.com:1337/filter", // ---> Test Vero
 				method : "GET",
 				context : this,
 				success : function(data) {
 					this.setDataFilterList(data);
 				}
 			});
+
 		},
 
 		setDataFilterList : function(data) {
@@ -282,7 +346,8 @@ sap.ui.define([
 			}
 
 			jQuery.ajax({
-				url : PROXY + "/filter",
+				//url : PROXY + "/filter", //-->Se comenta para pruebas - Vero
+				url: 'http://api.grupoassa.com:1337/filter/', // ---> Test Vero
 				method : "POST",
 				data : obj,
 				context : this,

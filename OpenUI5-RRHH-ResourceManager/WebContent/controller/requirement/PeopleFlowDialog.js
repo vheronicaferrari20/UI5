@@ -355,7 +355,8 @@ sap.ui.define([
 
 					//Update
 					jQuery.ajax({
-						url : PROXY + '/asignacion/' + this._asignacionId,
+						//url : PROXY + '/asignacion/' + this._asignacionId,  //-->Se comenta para test- Vero
+						url : 'http://api.grupoassa.com:1337/asignacion/' + this._asignacionId,  // --->Test Vero
 						method : 'PUT',
 						data : obj
 					}); 
@@ -365,17 +366,13 @@ sap.ui.define([
 					//Create
 					for (var i = 0; i < this._cantidadInput.getValue(); i++){
 						jQuery.ajax({
-							url : PROXY + '/asignacion',
+							//url : PROXY + '/asignacion',  //-->Se comenta para test- Vero
+							url : 'http://api.grupoassa.com:1337/asignacion',  // --->Test Vero
 							method : 'POST',
 							data : obj
 						}); 
-
 					}
-
-				}
-
-				
-				
+				}	
 			}
 		},
 
@@ -455,8 +452,5 @@ sap.ui.define([
 
 			return result;
 		}
-
-		
-
 	});
 });

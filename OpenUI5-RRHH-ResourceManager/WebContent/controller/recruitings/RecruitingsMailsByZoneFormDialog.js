@@ -136,7 +136,8 @@ sap.ui.define([
             if (this.id === undefined) {
                 // CREATE
                 jQuery.ajax({
-                    url : PROXY + "/recruitingEmail",
+                   // url : PROXY + "/recruitingEmail",  //-->Se comenta para test- Vero
+    				url : 'http://api.grupoassa.com:1337/recruitingEmail', // --->Test Vero
                     method : "POST",
                     dataType : "JSON",
                     data : {
@@ -156,7 +157,8 @@ sap.ui.define([
             } else {
                 //UPDATE
                 jQuery.ajax({
-                    url : PROXY + "/recruitingEmail/" + that.id,
+                   // url : PROXY + "/recruitingEmail/" + that.id, //-->Se comenta para test- Vero
+    				url : 'http://api.grupoassa.com:1337/recruitingEmail/' + that.id, // --->Test Vero
                     method : "PUT",
                     dataType : "JSON",
                     data : {
@@ -232,7 +234,8 @@ sap.ui.define([
         handdleSuggestTo : function(oEvent) {
             var sTerm = oEvent.getParameter("suggestValue");
             jQuery.ajax({
-                url : PROXY + "/employee",
+               // url : PROXY + "/employee",  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/employee', // --->Test Vero
                 method : "GET",
                 data : {
                     where : {

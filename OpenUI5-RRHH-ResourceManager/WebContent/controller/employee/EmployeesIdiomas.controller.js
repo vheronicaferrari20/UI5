@@ -54,7 +54,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este Idioma',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/idiomaxemployee/' + data.id,
+						//url : PROXY + '/idiomaxemployee/' + data.id,//--->Se comenta para testing-Vero
+						url:'http://api.grupoassa.com:1337/idiomaxemployee/' + data.id,
 						method : 'DELETE',
 						dataType : 'JSON',
 						success : function(data){

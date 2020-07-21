@@ -65,7 +65,8 @@ sap.ui.define([
 			var that = this;
 			
 			jQuery.ajax({
-				url : PROXY + "/recruiting/" +  recruitingId + "/vincular",
+				//url : PROXY + "/recruiting/" +  recruitingId + "/vincular",  //-->Se comenta para test- Vero
+				url : 'http://api.grupoassa.com:1337/recruiting/' + recruitingId + '/vincular', // --->Test Vero
 				method : "POST",
 				data : {
 					legajo : legajo

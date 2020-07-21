@@ -521,7 +521,8 @@ sap.ui.define([
 				'Ud esta seguro que desea eliminar este Skill',
 				function(){
 					jQuery.ajax({
-						url : PROXY + '/skill/' + data.id,
+						//url : PROXY + '/skill/' + data.id, //url:'http://api.grupoassa.com:1337 //-->se comenta para pruebas -Vero
+						url : 'http://api.grupoassa.com:1337/skill/' + data.id, // ---> Test Vero
 						method : 'DELETE',
 						dataType : 'JSON',
 						success : function(data){

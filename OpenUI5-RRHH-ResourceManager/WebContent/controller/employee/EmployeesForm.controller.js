@@ -50,6 +50,7 @@ sap.ui.define([
 		},
 
 		getData : function(){
+			console.log('pasa por getData con ID: '+this._Id);
 			var that = this;
 			employeeDetail
 				.loadDataById(this._Id)
@@ -65,7 +66,8 @@ sap.ui.define([
 
 		getUriAvatar : function(){
 			alert();
-			var uri = SERVER_DELIVERY_TOOLS + '/api/Avatars/saguero';
+			//var uri = SERVER_DELIVERY_TOOLS + '/api/Avatars/saguero'; //-->Se comenta para testing-Vero
+			var uri = 'http://api.grupoassa.com:3001/api/Avatars/saguero';
 			console.log("uri", uri); 
 			return uri;
 		}

@@ -21,13 +21,12 @@ sap.ui.define([
 		onPostComentario : function(oEvent) {
 			var that = this;
 			jQuery.ajax({
-				url : PROXY + '/employee/' + this._Model.getProperty('/data/codEmpleado') + '/comentarios',
+				//url : PROXY + '/employee/' + this._Model.getProperty('/data/codEmpleado') + '/comentarios', //-->Se comenta para test-Vero
+				url : 'http://api.grupoassa.com:1337/employee/' + this._Model.getProperty('/data/codEmpleado') + '/comentarios', 
 				method : 'POST',
 				dataType : 'JSON',
 				data : { nota : oEvent.getParameter('value')}
 			});
-
 		}		
-
 	});
 });

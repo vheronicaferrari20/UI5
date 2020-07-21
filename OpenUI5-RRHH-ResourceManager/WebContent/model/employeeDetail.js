@@ -12,6 +12,32 @@ sap.ui.define([
 	}
 
 	function _loadDataById(model, employeeId, resolve, reject) {
+		console.log('_loadDataById'+ employeeId);
+		//Inicio ajax --->Test pruebas locales	
+		jQuery.ajax({
+			url:'http://api.grupoassa.com:1337/employee/'+ employeeId,
+			method : 'GET',
+			data: {
+				populate : 'myk,myk.skills,myk.languages,asignaciones,pais,asignaciones.opportunity,mentor,coach,industria,viaja,comentarios,comentarios.user_crea,proyectosActuales,practica,subPractica,site',
+			},
+			success : function(data){
+				if (data) {
+					data.planningCalendar = calcularDataPlanningCalendar(data);
+					console.log("DATA ->, ",data);
+					model.setProperty('/data/',data);
+					model.setProperty('/loading',false);
+				} else {
+					model.setProperty('/loading',false);
+				}
+				return resolve(data);
+			}, 
+			error : function(error){
+				return reject();
+			}
+		});
+// Fin ajax --->Test pruebas locales
+		
+		/**
 		//SOCKET.get(PROXY + '/employee/'+ employeeId, //--->Se comenta para pruebas en locales http://api.grupoassa.com:1337
 		SOCKET.get('http://api.grupoassa.com:1337/employee/'+ employeeId,		
 			{
@@ -32,6 +58,10 @@ sap.ui.define([
 				return reject();
 			}
 			);
+		
+		
+		 * 
+		 */
 	}
 
 	function calcularDataPlanningCalendar (employee) {

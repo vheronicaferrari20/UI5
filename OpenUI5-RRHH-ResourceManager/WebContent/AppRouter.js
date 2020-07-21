@@ -2,11 +2,12 @@ sap.ui.define([
 		'sap/ui/core/routing/Router',
 		'sap/m/routing/RouteMatchedHandler',
 		'sap/ui/core/routing/History',
-				
+		'sap/m/routing/Targets',
+		 
 	], function(Router,RouterMatchedHandler,History) {
 	"use strict";
 	sap.ui.core.routing.Router.extend("App.AppRouter",{
-		constructor:function(){
+		constructor:function(){  //sap.m.routing.Router or sap.m.routing.Targets
 			sap.ui.core.routing.Router.apply(this,arguments);
 			this.oRouteMatchedHandler = new sap.m.routing.RouteMatchedHandler(this);
 			console.log("Router",this.oRouterMatchedHandler);
