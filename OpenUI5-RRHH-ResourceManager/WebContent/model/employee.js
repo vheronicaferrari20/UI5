@@ -64,7 +64,6 @@ sap.ui.define([
 					}
 					
 					model.setProperty('/data',dataObj);
-					//console.log('model: '+model.oData.data);
 					
 					if (data.length == limit) {
 						return _loadData(skip + limit, model, resolve, reject);

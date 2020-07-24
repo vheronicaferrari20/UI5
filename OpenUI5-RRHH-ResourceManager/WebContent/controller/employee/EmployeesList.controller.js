@@ -217,6 +217,45 @@ sap.ui.define([
 			
 			if (flagSort != true){
 				binding.filter(filters); 
+				
+			
+		   /**
+			 * 
+			 
+			var binding = this._Table.getBinding("items");
+			var oListCod = [];
+			//binding.sort(this._aSorters);
+			
+			if (flagSort != true){
+				binding.sort(this._aSorters); 
+			} 
+			
+			var filters = [];
+
+			if (this._filterSearh) {
+				filters.push(this._filterSearh)
+				//binding.filter(data._filterSearh);
+			}
+
+			for (var i=0; i < this._aFilters.length; i++){
+				filters.push(this._aFilters[i]);
+			}
+			
+			//Inicio de Modificacion para nueva Logica
+			//binding.filter(filters); //-->Se comenta para Testing
+			 
+			//Fin de modificacion
+			
+			//var oListCod = [];
+			
+			if(flagSort == true){
+				for(var value in binding.oList){
+					oListCod.push(parseInt((value, binding.oList[value].codEmpleado),10));
+					
+				}
+				
+				binding.sort(oListCod); 
+				*/
 			}
 			//Fin de modificacion
 			

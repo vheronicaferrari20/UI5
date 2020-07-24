@@ -35,81 +35,45 @@
                     width="4em">
                     <Text text="Legajo" />
                 </Column>
-                
                 <Column
                     id= "apeNomCol">
                     <Text text="Apellido y Nombre" />
                 </Column> 
-                <!--  
                 <Column
                     id= "clusterCol">
                     <Text text="Cluster" />
                 </Column>
-                -->
-                <Column
-                    id="categoriaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Categoría" />
-                </Column>
-
                 <Column
                     id="paisCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="País" />
                 </Column>
-
                 <Column
-                    id="siteCol"
+                    id="categoriaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
-                    <Text text="Site" />
+                    <Text text="Categoría" />
                 </Column>
-
-                <Column
-                    id="estructuraCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Estructura" />
-                </Column>
-
-                <Column
-                    id="equipoCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Equipo" />
-                </Column>
-
-                <Column
-                    id="industriaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Industria" />
-                </Column>
-
                 <Column
                     id="practicaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Práctica" />
                 </Column>
-
-                <Column
+                 <Column
                     id="subPracticaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="SubPráctica" />
                 </Column>
-
+                 <!--   
                 <Column
-                    id="clienteCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Cliente" />
+                    id= "planCapCol">
+                    <Text text="Plan de capacitación" />
                 </Column>
-                <Column
+                -->                
+                 <Column
                     id="fechaIniCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
@@ -122,9 +86,50 @@
                     <Text text="Fecha Liberación" />
                 </Column>
                 <Column
-                    id="comentariosCol"
+                    id="siteCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
+                    <Text text="Site" />
+                </Column>
+                <!-- 
+                <Column
+                    id= "deliveryCol">
+                    <Text text="Delivery" />
+                </Column>
+                -->     
+                <Column
+                    id="estructuraCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
+                    <Text text="Estructura" />
+                </Column>
+                <Column
+                    id="equipoCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
+                    <Text text="Equipo" />
+                </Column>
+                <Column
+                    id="industriaCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
+                    <Text text="Industria" />
+                </Column>
+                <Column
+                    id="clienteCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
+                    <Text text="Cliente" />
+                </Column>
+                <Column
+                    id="comentariosCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
                     <Text text="Comentarios" />
                 </Column>
             </columns>
@@ -140,15 +145,36 @@
                             writeToDom="true"/>
                     </customData>
                     <cells>
+
                         <Text
                             text="{EmployeesModel>codEmpleado}" />
+                            
                         <Text
-                            text="{EmployeesModel>fullName}" />
+                            text="{EmployeesModel>fullName}" /> 
+                                                      
+                        <Text
+                            text="{EmployeesModel>cluster}" /> 
+                                                       
+                        <Text
+                            text="{EmployeesModel>pais/name}" /> 
+                               
                         <Text
                             text="{EmployeesModel>vCategoriaEmpleado}" />
-                        <Text
-                            text="{EmployeesModel>pais/name}" />
+                        
+                         <Text
+                            text="{EmployeesModel>practica/name}" />
 
+                        <Text
+                            text="{EmployeesModel>subPractica/name}" />    
+						
+						<Text
+                            text="{ path : 'EmployeesModel>proyectosActuales/0/desde',
+                                    formatter : '.formatter.formatDate'}" />
+                                    
+                        <Text
+                            text="{ path : 'EmployeesModel>proyectosActuales/0/hasta',
+                                    formatter : '.formatter.formatDate'}" />
+                                                            
                         <Text
                             text="{EmployeesModel>site/siteEmplDescri}" />
 
@@ -162,20 +188,9 @@
                             text="{EmployeesModel>industria/name}" />
 
                         <Text
-                            text="{EmployeesModel>practica/name}" />
-
-                        <Text
-                            text="{EmployeesModel>subPractica/name}" />
-
-                        <Text
                             text="{EmployeesModel>proyectosActuales/0/opportunity/_account/Name}
                                   {EmployeesModel>proyectosActuales/0/opportunity/Name}  " />
-                        <Text
-                            text="{ path : 'EmployeesModel>proyectosActuales/0/desde',
-                                    formatter : '.formatter.formatDate'}" />
-                        <Text
-                            text="{ path : 'EmployeesModel>proyectosActuales/0/hasta',
-                                    formatter : '.formatter.formatDate'}" />
+                        
                         <Text
                             text="{path : 'EmployeesModel>comentarios',
                                    formatter : '.formatter.mostrarUltimoComentario' }" />

@@ -50,75 +50,75 @@ sap.ui.define(['jquery.sap.global'],
 				},
 				{
 					id: "App-employeesTable-categoriaCol",
-					//order: 0,
-					//text: "Dimensions",
-					visible: false
+					order: 3,
+					//text: "Categoria",
+					visible: true
 				},
 				{
 					id: "App-employeesTable-paisCol",
-					order: 3,
+					order: 4,
 					//text: "Pais",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-practicaCol", 
-					order: 4,
+					order: 5,
 					//text: "Practica",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-subPracticaCol", 
-					order: 5,
+					order: 6,
 					//text: "SubPractica",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-fechaIniCol", 
-					order: 6,
+					order: 7,
 					//text: "Fecha de Inicio",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-fechaLibCol", 
-					order: 7,
+					order: 8,
 					//text: "Fecha de Liberacion",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-siteCol",
-					order: 8,
+					order: 9,
 					//text: "Site",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-estructuraCol",
-					//order: 9,
-					//text: "Price",
-					visible: true
+				    order:10,
+					//text: "Estructura",
+					visible: false
 				},
 				{
 					id: "App-employeesTable-equipoCol",
-					//order: 10,
-					//text: "Price",
-					visible: true
+					order: 11,
+					//text: "Equipo",
+					visible: false
 				},
 				{
 					id: "App-employeesTable-industriaCol",
-					//order: 11,
-					//text: "Price",
+					order: 12,
+					//text: "Industria",
 					visible: false
 				},
 				{
 					id: "App-employeesTable-clienteCol", 
-					//order: 12,
-					//text: "Price",
-					visible: true
+					order: 13,
+					//text: "Cliente",
+					visible: false
 				},
 				{
 					id: "App-employeesTable-comentariosCol", 
-					//order: 13,
-					//text: "Price",
-					visible: true
+					order: 14,
+					//text: "Comentarios",
+					visible: false
 				}
 			]
 		},
@@ -145,89 +145,95 @@ sap.ui.define(['jquery.sap.global'],
 			var oInitialData = {
 					_persoSchemaVersion: "1.0",
 					aColumns : [
-					{
+					          {
 								id: "App-employeesTable-legajotCol",
-									//order: 0,
-									//text: "Product",
-									visible: true
+								order: 0,
+								//text: "Legajo",
+								visible: true
 								},
 								{
 									id: "App-employeesTable-apeNomCol",
-									//order: 1,
-									//text: "Supplier",
-									visible: false
+									order: 1,
+									//text: "Nombre y Apellido",
+									visible: true
+								},
+								{
+									id: "App-employeesTable-clusterCol",
+									order: 2,
+									//text: "Cluster",
+									visible: true
 								},
 								{
 									id: "App-employeesTable-categoriaCol",
-									//order: 4,
-									//text: "Dimensions",
-									visible: false
+									order: 3,
+									//text: "Categoria",
+									visible: true
 								},
 								{
 									id: "App-employeesTable-paisCol",
-									//order: 2,
-									//text: "Weight",
-									visible: true
-								},
-								{
-									id: "App-employeesTable-siteCol",
-									//order: 3,
-									//text: "Price",
-									visible: true
-								},
-								{
-									id: "App-employeesTable-estructuraCol",
-									//order: 4,
-									//text: "Price",
-									visible: true
-								},
-								{
-									id: "App-employeesTable-equipoCol",
-									//order: 4,
-									//text: "Price",
-									visible: true
-								},
-								{
-									id: "App-employeesTable-industriaCol",
-									//order: 4,
-									//text: "Price",
+									order: 4,
+									//text: "Pais",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-practicaCol", 
-									//order: 4,
-									//text: "Price",
+									order: 5,
+									//text: "Practica",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-subPracticaCol", 
-									//order: 4,
-									//text: "Price",
-									visible: true
-								},
-								{
-									id: "App-employeesTable-clienteCol", 
-									//order: 4,
-									//text: "Price",
+									order: 6,
+									//text: "SubPractica",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-fechaIniCol", 
-									//order: 4,
-									//text: "Price",
+									order: 7,
+									//text: "Fecha de Inicio",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-fechaLibCol", 
-									//order: 4,
-									//text: "Price",
+									order: 8,
+									//text: "Fecha de Liberacion",
 									visible: true
 								},
 								{
-									id: "App-employeesTable-comentariosCol", 
-									//order: 4,
-									//text: "Price",
+									id: "App-employeesTable-siteCol",
+									order: 9,
+									//text: "Site",
 									visible: true
+								},
+								{
+									id: "App-employeesTable-estructuraCol",
+									order: 10,
+									//text: "Estructura",
+									visible: false
+								},
+								{
+									id: "App-employeesTable-equipoCol",
+									order: 11,
+									//text: "Equipo",
+									visible: false
+								},
+								{
+									id: "App-employeesTable-industriaCol",
+									//order: 12,
+									//text: "Industria",
+									visible: false
+								},								
+								{
+									id: "App-employeesTable-clienteCol", 
+									//order: 13,
+									//text: "Cliente",
+									visible: false
+								},								
+								{
+									id: "App-employeesTable-comentariosCol", 
+									//order: 14,
+									//text: "Comentarios",
+									visible: false
 								}
 							]
 			};
