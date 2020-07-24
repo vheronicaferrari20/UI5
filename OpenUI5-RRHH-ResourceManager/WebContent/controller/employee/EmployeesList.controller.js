@@ -8,8 +8,12 @@ sap.ui.define([
 		'App/model/employee',
 		'sap/ui/core/util/Export',
 		'sap/ui/core/util/ExportTypeCSV',
-		'sap/ui/model/ListBinding'
-	], function(Controller,JSONModel,dataEvents,ConfirmDialog,Filter, formatter, employeeModel, Export, ExportTypeCSV, ListBinding) {
+		'sap/ui/model/ListBinding',
+		'sap/m/TablePersoController',
+		'./LayoutService',
+
+	], function(Controller,JSONModel,dataEvents,ConfirmDialog,Filter, formatter, employeeModel, Export, ExportTypeCSV,
+			    ListBinding,TablePersoController, LayoutService) {
 	"use strict";
 
 	return Controller.extend("App.controller.employee.EmployeesList", {
@@ -35,6 +39,17 @@ sap.ui.define([
 			this._Model = employeeModel.getModel();
 
 			this.getView().setModel(this._Model,this._ModelName);
+			 		
+			//*************Inicio de Test Vero
+			// init and activate controller
+			this._oTPC = new TablePersoController({
+				table: this._Table, //this.byId("employeesListTable"),
+				//specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
+				componentName: "App",
+				persoService: LayoutService
+			}).activate();
+			console.log('Pasa x this._oTPC:'+this._oTPC);
+			//*************FIN de Test Vero
 
 			this._aSorters = [];
 			this._aFilters = [];
@@ -56,7 +71,8 @@ sap.ui.define([
 		*/	
 		
 		onSuscribeUpdateViewsettings : function(channel, event, data){
-
+			
+			/**  //Se comenta para Test de Ordenamiento por Nro de Legajo
 			this._aSorters = data.aSorters;
 			this._aFilters = data.aFilters;
 
@@ -64,6 +80,50 @@ sap.ui.define([
 			//this._infoFilterLabel.setText(data.filterString);
 
 			this.applyFilterSorters();
+			*/
+			//-->Inicio de Nueva logica para Ordenamiento x Nro de Legajo
+			this._aSorters = data.aSorters;
+			this._aFilters = data.aFilters; 
+			var newSort = []; //para guardar numbers
+			var flagSort = false //flag
+		
+			var _binding = this._Table.getBinding("items")
+			
+			//Si selecciona legajo, los ordeno
+			if ( this._aSorters[0].sPath === "codEmpleado") {
+				flagSort = true
+				
+				//los paso a number
+				for (var i=0; i < _binding.aIndices.length; i++) {
+					newSort.push(parseInt(_binding.aIndices[i],10));
+				}
+				
+				//ordeno DESC
+				if (this._aSorters[0].bDescending === true) {
+					function comparar(a,b){return b - a}
+					function ordenar(){
+					    	newSort = newSort.sort(comparar) 
+					    	return newSort
+					    }					
+					_binding.aIndices = ordenar();
+					
+					this.applyFilterSorters(flagSort, _binding.aIndices);
+					
+				} else { //ordeno ASC
+					function comparar(a,b){return a - b}
+					function ordenar(){
+					    	newSort = newSort.sort(comparar)
+					    	return newSort
+					    }
+					_binding.aIndices = ordenar();
+					
+					this.applyFilterSorters(flagSort, _binding.aIndices);
+				}
+			} else { //Si selecciona algo distingo de legajo sigue el camino normal
+				
+				this.applyFilterSorters();
+			}
+			//--->Fin Nueva Logica para Ordenamiento x Nro de Legajo
 		},
 
 		onSuscribeRefresh : function(channel, event, data) {
@@ -136,7 +196,7 @@ sap.ui.define([
 		***************************************************************************************
 		*/
 
-		applyFilterSorters : function(){
+		applyFilterSorters : function(flagSort, aIndices){   //-->Se agregan los parametros flagSort, aIndices -Test SORT
 			var binding = this._Table.getBinding("items");
 
 			binding.sort(this._aSorters);
@@ -151,9 +211,15 @@ sap.ui.define([
 			for (var i=0; i < this._aFilters.length; i++){
 				filters.push(this._aFilters[i]);
 			}
-
-			binding.filter(filters);
-
+			
+			//Inicio de Modificacion para nueva Logica
+			//binding.filter(filters); //-->Se comenta para Testing
+			
+			if (flagSort != true){
+				binding.filter(filters); 
+			}
+			//Fin de modificacion
+			
 			this._eventBus.publish(
 				dataEvents.employee_binding.channel,
 				dataEvents.employee_binding.name,
@@ -193,7 +259,16 @@ sap.ui.define([
 				}
 			});
 		},
-
+		
+		//*************Inicio de Test Vero
+		onLayoutButtonPress: function (oEvent) {
+			console.log('Pasa x onLayoutoButtonPress');
+			
+			this._oTPC.openDialog();
+			//console.log('this._oTPC: '+this._oTPC);
+		},
+		//*************Fin de Test Vero
+		
 		// export data to csv
 		dataExport : function() {
 

@@ -58,8 +58,6 @@ sap.ui.define([
 				return reject();
 			}
 			);
-		
-		
 		 * 
 		 */
 	}

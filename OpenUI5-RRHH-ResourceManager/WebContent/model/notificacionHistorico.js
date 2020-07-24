@@ -23,7 +23,8 @@ sap.ui.define([
 		var sorter = modelTools.getSort(sorter, "createdAt DESC");
 
 		jQuery.ajax({
-			url : PROXY + '/notificacion',
+			//url : PROXY + '/notificacion',  //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/notificacion', //Test Vero
 			method : 'GET',
 			data : {
 				where : where,

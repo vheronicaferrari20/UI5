@@ -23,7 +23,8 @@ sap.ui.define([
 		var sorter = modelTools.getSort(sorter, "createdAt DESC");
 		
 		jQuery.ajax({
-			url : PROXY + '/notificacion/pendientes',
+			//url : PROXY + '/notificacion/pendientes',//-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/notificacion/pendientes', //Test Vero
 			method : 'GET',
 			data : {
 				where : where,
@@ -47,7 +48,8 @@ sap.ui.define([
 	function marcarVistoAll(model) {
 		return new Promise(function(resolve, reject){
 			jQuery.ajax({
-				url : PROXY + '/notificacion/marcarVistoAll',
+				//url : PROXY + '/notificacion/marcarVistoAll', //-->Se comenta para Test-Vero
+				url: 'http://api.grupoassa.com:1337/notificacion/marcarVistoAll', //Test Vero
 				method : 'POST',
 				success : function(){
 					model.setProperty("/data",{});

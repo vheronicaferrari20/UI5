@@ -8,8 +8,6 @@ sap.ui.define([
 
 	var currentPromise;
 	
-	var tt_reg;
-
 	function loadData(skip, model){
 
 		console.log("llama al loadData -skip: "+ skip+' model '+model);
@@ -24,22 +22,22 @@ sap.ui.define([
 	function _loadData(skip, model, resolve, reject) {
 		
 	      //Inicio ajax --->Test pruebas locales	
-		
 		var country = ["ARG","BRA","CHI","COL","MEX","ESP","USA"];
-		//var cant_reg;
+		var cluster =["0","ACC","AYC","CDJ","CEP","CGP","CO0","COR","CRD","CSC","FIN","LEG",
+			          "MKT","RGA","RGB","RGC","RGN","RGU","RRH","SGS","SSN","SST","TAX","TEC"];
+
         var limit = 1000;
         
         country.forEach(function(elemento, indice, array) {
-           // console.log('cant_reg: '+ tt_reg);
+        	
             var countryid = country[indice];
             var where = '{"fechaEgresoEmpleado" : null,  "codEmpleado" : {"!" : "0"}, "pais" : "' + countryid +'"}';
-          //  console.log('where '+ indice + ': '+ where); sap.ui.getCore()._token = data.token;
         
 		jQuery.ajax({
 			url:'http://api.grupoassa.com:1337/employee',
 			method : 'GET',
 			data: {
-				where : where, //'{"fechaEgresoEmpleado" : null, "codEmpleado" : {"!" : "0"}  ',
+				where : where, 
 				populate : 'mentor,coach,pais,industria,myk,myk.skills,myk.languages,viaja,proyectosActuales,practica,subPractica,comentarios,site,estructura,equipo',
 				skip : skip,
 				limit : limit
@@ -51,21 +49,29 @@ sap.ui.define([
 					if (dataObj.length == 0) {
 						dataObj = {};
 					}
-					tt_reg = tt_reg + data.length;
-					console.log('cant_reg: '+tt_reg + ' data.length '+data.length);
+					
+					var eq = false;
 					for (var i=0; i < data.length; i++){
-						dataObj[data[i].codEmpleado] = data[i];
+						cluster.forEach(function(elemento, indice, array){
+							if(  data[i].cluster === cluster[indice]){
+								eq = true;
+							}
+							});
+						if(eq === false){
+							dataObj[data[i].codEmpleado] = data[i];
+						}
+						eq = false;
 					}
 					
 					model.setProperty('/data',dataObj);
-					//model.refresh(true);
+					//console.log('model: '+model.oData.data);
+					
 					if (data.length == limit) {
 						return _loadData(skip + limit, model, resolve, reject);
 					} else {
 						model.setProperty('/loading',false);
 						currentPromise = null;
 						return resolve(dataObj);
-						//model.refresh(true);
 					}
 					model.setProperty('/loading',false);
 					currentPromise = null;
@@ -73,9 +79,7 @@ sap.ui.define([
 				} else {
 					model.setProperty('/loading',false);
 					currentPromise = null;
-					//cant_reg = cant_reg + data.length;
 					return resolve(model.getProperty('/data'));
-					//model.refresh(true);
 				}
 			}, 
 			error : function(error){
@@ -143,7 +147,6 @@ sap.ui.define([
 			data: {
 				where : '{ "codEmpleado" : ' + employeeId + ' }',
 				populate : 'mentor,coach,pais,industria,viaja,proyectosActuales,practica,subPractica,comentarios',
-				//skip : skip,
 				//limit : limit
 			},
 			async: false,
@@ -151,7 +154,6 @@ sap.ui.define([
 				console.log("Employee To Update", data[0]);				
 				model.setProperty('/data/' + employeeId,data[0]);
 				model.setProperty('/loading',false);
-				//model.refresh(true);
 			}, 
 			error : function(error){
 				model.setProperty('/loading',false);
@@ -214,12 +216,9 @@ sap.ui.define([
 					}
 					model.setProperty('/data',dataObjEmployees);
 					model.setProperty('/loading',false);
-					//model.refresh(true);
 				} else {
 					model.setProperty('/loading',false);
-					//model.refresh(true);
 				}
-			
 			}
 		});
 
@@ -290,18 +289,12 @@ sap.ui.define([
 			loadDataAsignacionesByRango(EmployeesModel, desde, hasta);
 		},
 
-
 		refreshById : function(employeeId){
 			if (! EmployeesModel ) {
 				return;
 			}
 			loadDataById(EmployeesModel, employeeId);
 		}
-
-
 	};
-
-
 	
-
 });

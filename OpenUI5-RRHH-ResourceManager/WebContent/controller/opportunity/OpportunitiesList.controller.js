@@ -28,7 +28,9 @@ sap.ui.define([
 
 			this._infoFilterBar = this.getView().byId("infoFilterBar");
 
-			this._infoFilterLabel = this.getView().byId("infoFilterLabel");
+			this._infoFilterLabel = this.getView().byId("infoFilterLabelO");
+			
+			this._infoFilterLabelTotal = this.getView().byId("infoFilterLabelTotalO");
 
 			this._Model = opportunities.getModel();
 
@@ -166,8 +168,11 @@ sap.ui.define([
 				.loadData(bRefresh, this._filterSearh, this._aFilters, this._aSorters)
 				.then(function(){
 					that._Table.setBusy(false);
+					var binding =  that._Table.getBinding("items");
+					console.log("binding.aIndices.length: "+ binding.aIndices.length);
+					that._infoFilterLabelTotal.setText("Total ("+binding.aIndices.length+")");
 				});
-			
+						
 		},
 
 		// formatters

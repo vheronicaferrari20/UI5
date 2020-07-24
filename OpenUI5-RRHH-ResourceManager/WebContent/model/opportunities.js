@@ -17,26 +17,46 @@ sap.ui.define([
 	}
 	
 	function _loadData(filterSearh, filter, sorter, model, resolve, reject) {
+		
+		var country = ["ARGENTINA","BRASIL","CHILE","COLOMBIA","MEXICO","ESPAÑA","ESTADOS UNIDOS"];
+		
 		var where = modelTools.getWhere(filterSearh, filter);
-		var sorter = modelTools.getSort(sorter, "CreatedDate DESC");
-		console.log("sorter",sorter);
+		
+		var flag;
+		
+		if(!where){
+			flag = false;
+		}
+		country.forEach(function(elemento, indice, array) {
+			
+	        var countryid = country[indice];
+		    if(flag === false){
+			    where = '{"IsDeleted" : false,  "OpportunityPais" : "'+ countryid + '"}'; //  "MEXICO"}';			
+		    }
+			
+		    var sorter = modelTools.getSort(sorter, "CreatedDate DESC");
+		    console.log('modelTools.skip: '+modelTools.skip);
+		    var limit = 2000;
 
 		jQuery.ajax({
-			url : PROXY + "/opportunityViewSalesforce",
+			//url : PROXY + "/opportunityViewSalesforce", //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/opportunityViewSalesforce', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
 				where : where,
 				sort : sorter,
 				skip : modelTools.skip,
-				limit : modelTools.limit },
+				limit : limit }, //modelTools.limit }, //-->Se comenta x testing Vero
+			async: true,		
 			success : function(data){
 				if (data.length > 0) {
-					console.log("data", data);
+					//console.log("data", data);
 					var dataObj = model.getProperty('/data');
 					if (dataObj.length == 0) {
 						dataObj = {};
 					}
+					console.log('countryid: '+ countryid+ ' data.length: '+data.length);
 					for (var i=0; i < data.length; i++){
 
 						if ( ! data[i].OpportunityLineItemId) {
@@ -58,6 +78,7 @@ sap.ui.define([
 				reject();
 			}
 		});
+		})
 	}
 
 	function loadDataByOpportunityId(model, opportunityId, opportunityLineItemId) {
@@ -86,7 +107,8 @@ sap.ui.define([
 		}
 
 		jQuery.ajax({
-			url : PROXY + "/opportunityViewSalesforce",
+			//url : PROXY + "/opportunityViewSalesforce", //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/opportunityViewSalesforce', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
@@ -105,9 +127,6 @@ sap.ui.define([
 			}
 		});
 	}
-	
-
-	
 
 	return {
 
@@ -161,9 +180,6 @@ sap.ui.define([
 			}
 
 			loadDataByOpportunityId(OpportunitiesModel, opportunityId, opportunityLineItemId);
-		}
-
-
-		
+		}	
 	};
 });

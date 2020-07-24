@@ -42,6 +42,20 @@
 				active="true"
 				visible="false">
 				<Label id="infoFilterLabel" text="?" />
+				<HBox
+                    width="100%"
+                    class="sapUiSmallMargin">
+                    <HBox
+                        width="80%"
+                        justifyContent="Start">
+                        <Text id="infoFilterLabelO" text="" />  
+                    </HBox>
+                    <HBox
+                        width="20%"
+                        justifyContent="End">
+                        <Text id="infoFilterLabelTotalO" text="" />   
+                    </HBox>
+                </HBox>
 			</Toolbar>
 		</infoToolbar>
 		<columns>

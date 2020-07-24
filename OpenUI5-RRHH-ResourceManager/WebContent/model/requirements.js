@@ -25,7 +25,8 @@ sap.ui.define([
 			opportunityLineItem = 'null';
 		}
 		jQuery.ajax({
-			url : PROXY + "/asignacion",
+			//url : PROXY + "/asignacion",  //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/asignacion', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
@@ -76,7 +77,8 @@ sap.ui.define([
 			opportunityLineItem = 'null';
 		}
 		jQuery.ajax({
-			url : PROXY + "/asignacion",
+			//url : PROXY + "/asignacion", //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/asignacion', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
@@ -126,7 +128,8 @@ sap.ui.define([
 				descripcion += 'Recruiting ' + dataObj.tipoRecruiting;
 			} else	{
 				descripcion = dataObj.candidato.fullName;
-				urlAvatar = SERVER_DELIVERY_TOOLS + "/api/Avatars/" + dataObj.candidato.userNameGA;
+				//urlAvatar = SERVER_DELIVERY_TOOLS + "/api/Avatars/" + dataObj.candidato.userNameGA;  //-->Se comenta para Test-Vero
+				urlAvatar = 'http://api.grupoassa.com:3001/api/Avatars/'+ dataObj.candidato.userNameGA; //Test Vero
 			}
 			
 			aData.push({
@@ -215,10 +218,7 @@ sap.ui.define([
 			startDate : startDate,
 			data : aData
 		};
-
 	}
-
-	
 
 	return {
 

@@ -17,6 +17,7 @@ sap.ui.define([
 	}
 	
 	function _loadData(filterSearh, filter, sorter, model, resolve, reject) {
+		console.log('Pasa x _loadData');
 		var where = modelTools.getWhere(filterSearh, filter);
 		var sorter = modelTools.getSort(sorter, "index ASC");
 

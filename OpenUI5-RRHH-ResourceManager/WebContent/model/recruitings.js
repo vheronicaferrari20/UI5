@@ -27,7 +27,8 @@ sap.ui.define([
 		console.log("sorter",sorter);
 
 		jQuery.ajax({
-			url : PROXY + "/recruiting",
+			//url : PROXY + "/recruiting",  //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/recruiting', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
@@ -86,7 +87,8 @@ sap.ui.define([
 		}
 
 		jQuery.ajax({
-			url : PROXY + "/opportunityViewSalesforce",
+			//url : PROXY + "/opportunityViewSalesforce",   //-->Se comenta para Test-Vero
+			url: 'http://api.grupoassa.com:1337/opportunityViewSalesforce', //Test Vero
 			method : 'GET',
 			dataType : 'JSON',
 			data : {
@@ -163,7 +165,5 @@ sap.ui.define([
 			loadDataByOpportunityId(RecruitingsModel, opportunityId, opportunityLineItemId);
 		}
 
-
-		
 	};
 });

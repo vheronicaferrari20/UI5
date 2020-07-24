@@ -10,7 +10,6 @@ sap.ui.define([
 	return Controller.extend("App.controller.employee.Employees", {
 		
 		onInit : function() {
-
 			this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this._oRouter.getRoute("resources").attachPatternMatched(this._onObjectMatched, this);
 			this._eventBus = sap.ui.getCore().getEventBus();
@@ -20,6 +19,5 @@ sap.ui.define([
 			this._eventBus.publish(dataEvents.select_menu_main.channel,dataEvents.select_menu_main.name,{route:"resources"});
 		},
 
-	
 	});
 });

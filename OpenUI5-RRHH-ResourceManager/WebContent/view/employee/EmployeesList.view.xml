@@ -16,79 +16,113 @@
             growing="true"
             growingScrollToLoad="true">
             
-            
+            <!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
+         <headerToolbar>
+			<OverflowToolbar>
+				<Title text="Empleados" level="H2"/>
+				<ToolbarSpacer/>
+				<!-- Add the Personalization button -->
+				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+			</OverflowToolbar>
+		</headerToolbar>
             <columns>
                 <Column
+                    id="legajotCol"
                     width="4em">
                     <Text text="Legajo" />
                 </Column>
-                <Column>
-                    <Text text="Apellido y Nombre" />
-                </Column>
+                
                 <Column
+                    id= "apeNomCol">
+                    <Text text="Apellido y Nombre" />
+                </Column> 
+                <!--  
+                <Column
+                    id= "clusterCol">
+                    <Text text="Cluster" />
+                </Column>
+                -->
+                <Column
+                    id="categoriaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Categoría" />
                 </Column>
 
                 <Column
+                    id="paisCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="País" />
                 </Column>
 
                 <Column
+                    id="siteCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Site" />
                 </Column>
 
                 <Column
+                    id="estructuraCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Estructura" />
                 </Column>
 
                 <Column
+                    id="equipoCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Equipo" />
                 </Column>
 
                 <Column
+                    id="industriaCol"
                     minScreenWidth="Tablet"
-                    demandPopin="true">
+                    demandPopin="true"
+                    visible="false">
                     <Text text="Industria" />
                 </Column>
 
                 <Column
+                    id="practicaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Práctica" />
                 </Column>
 
                 <Column
+                    id="subPracticaCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="SubPráctica" />
                 </Column>
 
                 <Column
+                    id="clienteCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Cliente" />
                 </Column>
                 <Column
+                    id="fechaIniCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Fecha Inicio" />
                 </Column>
                 <Column
+                    id="fechaLibCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Fecha Liberación" />
                 </Column>
                 <Column
+                    id="comentariosCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
                     <Text text="Comentarios" />
