@@ -1,21 +1,60 @@
-<core:View 
-    xmlns:core="sap.ui.core" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m"
-	controllerName="App.controller.opportunity.OpportunitiesList"
-	xmlns:l="sap.ui.layout.form" 
-	xmlns:html="http://www.w3.org/1999/xhtml"
-	>
-    <Table
-    	id="opportunitiesListTable" 
-		items="{OpportunityModel>/data}"
-		enableBusyIndicator="true"
-		busyIndicatorDelay="0"
-		growing="true"
-		growingScrollToLoad="true"
-		growingTriggerText="Mas"
-		growingThreshold="20"
-		updateStarted = "updateStarted">
+<core:View xmlns:core="sap.ui.core" 
+           xmlns:mvc="sap.ui.core.mvc" 
+           xmlns="sap.m" 
+           xmlns:m="sap.m"
+	       controllerName="App.controller.opportunity.OpportunitiesList" 
+	       xmlns:l="sap.ui.layout.form" 
+	       xmlns:comp="sap.ui.comp.variants"
+	       xmlns:f="sap.ui.layout.form" 
+	       xmlns:c="sap.ui.core" 
+	       xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	
+	<Table 
+	    id="opportunitiesListTable" class="sapUiSizeCondensed" selectionMode="MultiToggle" selectionBehavior="Row"
+		items="{path:'OpportunityModel>/data',
+		groupHeaderFactory: '.createGroupHeader'}"
+		enableBusyIndicator="true" 
+		growingThreshold="35" 
+		busyIndicatorDelay="0" 
+		growing="true" 
+		inset="false"
+		growingScrollToLoad="false" 
+		growingTriggerText="Mas">
+		
+		 <!-- Se agrega el Boton para permitir modificar el Layout -->
+         <headerToolbar>
+			<OverflowToolbar> 
+				<ToolbarSpacer/>
+				<!-- Add the Personalization button -->
+				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+				<Button icon="sap-icon://action-settings" press="onPressConfig">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<Button icon="sap-icon://refresh" press="onPressRefresh">
+					<layoutData>
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
+					</layoutData>
+				</Button>
+				<ToolbarSeparator/>
+				<SearchField search="onSearch" width="40%"/>
+				<!-- 
+				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
+				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
+				<ToolbarSpacer id="spacer2"/>
+				 
+				<content/>
+				-->
+				</OverflowToolbar>
+				
+		</headerToolbar>
+		<!--  
 		<headerToolbar>
 			<Toolbar>
 				
@@ -36,80 +75,76 @@
 					width="40%" />
 			</Toolbar>
 		</headerToolbar>
+		-->
 		<infoToolbar>
-			<Toolbar
-				id="infoFilterBar"
-				active="true"
-				visible="false">
-				<Label id="infoFilterLabel" text="?" />
-				<HBox
-                    width="100%"
-                    class="sapUiSmallMargin">
-                    <HBox
-                        width="80%"
-                        justifyContent="Start">
-                        <Text id="infoFilterLabelO" text="" />  
-                    </HBox>
-                    <HBox
-                        width="20%"
-                        justifyContent="End">
-                        <Text id="infoFilterLabelTotalO" text="" />   
-                    </HBox>
-                </HBox>
+			<Toolbar id="infoFilterBar" active="true" visible="true">
+				<HBox width="100%" class="sapUiSmallMargin">
+					<HBox width="80%" justifyContent="Start">
+						<Text id="infoFilterLabelO" text=""/>
+					</HBox>
+					<HBox width="20%" justifyContent="End">
+						<Text id="infoFilterLabelTotalO" text=""/>
+					</HBox>
+				</HBox>
 			</Toolbar>
 		</infoToolbar>
+		
 		<columns>
-			<Column
-                minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Cuenta" />
+			<Column id="cuentaCol" 
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Cuenta"/>
 			</Column>
-			<Column>
-				<Text text="Oportunidad" />
+			<Column id="oportunidadCol"
+			        autoResizable="true">
+				<Text text="Oportunidad"/>
 			</Column>
-			<Column>
-				<Text text="País" />
+			<Column id="paisCol"
+			        autoResizable="true">
+				<Text text="País"/>
 			</Column>
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Etapa" />
+			<Column id="etapaCol"
+			        minScreenWidth="Tablet"
+                    demandPopin="false" 
+                    autoResizable="true">
+				<Text text="Etapa"/>
 			</Column>
-
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Platform" />
+			<Column id="platformCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Platform"/>
 			</Column>
-
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="ServiceType" />
+			<Column id="serviceTypeCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="ServiceType"/>
 			</Column>
-			
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Cierre" />
+			<Column id="cierreCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Cierre"/>
 			</Column>
-
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Inicio SF" />
+			<Column id="inicioSFCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Inicio SF"/>
 			</Column>
-
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Committed/No Committed" />
+			<Column id="committedCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Committed/No Committed"/>
 			</Column>
-			
-			<Column
-				minScreenWidth="Tablet"
-				demandPopin="false">
-				<Text text="Perfiles" />
+			<Column id="perfilesCol"
+			        minScreenWidth="Tablet" 
+			        demandPopin="false" 
+			        autoResizable="true">
+				<Text text="Perfiles"/>
 			</Column>
 			<!--
 			<Column
@@ -123,57 +158,21 @@
 				<Text text="Candidatos Asignados"/>
 			</Column>
 			-->
-
 		</columns>
-		<items>
-			<ColumnListItem
-				type="Navigation"
-				press="onItemPressTable">
+		<items >
+			<ColumnListItem type="Navigation" press="onItemPressTable">
 				<cells>
+					<Text text="{OpportunityModel>AccountName}"/>
+					<Text text="{OpportunityModel>Name}"/>
+					<Text text="{OpportunityModel>OpportunityPais}"/>
+					<Text text="{OpportunityModel>StageName}"/>
+					<Text text="{OpportunityModel>Platform__c}"/>
+					<Text text="{OpportunityModel>ServiceType__c}"/>
+					<Text text="{ path : 'OpportunityModel>CloseDate' , formatter : '.formatter.formatDate' }"/>
+					<Text text="{ path : 'OpportunityModel>Project_Start_Date__c' , formatter : '.formatter.formatDate' }"/>
+					<Text text="{ path : 'OpportunityModel>Commited__c', formatter : '.formatter.formatCommittedOpportunity' }"/>
 					<Text
-						text="{OpportunityModel>AccountName}" />
-					<Text
-						text="{OpportunityModel>Name}" />
-					<Text
-						text="{OpportunityModel>OpportunityPais}" />
-					<Text
-						text="{OpportunityModel>StageName}" />
-
-					<Text
-						text="{OpportunityModel>Platform__c}" />
-
-					<Text
-						text="{OpportunityModel>ServiceType__c}" />
-					
-					<Text
-						text="{
-							path : 'OpportunityModel>CloseDate' , 
-							formatter : '.formatter.formatDate'
-							}" />
-
-					<Text
-						text="{
-							path : 'OpportunityModel>Project_Start_Date__c' , 
-							formatter : '.formatter.formatDate'
-							}" />
-
-					<Text
-						text="{
-							path : 'OpportunityModel>Commited__c',
-							formatter : '.formatter.formatCommittedOpportunity'
-							}" />
-
-					<Text
-						text="{ 
-						parts : [ 
-							{path : 'OpportunityModel>CountPerfiles'},
-							{path : 'OpportunityModel>CountPerfilesDraft'},
-							{path : 'OpportunityModel>CountPerfilesReservados'},
-							{path : 'OpportunityModel>CountPerfilesAsignados'},
-							{path : 'OpportunityModel>CountPerfilesRecruiting'}
-							],
-							formatter : '.perfiles'}" />
-					
+						text="{ parts : [ {path : 'OpportunityModel>CountPerfiles'}, {path : 'OpportunityModel>CountPerfilesDraft'}, {path : 'OpportunityModel>CountPerfilesReservados'}, {path : 'OpportunityModel>CountPerfilesAsignados'}, {path : 'OpportunityModel>CountPerfilesRecruiting'} ], formatter : '.perfiles'}"/>
 				</cells>
 			</ColumnListItem>
 		</items>

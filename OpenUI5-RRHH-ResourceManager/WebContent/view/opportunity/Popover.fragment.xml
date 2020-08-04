@@ -1,0 +1,46 @@
+<core:FragmentDefinition
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:c="sap.ui.commons"
+	xmlns:comp="sap.ui.comp.variants">
+  <ResponsivePopover title="Opciones"
+  placement= "Bottom"
+  afterOpen= "onOpen">
+    <content>
+        <List>
+          <items>
+            <CustomListItem>
+            <HBox alignItems="Center"
+                  justifyContent="Center"
+                  class="HBoxStyle">
+            <Label text="Filtrar por Dato:" />
+            <Input width="60%"
+                  change="onChange" />
+            </HBox>
+            </CustomListItem>
+            <CustomListItem>
+            <HBox alignItems="Center"
+                  justifyContent="Center"
+                  class="HBoxStyle">
+            <Label text="País:" />
+            <Input width="80%"
+                  change="FunctionTestPais" />
+            </HBox>
+            </CustomListItem>
+            <CustomListItem>
+            <HBox alignItems="Center"
+                  justifyContent="Center"
+                  class="HBoxStyle">
+            <Label text="Plataforma:" />
+            <Input width="69%"
+                  change="FunctionTestPlatform" />
+            </HBox>
+            </CustomListItem>
+          </items>
+        </List>
+    </content>
+  </ResponsivePopover>
+</core:FragmentDefinition>

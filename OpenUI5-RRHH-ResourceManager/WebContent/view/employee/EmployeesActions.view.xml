@@ -4,9 +4,16 @@
 	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
 
 	<Toolbar>
+	<!--  
 		<HBox width="20%" justifyContent="Start">
 			<Text id="infoFilterLabelTotal" text="" />
 		</HBox>
+		-->
+		<Label id="infoFilterLabelTotal"  text="">
+					<layoutData>
+							<ToolbarLayoutData shrinkable="false" />
+					</layoutData>
+				</Label>
 		<ToolbarSpacer />
 
 		<BusyIndicator class="sapUiSmallMarginBottom"

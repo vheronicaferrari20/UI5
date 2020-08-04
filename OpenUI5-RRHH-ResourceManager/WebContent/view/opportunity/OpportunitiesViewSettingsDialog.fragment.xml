@@ -20,11 +20,11 @@
 				text="Etapa"
 				key="etapa"
 				multiSelect="true"
-				items="{OpportunitiesStagesMasterModel>/}">
+				items="{ModelEtapas>/}">
 				<items>
 					<ViewSettingsItem 
-						text="{OpportunitiesStagesMasterModel>MasterLabel}" 
-						key="StageName___EQ___{OpportunitiesStagesMasterModel>MasterLabel}" />
+						text="{ModelEtapas>DescriptionStage_Code}"
+						key="StageName___EQ___{ModelEtapas>DescriptionStage_Code}" />
 				</items>
 			</ViewSettingsFilterItem>
 

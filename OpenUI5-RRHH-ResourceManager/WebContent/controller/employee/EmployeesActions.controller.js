@@ -38,12 +38,13 @@ sap.ui.define([
 
 		//	this._infoFilterLabel.setText(data.filterString);
 			this._infoFilterLabelTotal.setText(data.filterString);
-
+			console.log('infoFilterLabelTotal: '+this._infoFilterLabelTotal);
 		},
 
 		onSuscribeBinding : function(channel, event, data) {
 			
 			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")"); // Comentado para testing-Vero
+			console.log('infoFilterLabelTotal: '+this._infoFilterLabelTotal);
 
 		},
 
@@ -65,7 +66,7 @@ sap.ui.define([
 				dataEvents.refresh_employee_actions.channel,
 				dataEvents.refresh_employee_actions.name);
 			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")");
-
+			console.log('infoFilterLabelTotal: '+this._infoFilterLabelTotal);
 		},
 
 		onDataExport : function(oEvent) {
@@ -84,7 +85,6 @@ sap.ui.define([
 				{
 					sQuery : oEvt.getSource().getValue()
 				});
-
 		}
 	
 	});

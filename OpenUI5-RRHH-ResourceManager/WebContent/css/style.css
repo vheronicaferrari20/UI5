@@ -45,10 +45,41 @@
     float: none;
 }
 
+.columnLabelStyle.sapMLabel.sapMLabelMaxWidth.sapUiSelectable{
+	cursor:pointer;
+}
+.sapMBar.sapMBar-CTX.sapMContent-CTX.sapMHeader-CTX.sapMIBar.sapMIBar-CTX.sapMPopoverHeader{
+	background-color: #a3d4f9;
+}
+.sapMPopover.sapMPopoverWithBar.sapMPopoverWithoutFooter.sapMPopoverWithoutSubHeader.sapMPopup-CTX.sapMResponsivePopover.sapUiShd{
+	border-radius: 55px;
+}
 
-
-
+.sapMBarChild.sapMTitle.sapMTitleMaxWidth.sapMTitleNoWrap.sapMTitleStyleAuto.sapUiSelectable{
+	color:white;
+	font-size: 1.1em;
+    font-family: sans-serif;
+}
+.HBoxStyle.sapMFlexBox.sapMFlexBoxAlignContentStretch.sapMFlexBoxAlignItemsCenter.sapMFlexBoxBGTransparent.sapMFlexBoxJustifyCenter.sapMFlexBoxWrapNoWrap.sapMHBox{
+	background-color: #E9F0F5;
+}
+.HBoxStyle.sapMFlexBox.sapMFlexBoxAlignContentStretch.sapMFlexBoxAlignItemsCenter.sapMFlexBoxBGTransparent.sapMFlexBoxJustifyCenter.sapMFlexBoxWrapNoWrap.sapMHBox:hover{
+	background-color: lightblue;
+}
+.sapMBar.sapMBar-CTX.sapMContent-CTX.sapMHeader-CTX.sapMIBar.sapMIBar-CTX.sapMPopoverHeader{
+	border-bottom: 2px solid black;
+}
+.sapMIBar.sapMTB.sapMTB-Transparent-CTX.sapMTBInactive.sapMTBNewFlex{
+	background-color: lighgrey;
+}
+.sapMBarChild.sapMTitle.sapMTitleMaxWidth.sapMTitleNoWrap.sapMTitleStyleAuto.sapUiSelectable{
+	color:black;
+}
+.sapMBar.sapMBar-CTX.sapMContent-CTX.sapMDialogTitle.sapMHeader-CTX.sapMIBar.sapMIBar-CTX{
+	
+}
 /*fin GANNT*/
+
 
 
 
@@ -64,11 +95,11 @@
     font-style: oblique;
 }
 
-/*fondo del home*/
+/*fondo del home
 .sapMNavItem, .sapMNavItem.sapMPage{
     background-color: rgba(251, 249, 249, 0.5);
 }
-
+*/
 /*Permite extender la pantalla a lo ancho*/
 .sap-desktop .sapMShellAppWidthLimited .sapMShellCentralBox {
     width: 100% !important;
@@ -139,10 +170,98 @@
         width: inherit;
 
 }
+/*Style page - People(Gus)*/
 .botonHeaderLogo1>div{
     margin-bottom: -4px;
 
 }
+.sapUiRespGridSpanL6.sapUiRespGridSpanM6.sapUiRespGridSpanS6.sapUiRespGridSpanXL6{
+	width:100%
+}
+.sapUiRespGridSpanL6.sapUiRespGridSpanM6.sapUiRespGridSpanS6.sapUiRespGridSpanXL6{
+	width:100%
+}
+.sapMLabel.sapMLabelMaxWidth.sapUiFormLabel-CTX.sapUiSelectable{
+	color: black;
+	font-style: italic;
+    font-weight: bold;
+}
+.sapMSLIDescription{
+	color: #000;
+	font-style: italic;
+    font-weight: bold;
+}
+.sapMListTblHeader>.sapMTableTH{
+	color:#000;
+	background:#0090da;
+}
+.sapMLabel.sapMLabelMaxWidth.sapUiSelectable{
+	color:#000;
+	font-weight:bold;
+}
+.sapMLIB.sapMLIB-CTX.sapMLIBActionable.sapMLIBFocusable.sapMLIBShowSeparator.sapMLIBTypeActive.sapMSLI.sapMSLIDescIcon.sapMSLIIcon.sapUiTinyMargin.sapMLIBHoverable:hover{
+	background-color: #E4F2FC;
+}
+
+
+.sapMLIB.sapMLIB-CTX.sapMLIBActionable.sapMLIBFocusable.sapMLIBShowSeparator.sapMLIBTypeNavigation.sapMListTblRow.sapMLIBHoverable:hover{
+	background-color: #E4F2FC ;
+}
+
+/* fondo header content */
+.sapUxAPObjectPageContentObjectImage-Square.sapUxAPObjectPageHeaderContent.sapUxAPObjectPageHeaderContentDesign-Light.ui-helper-clearfix{
+
+}
+.sapContrastPlus.sapMITBNotScrollable.sapMITH{
+	background-image:url("../img/0.jpg");
+	background-position:center top -15%;
+	background-attachment: fixed;
+	
+	
+}
+.sapMObjStatusTitle{
+	color: #000;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-style: unset;
+}
+.sapMObjStatus>.sapMObjStatusTitle{
+	color:#000;
+}
+.sapUxAPObjectPageHeaderTitleTextWrappable{
+	font-size:1.2em;
+}
+.sapUxAPObjectPageHeaderTitleTextWrappable::before{
+	content: "⭐️" / "Alternate Text for that star";
+}
+.sapMObjStatusText{
+	color: #000;
+    font-size: 0.9em;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.sapMDialog.sapMDialog-CTX.sapMDialog-NoHeader.sapMDialogHorScrollDisabled.sapMDialogOpen.sapMDialogVerScrollDisabled.sapMPopup-CTX.sapMVSD.sapUiShd{
+	border-radius:10px;
+}
+.sapMNavItem.sapUiView.sapUiViewDisplayBlock.sapUiXMLView{
+
+}
+.sapMBar.sapMBar-CTX.sapMContent-CTX.sapMIBar.sapMIBar-CTX.sapMPageSubHeader.sapMSubHeader-CTX.sapMVSDBar{
+	background: linear-gradient(45deg, black, transparent);
+}
+.sapMInput.sapMInputBase.sapMInputBaseWidthPadding{
+	cursor:pointer;
+}
+.sapMInputBaseInner{
+	    border: 2px solid white;
+	     cursor:pointer;
+}
+.sapMInputBaseInner:hover{
+	    border: 2px solid blue;
+	    cursor:pointer;
+}
+
 
 /*************************/
 
@@ -196,7 +315,7 @@
 
 /*GRILLAS*/
 .sapMListTbl th{
-    background: rgb(252, 86, 76);
+    background: #007cc0;
 
 }
 .sapMListTbl th>* {
@@ -207,6 +326,11 @@
 .sapMListBGTranslucent .sapMLIB {
     background: rgba(255, 255, 255, 0.95);
 }
+/*m Recuadros*/
+.sapUiFormResGridCont.sapUiRespGrid.sapUiRespGridHSpace0.sapUiRespGridVSpace0.sapUiRespGridMedia-Std-Phone{
+	background-color: #A3D4F9;
+	border-radius: 50px 50px 50px 50px;
+}
 
 /*Paneles de fondo de formulario*/
 .panelTitleForm1{
@@ -216,15 +340,36 @@
     font-size: 1.5rem;
 }
 /*Fondo de contenedor prioncipal*/
-.sapMNav {
-    background-color: rgba(255, 255, 255, 0.85);
-}
+
 
 /*Fondo de aplicaciòn*/
 .sapMShellGlobalInnerBackground{
-    background-image: url("../img/bk.jpg");
+	position:relative;
+    background-image: url("../img/gaFondo.png");
+    background-size: 100%;
+    animation: movimiento 10s infinite linear alternate;
+  
+}
+.capa-gradient {
+	width:100%;
+	height:100%;
+	position:absolute;
+	background: -webkit-linear-gradient(left, black, #0672d0);
+	opacity: 0.5;
 }
 
+@keyframes movimiento{
+	from{
+		background-position: bottom left;
+	}to{
+		background-position: top right;
+	}
+}
+.sapMSFF{
+	border-radius: 10px;
+	width: 100%;
+    float: right;
+}
 
 
 /*Bordes redondeados*/
@@ -286,8 +431,9 @@
 
 /*panel de fondo*/
 .sapMPanelBGTranslucent {
-    background-color: white;
-    border-radius: 2px;
+    border-radius: 20px;
+    filter:contrast(1.1);
+    background-color: rgb(0,0,0,0.3);
 }
 
 .sapMITBContent{
@@ -317,7 +463,7 @@
 
 /*Fondo de aplicacion*/
 .sapMShellBrandingBar{
-    background-color : #fc564c
+    background-color : #38A1F1;
 }
 .sapUshellShellBackground, .sapUiGlobalBackgroundColor, .sapMGlobalBackgroundColor{
     background-image: url("../img/bk.jpg");
@@ -326,12 +472,17 @@
 
 }
 
-
+.sapMImg{
+	border: 7px solid;
+}
 
 .sapMLIB{
     background-color: rgba(206, 206, 206, 0.42);
     border-radius: 0.5em;
 
+}
+.sapMPanelContent:not(.sapMPanelBGTransparent){
+	border-bottom: none;
 }
 
 .sapMLIBHoverable:hover{
@@ -774,6 +925,11 @@ border-left-color: #A76235 !important;
     color: #fc564c;
 }
 
+span.sapMBtnContent{
+	font-weight: bold;
+    font-style: unset;
+    font-family: serif;
+}
 .header-page {
     background-color: rgb(242, 248, 252);
 }

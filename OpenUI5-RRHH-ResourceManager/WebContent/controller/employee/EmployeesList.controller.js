@@ -41,14 +41,15 @@ sap.ui.define([
 			this.getView().setModel(this._Model,this._ModelName);
 			 		
 			//*************Inicio de Test Vero
+			//var oPersId = {container: "mycontainer-1", item: "myitem-1"};
+			
+			//var oProvider = sap.ushell.Container.getService("Personalization").getPersonalizer(oPersId);
 			// init and activate controller
 			this._oTPC = new TablePersoController({
 				table: this._Table, //this.byId("employeesListTable"),
-				//specify the first part of persistence ids e.g. 'demoApp-productsTable-dimensionsCol'
 				componentName: "App",
-				persoService: LayoutService
+				persoService: LayoutService  // oProvider
 			}).activate();
-			console.log('Pasa x this._oTPC:'+this._oTPC);
 			//*************FIN de Test Vero
 
 			this._aSorters = [];
@@ -84,53 +85,22 @@ sap.ui.define([
 			//-->Inicio de Nueva logica para Ordenamiento x Nro de Legajo
 			this._aSorters = data.aSorters;
 			this._aFilters = data.aFilters; 
-			var newSort = []; //para guardar numbers
+			//var newSort = []; //para guardar numbers
 			var flagSort = false //flag
-		
-			var _binding = this._Table.getBinding("items")
-			
-			//Si selecciona legajo, los ordeno
+
 			if ( this._aSorters[0].sPath === "codEmpleado") {
-				flagSort = true
+				flagSort = true			
+			} 
 				
-				//los paso a number
-				for (var i=0; i < _binding.aIndices.length; i++) {
-					newSort.push(parseInt(_binding.aIndices[i],10));
-				}
-				
-				//ordeno DESC
-				if (this._aSorters[0].bDescending === true) {
-					function comparar(a,b){return b - a}
-					function ordenar(){
-					    	newSort = newSort.sort(comparar) 
-					    	return newSort
-					    }					
-					_binding.aIndices = ordenar();
-					
-					this.applyFilterSorters(flagSort, _binding.aIndices);
-					
-				} else { //ordeno ASC
-					function comparar(a,b){return a - b}
-					function ordenar(){
-					    	newSort = newSort.sort(comparar)
-					    	return newSort
-					    }
-					_binding.aIndices = ordenar();
-					
-					this.applyFilterSorters(flagSort, _binding.aIndices);
-				}
-			} else { //Si selecciona algo distingo de legajo sigue el camino normal
-				
-				this.applyFilterSorters();
-			}
+		    this.applyFilterSorters(flagSort);
 			//--->Fin Nueva Logica para Ordenamiento x Nro de Legajo
+
 		},
 
 		onSuscribeRefresh : function(channel, event, data) {
 
 			this.getData();
 			this._Table.removeSelections(true);
-
 		},
 
 		onSuscribeExport : function(channel, event, data) {
@@ -142,7 +112,6 @@ sap.ui.define([
 		onSuscribeSearch : function(channel, event, data) {
 
 			this.search(data.sQuery);
-
 		},
 
 		/*
@@ -196,16 +165,12 @@ sap.ui.define([
 		***************************************************************************************
 		*/
 
-		applyFilterSorters : function(flagSort, aIndices){   //-->Se agregan los parametros flagSort, aIndices -Test SORT
-			var binding = this._Table.getBinding("items");
-
-			binding.sort(this._aSorters);
-			
+		applyFilterSorters : function(flagSort){   //-->Se agregan los parametros flagSort, aIndices -Test SORT
+			var binding = this._Table.getBinding("items");					
 			var filters = [];
 
 			if (this._filterSearh) {
-				filters.push(this._filterSearh)
-				//binding.filter(data._filterSearh);
+				filters.push(this._filterSearh)  //binding.filter(data._filterSearh);
 			}
 
 			for (var i=0; i < this._aFilters.length; i++){
@@ -213,51 +178,25 @@ sap.ui.define([
 			}
 			
 			//Inicio de Modificacion para nueva Logica
-			//binding.filter(filters); //-->Se comenta para Testing
-			
-			if (flagSort != true){
-				binding.filter(filters); 
-				
-			
-		   /**
-			 * 
-			 
-			var binding = this._Table.getBinding("items");
-			var oListCod = [];
-			//binding.sort(this._aSorters);
-			
+			binding.filter(filters);
+						
+			function sortDescending(a, b) {return b-a;} 
+            function sortAscending(a, b) {return a-b;} 
+            
+          //SORT DESC
+            if (this._aSorters.length > 0){
+                if(this._aSorters[0].bDescending === true){
+	    			binding.aIndices.sort(sortDescending); 			
+		    	}
+          //SORT ASC
+			    if (this._aSorters[0].bDescending === false) { 
+				    binding.aIndices.sort(sortAscending);				
+			    }
+            }
+            
 			if (flagSort != true){
 				binding.sort(this._aSorters); 
 			} 
-			
-			var filters = [];
-
-			if (this._filterSearh) {
-				filters.push(this._filterSearh)
-				//binding.filter(data._filterSearh);
-			}
-
-			for (var i=0; i < this._aFilters.length; i++){
-				filters.push(this._aFilters[i]);
-			}
-			
-			//Inicio de Modificacion para nueva Logica
-			//binding.filter(filters); //-->Se comenta para Testing
-			 
-			//Fin de modificacion
-			
-			//var oListCod = [];
-			
-			if(flagSort == true){
-				for(var value in binding.oList){
-					oListCod.push(parseInt((value, binding.oList[value].codEmpleado),10));
-					
-				}
-				
-				binding.sort(oListCod); 
-				*/
-			}
-			//Fin de modificacion
 			
 			this._eventBus.publish(
 				dataEvents.employee_binding.channel,
@@ -266,9 +205,12 @@ sap.ui.define([
 					aFilters : binding.aFilters,
 					aIndices : binding.aIndices,
 					aSorters : binding.aSorters
-				});
+				})
+				this._Table.getBinding("items").refresh();
+				if(binding.aIndices.length > 0){
+					//this._infoFilterLabelTotal.setText("Total ("+binding.aIndices.length +")");
+				}
 
-			//this._infoFilterLabelTotal.setText("Total ("+binding.aIndices.length +")");
 		},
 
 		getData : function() {
@@ -278,11 +220,12 @@ sap.ui.define([
 			employeeModel
 				.loadData()
 				.then(function(employees){
-					//var total = Object.keys(employees).length;
+					var total = Object.keys(employees).length;
 					//that._infoFilterLabelTotal.setText("Total: " + total);
 					that.applyFilterSorters();
 					that.settings();
 				});
+			
 		},
 
 		settings : function() {
@@ -301,10 +244,8 @@ sap.ui.define([
 		
 		//*************Inicio de Test Vero
 		onLayoutButtonPress: function (oEvent) {
-			console.log('Pasa x onLayoutoButtonPress');
-			
+			//console.log('Pasa x onLayoutoButtonPress');
 			this._oTPC.openDialog();
-			//console.log('this._oTPC: '+this._oTPC);
 		},
 		//*************Fin de Test Vero
 		

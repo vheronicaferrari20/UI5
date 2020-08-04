@@ -18,7 +18,6 @@ sap.ui.define([
     'App/model/myopportunities',
     'App/controller/employee/EmployeesViewSettingsDialog',
     'App/AppRouter',
-   
 
 ], function(UIComponent, models, Device, JSONModel, MessageToast,dataModel,dataEvents, employeeModel,jqueryCookie, notificacion, notificacionHistorico, employee, employeeDetail, requirements, opportunities, formatter, myopportunities, EmployeesViewSettingsDialog, AppRouter) {
 	"use strict";
@@ -38,6 +37,7 @@ sap.ui.define([
 		
 		
 		init: function() {
+			
 			
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
@@ -219,6 +219,13 @@ sap.ui.define([
 
 			this._OpportunitiesAccountMasterModel = new JSONModel([]);
 			this.setModel(this._OpportunitiesAccountMasterModel, 'OpportunitiesAccountMasterModel');
+			
+			// Model Etapas - TypeService (28/07/2020)
+			this._ModelEtapas = new JSONModel([]);
+			this.setModel(this._ModelEtapas, 'ModelEtapas');
+			
+			this._ModelTypeService = new JSONModel([]);
+			this.setModel(this._ModelTypeService, 'ModelTypeService');
 
 			this.loadDataUserPreferencesMasterModel();
 
@@ -227,6 +234,11 @@ sap.ui.define([
 			this.loadDataMyKPracticeModules_KModulesMasterModel();
 			this.loadDataMyKPracticeModules_KSubModulesMasterModel();
 			this.loadDataKLevelMasterModel();
+			
+			//Se llama Function for Model Etapas - TypeService
+			this.loadDataModelEtapas();
+			this.loadDataModelTypeService();
+			// Fin function Model Etapas - TypeServie
 
 			this.loadDataMyKLanguages();
 			this.loadDataMyKActivityLanguages();
@@ -305,7 +317,40 @@ sap.ui.define([
 			]);
 
 		},
+		
+		//Se Setea Model Etapas - ServicesType -> Ser llamado a la View OpportunitiesViewSettingModel.view
+		loadDataModelEtapas: function() {
+			this._ModelEtapas.setData([
+				{'Stage_Code': 1, 'DescriptionStage_Code': '00 - Opportunity Discovery'}, 
+				{'Stage_Code': 2, 'DescriptionStage_Code': '01 - Qualification / Getting Info'}, 
+				{'Stage_Code': 3, 'DescriptionStage_Code': '02 - Building Relationship/Proposal'},
+				{'Stage_Code': 4, 'DescriptionStage_Code': '03 - Proposal Delivered'},
+				{'Stage_Code': 5, 'DescriptionStage_Code': '04 - Short List'},
+				{'Stage_Code': 6, 'DescriptionStage_Code': '05 - Short List - Good Chances'},
+				{'Stage_Code': 7, 'DescriptionStage_Code': '06 - Negotiation - Verbal Approval'},
+				{'Stage_Code': 8, 'DescriptionStage_Code': '07 - Won - Contract Signed'},
+				{'Stage_Code': 9, 'DescriptionStage_Code': '08 - Won - On Going'},
+				{'Stage_Code': 10, 'DescriptionStage_Code': '09 - Won - Finished'},
+				{'Stage_Code': 11, 'DescriptionStage_Code': '10 - Lost to Competition'},
+				{'Stage_Code': 12, 'DescriptionStage_Code': '11 - Dropped By Client'},
+				{'Stage_Code': 13, 'DescriptionStage_Code': '12 - Stand By'},
+				{'Stage_Code': 13, 'DescriptionStage_Code': '13 - Business Committed'}
+			]);
+		},
+		loadDataModelTypeService: function() {
+			this._ModelTypeService.setData([
+				{'ServicesType_Code': 1, 'DescriptionStage_Code': 'AD&I'}, 
+				{'ServicesType': 2, 'DescriptionStage_Code': 'Business Consulting'}, 
+				{'ServicesType': 3, 'DescriptionStage_Code': 'Transformation Projects'},
+				{'ServicesType': 4, 'DescriptionStage_Code': 'Software'},
+				{'ServicesType': 5, 'DescriptionStage_Code': 'Staff Augmentation'},
+				{'ServicesType': 6, 'DescriptionStage_Code': 'Cloud BPO Services / Platforms'},
+				{'ServicesType': 7, 'DescriptionStage_Code': 'Outsourcing'}
+			]);
+		},
+		//Fin Seteo Model Etapas - ServicesType -> Ser llamado a la View OpportunitiesViewSettingModel.view
 
+		
 		loadDataUserPreferencesMasterModel : function() {
 			this._UserPreferencesMasterModel.loadData("http://api.grupoassa.com:1337/UserPreferences/myPreferences");
 			//(PROXY + "/UserPreferences/myPreferences"); //--->Se comenta para pruebas en locales

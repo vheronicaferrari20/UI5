@@ -8,7 +8,6 @@
 	>
 
         <Table
-
             id="employeesListTable"
             items="{EmployeesModel>/data}"
             enableBusyIndicator="true"
@@ -18,8 +17,8 @@
             
             <!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
          <headerToolbar>
-			<OverflowToolbar>
-				<Title text="Empleados" level="H2"/>
+			<OverflowToolbar> 
+				<Title id="titleTotalReg" text="Empleados" level="H2"/>
 				<ToolbarSpacer/>
 				<!-- Add the Personalization button -->
 				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
@@ -30,7 +29,7 @@
 			</OverflowToolbar>
 		</headerToolbar>
             <columns>
-                <Column
+                 <Column
                     id="legajotCol"
                     width="4em">
                     <Text text="Legajo" />
@@ -44,27 +43,55 @@
                     <Text text="Cluster" />
                 </Column>
                 <Column
-                    id="paisCol"
+                    id="idPaisCol"
                     minScreenWidth="Tablet"
                     demandPopin="true">
+                    <Text text="ID País" />
+                </Column>
+                <Column
+                    id="paisCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true"
+                    visible="false">
                     <Text text="País" />
+                </Column>
+                <Column
+                    id="idCategoriaCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="ID Categoría" />
                 </Column>
                 <Column
                     id="categoriaCol"
                     minScreenWidth="Tablet"
-                    demandPopin="true">
+                    demandPopin="true"
+                    visible="false">
                     <Text text="Categoría" />
+                </Column>
+                 <Column
+                    id="idPracticaCol"
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="ID Práctica" />
                 </Column>
                 <Column
                     id="practicaCol"
                     minScreenWidth="Tablet"
-                    demandPopin="true">
+                    demandPopin="true"
+                    visible="false">
                     <Text text="Práctica" />
+                </Column>
+                <Column
+                    id="idSubPracticaCol" 
+                    minScreenWidth="Tablet"
+                    demandPopin="true">
+                    <Text text="ID SubPráct." />
                 </Column>
                  <Column
                     id="subPracticaCol"
                     minScreenWidth="Tablet"
-                    demandPopin="true">
+                    demandPopin="true"
+                    visible="false">
                     <Text text="SubPráctica" />
                 </Column>
                  <!--   
@@ -154,18 +181,30 @@
                                                       
                         <Text
                             text="{EmployeesModel>cluster}" /> 
-                                                       
+                        
+                        <Text
+                            text="{EmployeesModel>pais/codPais}" /> 
+                                                           
                         <Text
                             text="{EmployeesModel>pais/name}" /> 
+                        
+                        <Text
+                            text="{EmployeesModel>codCategoriaEmpleado}" />    
                                
                         <Text
                             text="{EmployeesModel>vCategoriaEmpleado}" />
                         
+                        <Text
+                            text="{EmployeesModel>practica/codArea}" />
+                            
                          <Text
                             text="{EmployeesModel>practica/name}" />
+                         
+                         <Text
+                            text="{EmployeesModel>subPractica/codDivision}" />       
 
                         <Text
-                            text="{EmployeesModel>subPractica/name}" />    
+                            text="{EmployeesModel>subPractica/name}" />  
 						
 						<Text
                             text="{ path : 'EmployeesModel>proyectosActuales/0/desde',

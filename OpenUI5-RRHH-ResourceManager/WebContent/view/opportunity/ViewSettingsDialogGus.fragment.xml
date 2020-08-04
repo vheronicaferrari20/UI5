@@ -1,0 +1,68 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+
+	<ViewSettingsDialog
+		id="viewSettingsDialogGus"
+		confirm=".onConfirmViewSettingsDialog">
+		<sortItems>
+			<ViewSettingsItem
+				text="Orden por Año"
+				key="CreatedDate"
+				selected="true"/>
+			<ViewSettingsItem
+				text="Orden por Etapas"
+				key="StageName"
+				selected="true"/>	
+			<ViewSettingsItem
+				text="Orden Alfabético Oportunidad"
+				key="Name"/>
+			<ViewSettingsItem
+				text="Orden Commited/No Commited"
+				key="Commited__c"/>	
+			<ViewSettingsItem
+				text="Orden Alfabético por Plataforma"
+				key="Platform__c"/>
+		</sortItems>
+		<filterItems>
+			<ViewSettingsFilterItem
+				text="Etapa"
+				key="etapa"
+				multiSelect="true"
+				items="{ModelEtapas>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{ModelEtapas>DescriptionStage_Code}"
+						key="prueb" />
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem
+				text="Platforms"
+				key="etapa"
+				multiSelect="true"
+				items="{OpportunitiesPlatformsMasterModel>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{OpportunitiesPlatformsMasterModel>Platform__c}"
+						key="platformList" />
+				</items>
+			</ViewSettingsFilterItem>
+			<ViewSettingsFilterItem
+				text="Type Services"
+				key="etapa"
+				multiSelect="true"
+				items="{ModelTypeService>/}">
+				<items>
+					<ViewSettingsItem 
+						text="{ModelTypeService>DescriptionStage_Code}"
+						key="TypeServices" />
+				</items>
+			</ViewSettingsFilterItem>
+		</filterItems>
+		<groupItems>
+			<ViewSettingsItem
+				text="Agrupar por Grupos"
+				key="GroupDateEtapaArgentina"/>
+		</groupItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

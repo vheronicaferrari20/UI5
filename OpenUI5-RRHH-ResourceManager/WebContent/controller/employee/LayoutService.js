@@ -47,76 +47,100 @@ sap.ui.define(['jquery.sap.global'],
 					order: 2,
 					//text: "Cluster",
 					visible: true
-				},
+				},				
 				{
-					id: "App-employeesTable-categoriaCol",
+					id: "App-employeesTable-idPaisCol",
 					order: 3,
-					//text: "Categoria",
+					//text: "ID Pais", 
 					visible: true
 				},
 				{
 					id: "App-employeesTable-paisCol",
 					order: 4,
-					//text: "Pais",
+					//text: "Pais", 
+					visible: false
+				},
+				{
+					id: "App-employeesTable-idCategoriaCol",
+					order: 5,
+					//text: "ID Categoria", 
+					visible: true
+				},
+				{
+					id: "App-employeesTable-categoriaCol",
+					order: 6,
+					//text: "Categoria", 
+					visible: false
+				},
+				{
+					id: "App-employeesTable-idPracticaCol", 
+					order: 7,
+					//text: "ID Practica", 
 					visible: true
 				},
 				{
 					id: "App-employeesTable-practicaCol", 
-					order: 5,
-					//text: "Practica",
-					visible: true
+					order: 8,
+					//text: "Practica", 
+					visible: false
 				},
 				{
-					id: "App-employeesTable-subPracticaCol", 
-					order: 6,
+					id: "App-employeesTable-idSubPracticaCol", 
+					order: 9,
 					//text: "SubPractica",
 					visible: true
 				},
 				{
+					id: "App-employeesTable-subPracticaCol", 
+					order: 10,
+					//text: "SubPractica",
+					visible: false
+				},
+				{
 					id: "App-employeesTable-fechaIniCol", 
-					order: 7,
+					order: 11,
 					//text: "Fecha de Inicio",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-fechaLibCol", 
-					order: 8,
+					order: 12,
 					//text: "Fecha de Liberacion",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-siteCol",
-					order: 9,
+					order: 13,
 					//text: "Site",
 					visible: true
 				},
 				{
 					id: "App-employeesTable-estructuraCol",
-				    order:10,
+				    order:14,
 					//text: "Estructura",
 					visible: false
 				},
 				{
 					id: "App-employeesTable-equipoCol",
-					order: 11,
+					order: 15,
 					//text: "Equipo",
 					visible: false
 				},
 				{
 					id: "App-employeesTable-industriaCol",
-					order: 12,
+					order: 16,
 					//text: "Industria",
 					visible: false
 				},
 				{
 					id: "App-employeesTable-clienteCol", 
-					order: 13,
+					order: 17,
 					//text: "Cliente",
 					visible: false
 				},
 				{
 					id: "App-employeesTable-comentariosCol", 
-					order: 14,
+					order: 18,
 					//text: "Comentarios",
 					visible: false
 				}
@@ -162,11 +186,11 @@ sap.ui.define(['jquery.sap.global'],
 									order: 2,
 									//text: "Cluster",
 									visible: true
-								},
+								},								
 								{
-									id: "App-employeesTable-categoriaCol",
+									id: "App-employeesTable-idPaisCol",
 									order: 3,
-									//text: "Categoria",
+									//text: "ID Pais", 
 									visible: true
 								},
 								{
@@ -176,62 +200,86 @@ sap.ui.define(['jquery.sap.global'],
 									visible: true
 								},
 								{
-									id: "App-employeesTable-practicaCol", 
+									id: "App-employeesTable-idCategoriaCol",
 									order: 5,
+									//text: "ID Categoria", 
+									visible: true
+								},
+								{
+									id: "App-employeesTable-categoriaCol",
+									order: 6,
+									//text: "Categoria",
+									visible: true
+								},
+								{
+									id: "App-employeesTable-idPracticaCol", 
+									order: 7,
+									//text: "ID Practica", 
+									visible: true
+								},
+								{
+									id: "App-employeesTable-practicaCol", 
+									order: 8,
 									//text: "Practica",
 									visible: true
 								},
 								{
+									id: "App-employeesTable-idSubPracticaCol", 
+									order: 9,
+									//text: "SubPractica",
+									visible: true
+								},
+								{
 									id: "App-employeesTable-subPracticaCol", 
-									order: 6,
+									order: 10,
 									//text: "SubPractica",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-fechaIniCol", 
-									order: 7,
+									order: 11,
 									//text: "Fecha de Inicio",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-fechaLibCol", 
-									order: 8,
+									order: 12,
 									//text: "Fecha de Liberacion",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-siteCol",
-									order: 9,
+									order: 13,
 									//text: "Site",
 									visible: true
 								},
 								{
 									id: "App-employeesTable-estructuraCol",
-									order: 10,
+									order: 14,
 									//text: "Estructura",
 									visible: false
 								},
 								{
 									id: "App-employeesTable-equipoCol",
-									order: 11,
+									order: 15,
 									//text: "Equipo",
 									visible: false
 								},
 								{
 									id: "App-employeesTable-industriaCol",
-									//order: 12,
+									//order: 16,
 									//text: "Industria",
 									visible: false
 								},								
 								{
 									id: "App-employeesTable-clienteCol", 
-									//order: 13,
+									//order: 17,
 									//text: "Cliente",
 									visible: false
 								},								
 								{
 									id: "App-employeesTable-comentariosCol", 
-									//order: 14,
+									//order: 18,
 									//text: "Comentarios",
 									visible: false
 								}
