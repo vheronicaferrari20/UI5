@@ -36,9 +36,9 @@
                         <IconTabFilter
                             key="oportunidades"
                             icon="sap-icon://list">
-
+							<!--
                             <mvc:XMLView viewName="App.view.employee.EmployeesActions"/>
-
+							-->
                             <mvc:XMLView viewName="App.view.employee.EmployeesList"/>
                         
                         </IconTabFilter>
@@ -46,9 +46,9 @@
                         <IconTabFilter
                             key="analytics"
                             icon="sap-icon://bar-chart">
-
+							<!-- 
                             <mvc:XMLView viewName="App.view.employee.EmployeesActions"/>
-
+							 -->
                             <mvc:XMLView viewName="App.view.employee.EmployeesAnalytics"/>
 
                         </IconTabFilter>

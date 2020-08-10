@@ -3,7 +3,7 @@ sap.ui.define([
 		'App/data/dataEvents',
 		'sap/ui/model/json/JSONModel',
 		'App/controller/employee/EmployeesViewSettingsDialog',
-		'App/model/employee',
+		'App/model/employee'
 		
 	], function(Controller,dataEvents,JSONModel,EmployeesViewSettingsDialog, employeeModel) {
 	"use strict";
@@ -27,7 +27,7 @@ sap.ui.define([
 			this.getView().setModel(this._Model,this._ModelName);
 
 			this._serchField = this.getView().byId("serchField");
-			
+						
 			this._eventBus = sap.ui.getCore().getEventBus();
 			this._eventBus.subscribe(dataEvents.search_employee_actions.channel, dataEvents.search_employee_actions.name,this.onSuscribeSearch, this);
 			this._eventBus.subscribe(dataEvents.update_viewsettings_employees.channel, dataEvents.update_viewsettings_employees.name,this.onSuscribeUpdateViewsettings, this);

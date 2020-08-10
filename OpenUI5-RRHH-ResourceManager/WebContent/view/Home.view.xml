@@ -39,41 +39,31 @@
                             text="Mis Oportunidades"
                             key="oportunidades"
                             icon="sap-icon://opportunity">
-
-                            <content>
-                                
+                            <content>                                
                                  <mvc:XMLView 
                                 viewName="App.view.opportunity.MyOpportunities" />
-                            </content>
-                           
-                               
+                            </content>                           
                             
                         </IconTabFilter>
-
 
                         <IconTabFilter
                             text="Novedades"
                             key="novedades"
                             icon="sap-icon://favorite-list">
-
                             <content>
-
                                  <mvc:XMLView 
                                 viewName="App.view.notificaciones.Novedades" />
                             </content>
-                           
-                               
-                            
+                                                                                
                         </IconTabFilter>
 
                         <IconTabFilter
                             text="Histórico"
                             key="historico"
                             icon="sap-icon://list">
-
                             <mvc:XMLView 
                                 viewName="App.view.notificaciones.Historico" />
-                           
+                          
                         </IconTabFilter>
                             
                     </items>
@@ -84,11 +74,4 @@
 
     </ScrollContainer>
 	
-    
-
-
-
-
-
-
 </core:View>

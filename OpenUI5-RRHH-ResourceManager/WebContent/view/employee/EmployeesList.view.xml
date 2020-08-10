@@ -1,241 +1,207 @@
-<core:View 
-    xmlns:core="sap.ui.core" 
-    xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m"
+<core:View xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
 	controllerName="App.controller.employee.EmployeesList"
-	xmlns:l="sap.ui.layout" 
-	xmlns:html="http://www.w3.org/1999/xhtml"
-	>
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
 
-        <Table
-            id="employeesListTable"
-            items="{EmployeesModel>/data}"
-            enableBusyIndicator="true"
-            busyIndicatorDelay="0"
-            growing="true"
-            growingScrollToLoad="true">
-            
-            <!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
-         <headerToolbar>
-			<OverflowToolbar> 
-				<Title id="titleTotalReg" text="Empleados" level="H2"/>
-				<ToolbarSpacer/>
-				<!-- Add the Personalization button -->
-				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
+	<Table id="employeesListTable" items="{EmployeesModel>/data}"
+		enableBusyIndicator="true" busyIndicatorDelay="0" growing="true"
+		growingScrollToLoad="true">
+
+		<!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
+		<headerToolbar>
+			<OverflowToolbar>
+				<Label id="infoFilterLabelTotal" text="">
 					<layoutData>
-						<OverflowToolbarLayoutData priority="NeverOverflow" />
+						<ToolbarLayoutData shrinkable="false" />
+					</layoutData>
+				</Label>
+				<ToolbarSpacer />
+				<!-- <Title id="titleTotalReg" text="Empleados" level="H2"/> -->
+				<BusyIndicator class="sapUiSmallMarginBottom"
+					visible="{EmployeesModel>/loading}" />
+
+				<ToolbarSpacer />
+				<!-- Add the Personalization button -->
+				<Button icon="sap-icon://user-settings"
+					press="onLayoutButtonPress">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							priority="NeverOverflow" />
 					</layoutData>
 				</Button>
+
+				<!-- ModificacionVero -->
+				<!-- <Label id="infoFilterLabelTotal" text=""> <layoutData> <ToolbarLayoutData 
+					shrinkable="false" /> </layoutData> </Label> <ToolbarSpacer /> -->
+
+				<Button icon="sap-icon://action-settings"
+					press=".onPressConfig" type="Transparent">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<Button icon="sap-icon://refresh" press="onPressRefresh"
+					type="Transparent" enabled="{=!${EmployeesModel>/loading}}">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<Button icon="sap-icon://download" press="onDataExport"
+					type="Transparent" enabled="{=!${EmployeesModel>/loading}}">
+					<layoutData>
+						<OverflowToolbarLayoutData
+							priority="NeverOverflow" />
+					</layoutData>
+				</Button>
+
+				<ToolbarSeparator />
+
+				<SearchField id="serchField" search="onSearch"
+					width="40%" enabled="{=!${EmployeesModel>/loading}}" />
+
 			</OverflowToolbar>
+			<!-- Fin mod vero -->
 		</headerToolbar>
-            <columns>
-                 <Column
-                    id="legajotCol"
-                    width="4em">
-                    <Text text="Legajo" />
-                </Column>
-                <Column
-                    id= "apeNomCol">
-                    <Text text="Apellido y Nombre" />
-                </Column> 
-                <Column
-                    id= "clusterCol">
-                    <Text text="Cluster" />
-                </Column>
-                <Column
-                    id="idPaisCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="ID País" />
-                </Column>
-                <Column
-                    id="paisCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="País" />
-                </Column>
-                <Column
-                    id="idCategoriaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="ID Categoría" />
-                </Column>
-                <Column
-                    id="categoriaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Categoría" />
-                </Column>
-                 <Column
-                    id="idPracticaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="ID Práctica" />
-                </Column>
-                <Column
-                    id="practicaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Práctica" />
-                </Column>
-                <Column
-                    id="idSubPracticaCol" 
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="ID SubPráct." />
-                </Column>
-                 <Column
-                    id="subPracticaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="SubPráctica" />
-                </Column>
-                 <!--   
-                <Column
-                    id= "planCapCol">
-                    <Text text="Plan de capacitación" />
-                </Column>
-                -->                
-                 <Column
-                    id="fechaIniCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Fecha Inicio" />
-                </Column>
-                <Column
-                    id="fechaLibCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Fecha Liberación" />
-                </Column>
-                <Column
-                    id="siteCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true">
-                    <Text text="Site" />
-                </Column>
-                <!-- 
-                <Column
-                    id= "deliveryCol">
-                    <Text text="Delivery" />
-                </Column>
-                -->     
-                <Column
-                    id="estructuraCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Estructura" />
-                </Column>
-                <Column
-                    id="equipoCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Equipo" />
-                </Column>
-                <Column
-                    id="industriaCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Industria" />
-                </Column>
-                <Column
-                    id="clienteCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Cliente" />
-                </Column>
-                <Column
-                    id="comentariosCol"
-                    minScreenWidth="Tablet"
-                    demandPopin="true"
-                    visible="false">
-                    <Text text="Comentarios" />
-                </Column>
-            </columns>
-            <items>
-                <ColumnListItem
-                    type="Navigation"
-                    press="onItemPressTable">
-                    <customData>
-                        <core:CustomData
-                            key="custom-style"
-                            value="{path : 'EmployeesModel>codEmpleado',
+		<columns>
+			<Column id="legajoCol" width="4em">
+				<Text text="Legajo" />
+			</Column>
+			<Column id="apeNomCol">
+				<Text text="Apellido y Nombre" />
+			</Column>
+			<Column id="clusterCol">
+				<Text text="Cluster" />
+			</Column>
+			<Column id="idPaisCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="ID País" />
+			</Column>
+			<Column id="paisCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="País" />
+			</Column>
+			<Column id="idCategoriaCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="ID Categoría" />
+			</Column>
+			<Column id="categoriaCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Categoría" />
+			</Column>
+			<Column id="idPracticaCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="ID Práctica" />
+			</Column>
+			<Column id="practicaCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Práctica" />
+			</Column>
+			<Column id="idSubPracticaCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="ID SubPráct." />
+			</Column>
+			<Column id="subPracticaCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="SubPráctica" />
+			</Column>
+			<!-- <Column id= "planCapCol"> <Text text="Plan de capacitación" /> </Column> -->
+			<Column id="fechaIniCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Fecha Inicio" />
+			</Column>
+			<Column id="fechaLibCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Fecha Liberación" />
+			</Column>
+			<Column id="siteCol" minScreenWidth="Tablet"
+				demandPopin="true">
+				<Text text="Site" />
+			</Column>
+			<!-- <Column id= "deliveryCol"> <Text text="Delivery" /> </Column> -->
+			<Column id="estructuraCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Estructura" />
+			</Column>
+			<Column id="equipoCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Equipo" />
+			</Column>
+			<Column id="industriaCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Industria" />
+			</Column>
+			<Column id="clienteCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Cliente" />
+			</Column>
+			<Column id="comentariosCol" minScreenWidth="Tablet"
+				demandPopin="true" visible="false">
+				<Text text="Comentarios" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation"
+				press="onItemPressTable">
+				<customData>
+					<core:CustomData key="custom-style"
+						value="{path : 'EmployeesModel>codEmpleado',
                                     formatter:'.formatter.addCSS'}"
-                            writeToDom="true"/>
-                    </customData>
-                    <cells>
+						writeToDom="true" />
+				</customData>
+				<cells>
 
-                        <Text
-                            text="{EmployeesModel>codEmpleado}" />
-                            
-                        <Text
-                            text="{EmployeesModel>fullName}" /> 
-                                                      
-                        <Text
-                            text="{EmployeesModel>cluster}" /> 
-                        
-                        <Text
-                            text="{EmployeesModel>pais/codPais}" /> 
-                                                           
-                        <Text
-                            text="{EmployeesModel>pais/name}" /> 
-                        
-                        <Text
-                            text="{EmployeesModel>codCategoriaEmpleado}" />    
-                               
-                        <Text
-                            text="{EmployeesModel>vCategoriaEmpleado}" />
-                        
-                        <Text
-                            text="{EmployeesModel>practica/codArea}" />
-                            
-                         <Text
-                            text="{EmployeesModel>practica/name}" />
-                         
-                         <Text
-                            text="{EmployeesModel>subPractica/codDivision}" />       
+					<Text text="{EmployeesModel>codEmpleado}" />
 
-                        <Text
-                            text="{EmployeesModel>subPractica/name}" />  
-						
-						<Text
-                            text="{ path : 'EmployeesModel>proyectosActuales/0/desde',
+					<Text text="{EmployeesModel>fullName}" />
+
+					<Text text="{EmployeesModel>cluster}" />
+
+					<Text text="{EmployeesModel>pais/codPais}" />
+
+					<Text text="{EmployeesModel>pais/name}" />
+
+					<Text text="{EmployeesModel>codCategoriaEmpleado}" />
+
+					<Text text="{EmployeesModel>vCategoriaEmpleado}" />
+
+					<Text text="{EmployeesModel>practica/codArea}" />
+
+					<Text text="{EmployeesModel>practica/name}" />
+
+					<Text text="{EmployeesModel>subPractica/codDivision}" />
+
+					<Text text="{EmployeesModel>subPractica/name}" />
+
+					<Text
+						text="{ path : 'EmployeesModel>proyectosActuales/0/desde',
                                     formatter : '.formatter.formatDate'}" />
-                                    
-                        <Text
-                            text="{ path : 'EmployeesModel>proyectosActuales/0/hasta',
+
+					<Text
+						text="{ path : 'EmployeesModel>proyectosActuales/0/hasta',
                                     formatter : '.formatter.formatDate'}" />
-                                                            
-                        <Text
-                            text="{EmployeesModel>site/siteEmplDescri}" />
 
-                        <Text
-                            text="{EmployeesModel>estructura/nomEstructura}" />
-                        
-                        <Text
-                            text="{EmployeesModel>equipo/nomEquipo}" />
-                        
-                        <Text
-                            text="{EmployeesModel>industria/name}" />
+					<Text text="{EmployeesModel>site/siteEmplDescri}" />
 
-                        <Text
-                            text="{EmployeesModel>proyectosActuales/0/opportunity/_account/Name}
+					<Text text="{EmployeesModel>estructura/nomEstructura}" />
+
+					<Text text="{EmployeesModel>equipo/nomEquipo}" />
+
+					<Text text="{EmployeesModel>industria/name}" />
+
+					<Text
+						text="{EmployeesModel>proyectosActuales/0/opportunity/_account/Name}
                                   {EmployeesModel>proyectosActuales/0/opportunity/Name}  " />
-                        
-                        <Text
-                            text="{path : 'EmployeesModel>comentarios',
+
+					<Text
+						text="{path : 'EmployeesModel>comentarios',
                                    formatter : '.formatter.mostrarUltimoComentario' }" />
-                    </cells>
-                </ColumnListItem>
-            </items>
-        </Table>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
 
 </core:View>

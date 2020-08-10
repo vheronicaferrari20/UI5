@@ -31,7 +31,7 @@ sap.ui.define(['jquery.sap.global'],
 			_persoSchemaVersion: "1.0",
 			aColumns : [
 				{
-					id: "App-employeesTable-legajotCol",
+					id: "App-employeesTable-legajoCol",
 					order: 0,
 					//text: "Legajo",
 					visible: true
@@ -170,7 +170,7 @@ sap.ui.define(['jquery.sap.global'],
 					_persoSchemaVersion: "1.0",
 					aColumns : [
 					          {
-								id: "App-employeesTable-legajotCol",
+								id: "App-employeesTable-legajoCol",
 								order: 0,
 								//text: "Legajo",
 								visible: true

@@ -23,7 +23,6 @@ sap.ui.define([
 		formatter : formatter,
 		
 		varInit: function(){ 
-	           
 	           //initialize variables with appropriate view elements
 			this._Table = this.getView().byId("opportunitiesListTable");
 	            },
@@ -107,6 +106,7 @@ sap.ui.define([
 		*/	
 		//New Filter Gusta
 		onOpenViewSettings : function (oEvent, oView) {
+			console.log('Pasa x onOpenViewSettings' );
 			var sDialogTab = "filter";
 			if (oEvent.getSource() instanceof sap.m.Button) {
 				var sButtonId = oEvent.getSource().getId();

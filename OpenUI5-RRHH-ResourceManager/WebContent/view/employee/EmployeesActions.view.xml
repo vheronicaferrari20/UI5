@@ -9,13 +9,14 @@
 			<Text id="infoFilterLabelTotal" text="" />
 		</HBox>
 		-->
+
 		<Label id="infoFilterLabelTotal"  text="">
 					<layoutData>
 							<ToolbarLayoutData shrinkable="false" />
 					</layoutData>
 				</Label>
 		<ToolbarSpacer />
-
+		<!--  
 		<BusyIndicator class="sapUiSmallMarginBottom"
 			visible="{EmployeesModel>/loading}" />
 
@@ -26,7 +27,7 @@
 					priority="NeverOverflow" />
 			</layoutData>
 		</Button>
-
+	-->
 		<Button icon="sap-icon://refresh" press="onPressRefresh"
 			type="Transparent" enabled="{=!${EmployeesModel>/loading}}">
 			<layoutData>
@@ -47,6 +48,7 @@
 
 		<SearchField id="serchField" search="onSearch" width="40%"
 			enabled="{=!${EmployeesModel>/loading}}" />
+			<!-- Test Prueba -->
 
 	</Toolbar>
 

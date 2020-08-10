@@ -25,9 +25,7 @@ sap.ui.define([
 			var path = oItem.getBindingContext().getPath().split('/')[2];
 			this._oRouter.navTo("resources_form",{
 				id : path
-			});
-			
-			
+			});		
 		},
 
 		getData : function(){
@@ -45,8 +43,6 @@ sap.ui.define([
 				}
 			});
 		}
-		
-		
 	
 	});
 });

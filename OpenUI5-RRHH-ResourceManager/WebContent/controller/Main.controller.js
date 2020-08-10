@@ -54,9 +54,7 @@ sap.ui.define([
 	 
 				var eDock = sap.ui.core.Popup.Dock;
 				this._menuSettings.open(true, oButton, eDock.BeginTop, eDock.BeginBottom, oButton);
-			}
-			
-			
+			}			
 		},
 
 		
