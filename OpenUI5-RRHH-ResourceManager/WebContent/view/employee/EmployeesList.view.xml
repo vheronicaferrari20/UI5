@@ -6,20 +6,20 @@
 	<Table id="employeesListTable" items="{EmployeesModel>/data}"
 		enableBusyIndicator="true" busyIndicatorDelay="0" growing="true"
 		growingScrollToLoad="true">
-
-		<!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
+		
+		<!-- Se agrega un titulo y el Boton para permitir modificar el Layout height="0%" -->
          <headerToolbar>
 			<OverflowToolbar> 
-				<Toolbar>
+				<!-- <Toolbar>  -->
+				
+				<ToolbarSpacer/>
+				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
+				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
 				<Button icon="sap-icon://refresh" press="onPressRefresh">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow"/>
 					</layoutData>
 				</Button>
-				<ToolbarSeparator/>
-				<SearchField search="onSearch" width="40%"/>
-				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
-				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
 				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
@@ -32,10 +32,13 @@
 							priority="NeverOverflow" />
 					</layoutData>
 				</Button>
-				<ToolbarSpacer id="spacer2"/>
+				<SearchField search="onSearch" width="40%"/>
+				
+				<!-- <ToolbarSeparator/> <ToolbarSpacer id="spacer2"/>
 				<content/>
-				</Toolbar>
+				</Toolbar>  -->
 				</OverflowToolbar>
+				
 		</headerToolbar>
 		
 			<columns>

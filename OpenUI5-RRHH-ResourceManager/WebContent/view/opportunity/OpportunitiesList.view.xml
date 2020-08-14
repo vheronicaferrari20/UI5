@@ -25,30 +25,37 @@
 		 <!-- Se agrega el Boton para permitir modificar el Layout -->
          <headerToolbar>
 			<OverflowToolbar> 
-				<Toolbar>
-				<!-- <Button icon="sap-icon://action-settings" press="onPressConfig">
+				<!-- <Toolbar>
+				 <Button icon="sap-icon://action-settings" press="onPressConfig">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow"/>
 					</layoutData>
 				</Button>  -->
+				
+				<ToolbarSpacer/>
+				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
+				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
+				
 				<Button icon="sap-icon://refresh" press="onPressRefresh">
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow"/>
 					</layoutData>
 				</Button>
-				<ToolbarSeparator/>
-				<SearchField search="onSearch" width="40%"/>
-				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
-				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
-				<Button id="HistoryButton" press=".seeHistoryOpportunities" icon="sap-icon://action" text="Histórico" type="Transparent"/>
+				
 				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>
 				</Button>
-				<ToolbarSpacer id="spacer2"/>
+				
+				
+				<Button id="HistoryButton" press=".seeHistoryOpportunities" icon="sap-icon://action" text="Histórico" type="Transparent"/>
+				<ToolbarSeparator/>
+				<SearchField search="onSearch" width="40%"/>
+				
+			<!-- 	<ToolbarSpacer id="spacer2"/>
 				<content/>
-				</Toolbar>
+				</Toolbar>  -->
 				
 				<!-- Empiesa lo que estaba  
 				<ToolbarSpacer/>
