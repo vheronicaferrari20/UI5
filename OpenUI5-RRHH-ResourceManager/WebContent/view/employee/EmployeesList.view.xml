@@ -8,48 +8,23 @@
 		growingScrollToLoad="true">
 
 		<!-- Se agrega un titulo y el Boton para permitir modificar el Layout -->
-		<headerToolbar>
-			<OverflowToolbar>
-				<Label id="infoFilterLabelTotal" text="">
+         <headerToolbar>
+			<OverflowToolbar> 
+				<Toolbar>
+				<Button icon="sap-icon://refresh" press="onPressRefresh">
 					<layoutData>
-						<ToolbarLayoutData shrinkable="false" />
-					</layoutData>
-				</Label>
-				<ToolbarSpacer />
-				<!-- <Title id="titleTotalReg" text="Empleados" level="H2"/> -->
-				<BusyIndicator class="sapUiSmallMarginBottom"
-					visible="{EmployeesModel>/loading}" />
-
-				<ToolbarSpacer />
-				<!-- Add the Personalization button -->
-				<Button icon="sap-icon://user-settings"
-					press="onLayoutButtonPress">
-					<layoutData>
-						<OverflowToolbarLayoutData
-							priority="NeverOverflow" />
+						<OverflowToolbarLayoutData priority="NeverOverflow"/>
 					</layoutData>
 				</Button>
-
-				<!-- ModificacionVero -->
-				<!-- <Label id="infoFilterLabelTotal" text=""> <layoutData> <ToolbarLayoutData 
-					shrinkable="false" /> </layoutData> </Label> <ToolbarSpacer /> -->
-
-				<Button icon="sap-icon://action-settings"
-					press=".onPressConfig" type="Transparent">
+				<ToolbarSeparator/>
+				<SearchField search="onSearch" width="40%"/>
+				<Button id="sortButton" press=".onOpenViewSettings" icon="sap-icon://sort" type="Transparent"/>
+				<Button id="filterButton" press=".onOpenViewSettings" icon="sap-icon://filter" type="Transparent"/>
+				<Button icon="sap-icon://user-settings" press="onLayoutButtonPress" >
 					<layoutData>
-						<OverflowToolbarLayoutData
-							priority="NeverOverflow" />
+						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>
 				</Button>
-
-				<Button icon="sap-icon://refresh" press="onPressRefresh"
-					type="Transparent" enabled="{=!${EmployeesModel>/loading}}">
-					<layoutData>
-						<OverflowToolbarLayoutData
-							priority="NeverOverflow" />
-					</layoutData>
-				</Button>
-
 				<Button icon="sap-icon://download" press="onDataExport"
 					type="Transparent" enabled="{=!${EmployeesModel>/loading}}">
 					<layoutData>
@@ -57,16 +32,13 @@
 							priority="NeverOverflow" />
 					</layoutData>
 				</Button>
-
-				<ToolbarSeparator />
-
-				<SearchField id="serchField" search="onSearch"
-					width="40%" enabled="{=!${EmployeesModel>/loading}}" />
-
-			</OverflowToolbar>
-			<!-- Fin mod vero -->
+				<ToolbarSpacer id="spacer2"/>
+				<content/>
+				</Toolbar>
+				</OverflowToolbar>
 		</headerToolbar>
-		<columns>
+		
+			<columns>
 			<Column id="legajoCol" width="4em">
 				<Text text="Legajo" />
 			</Column>

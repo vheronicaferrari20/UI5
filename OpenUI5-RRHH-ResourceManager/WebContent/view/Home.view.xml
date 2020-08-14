@@ -17,7 +17,7 @@
 
         <ObjectHeader
             class="header-page"
-            title="Resource Management Tool"
+            title="Talent Management Tool"
             titleLevel="H1"
             condensed="true"
             icon="sap-icon://home"

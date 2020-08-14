@@ -109,26 +109,69 @@ sap.ui.define([
 					pHasta = preferencias[i].key[1];
 				}
 			}
+			
 			function matchingPreferences(data, preferencias) {
 				return new Promise(function(resolve, reject){
+
+					var f_pais = false;
+					var f_seniority = false;
+					var f_practica = false;
+					var f_practicaSubPractica = false;
+					var selecSkill_two = false;
+					var language = false;
+					var travel = false;
+					var selectLenguaje = false;
+					var selectViaje = false; 
+					
+					var KPracticeID = '';
+					var pref_practica = '';
+					var auxData = [];
+					var arrayPracticas = [];
+					var arrayCodPrac = [];
+					var miSkill = '';
+					var codArea = '';
+					var miSkill_sub = '';
+					var codArea_sub = '';
+					//var ourPreferences = {seniority: false, idioma: false, practica: false, subPractica: false, viaja: false, disponibilidad: false, pais: false}
+					var ourPreferences = {seniority: false, idioma: false, KPracticeID: false, viaja: false, disponibilidad: false, pais: false}
+
 					//inicializa los totales
 					for (var i = 0; i < preferencias.length; i++) {
 						preferencias[i].total = 0;
 					}
+					
+					console.log("prefencias", preferencias);
 
 					for (var codEmpleado in data){
+						f_pais = false;
+						f_seniority = false;
+						f_practica = false;
+						f_practicaSubPractica = false;
+						
+						//Practica puede venir null:
+						if(data[codEmpleado].practica){
+							codArea = data[codEmpleado].practica.codArea;
+						}
+						
+						if(data[codEmpleado].subPractica){
+							codArea = data[codEmpleado].subPractica.codArea;
+						}
+						
 						data[codEmpleado].preferencia = 0;
 						data[codEmpleado].stars = 0;
 						data[codEmpleado].maxStars = preferencias.length;
 						data[codEmpleado].mykSkillMatching = undefined;
 
 						for (var j = 0; j < preferencias.length; j++){
+							
 							switch(preferencias[j].type) {
 								case 'pais':
 									if (data[codEmpleado].pais.codPais == preferencias[j].key){
 										data[codEmpleado].preferencia++;
 										data[codEmpleado].stars++;
 										preferencias[j].total++;
+										f_pais = true;
+										ourPreferences.pais = true;
 									}
 									
 									break;
@@ -137,6 +180,8 @@ sap.ui.define([
 										data[codEmpleado].preferencia++;
 										data[codEmpleado].stars++;
 										preferencias[j].total++;
+										f_seniority = true;
+										ourPreferences.seniority = true;
 									}
 									
 									break;
@@ -156,12 +201,15 @@ sap.ui.define([
 
 									for (var k = 0; k < data[codEmpleado].mykSkills.length; k++){
 										var skillsAux = preferencias[j].key.split('__');
+										miSkill = skillsAux[0];
+										
 										//console.log("skillsAux",skillsAux);
 										var skills = [];
 										if (skillsAux.length < 4) { break;}
 										for (var q = 0; q < skillsAux.length; q++){
 											if (skillsAux[q] != '-1' && skillsAux[q].length > 0) {
 												skills.push(skillsAux[q]);
+												pref_practica = skillsAux[0];
 											}
 										}
 
@@ -198,6 +246,8 @@ sap.ui.define([
 											if (data[codEmpleado].mykSkills[k].KPracticeID == skills[0] && 
 												data[codEmpleado].mykSkills[k].KSubpracticeID == skills[1]) {
 												puntaje += puntajeA;
+												KPracticeID = data[codEmpleado].mykSkills[k].KPracticeID
+												selecSkill_two = true;
 											}
 										}
 										
@@ -228,6 +278,7 @@ sap.ui.define([
 												data[codEmpleado].mykSkills[k].KModuleID == skills[2] &&
 												data[codEmpleado].mykSkills[k].KSubmoduleID == skills[3] && 
 												parseInt(data[codEmpleado].mykSkills[k].LevelID) >= parseInt(skills[4])) {
+												console.log('level mas ID', data[codEmpleado].mykSkills[k].Knowledge_LevelDescription_Code + ' ' + data[codEmpleado].mykSkills[k].LevelID);
 												puntaje += puntajeD + parseInt(data[codEmpleado].mykSkills[k].LevelID) / 10;
 											}
 										}
@@ -236,7 +287,7 @@ sap.ui.define([
 											puntajeMax = puntaje;
 											mykSkillMatching = data[codEmpleado].mykSkills[k]; 
 										}
-									}
+									} //Fin for mySkill
 									
 									if (puntajeMax > 0) {
 
@@ -254,6 +305,7 @@ sap.ui.define([
 									
 									break;
 								case 'idioma':
+									selectLenguaje = true;
 									var idiomaMatching = undefined;
 									var idiomaKeys = preferencias[j].key.split('__');
 
@@ -269,6 +321,7 @@ sap.ui.define([
 										if (idiomaKeys.length == 1) {
 											if (data[codEmpleado].myklanguages[k].LanguageID == languageID){
 												idiomaMatching = data[codEmpleado].myklanguages[k];
+												language = true
 											}
 										}
 
@@ -291,11 +344,13 @@ sap.ui.define([
 									}
 									break;
 								case 'viaja':
+									selectViaje = true;
 									if (data[codEmpleado].viaja.length) {
 										if (data[codEmpleado].viaja[0].value == preferencias[j].key){
 											data[codEmpleado].preferencia++;
 											data[codEmpleado].stars++;
 											preferencias[j].total++;
+											travel = true;
 										}
 									}
 									break;
@@ -310,13 +365,41 @@ sap.ui.define([
 										data[codEmpleado].disponibilidad = "Ocupado";
 									}
 									break;	
-
-
 							}
-						}
-					}
+						} //Fin for "preferencias"
+						
+						//antes de salir del for
+						if(codArea == miSkill){
+							if(f_pais == true && f_seniority == true && selecSkill_two == true){
+								//Selecciono lenguaje y viaje
+								if (selectLenguaje == true && selectViaje == true){
+									if(language == true && travel == true){
+										auxData.push(data[codEmpleado]);
+									}
+								}
+								
+								//Si sigue lenguaje y pero no viaje
+								if (selectLenguaje == true && selectViaje == false){
+									if(language == true){
+										auxData.push(data[codEmpleado]);
+									}
+								}
+								
+								//Si saco lenguaje y viaje
+								if (selectLenguaje == false && selectViaje == false){
+									if(language == false && travel == false){
+										auxData.push(data[codEmpleado]);
+									}
+								}
+								
+							}
+							//f_practica = true;
+						} 
 
-					resolve({ data : data, preferencias : preferencias});
+					}  //Fin for "codEmpleado" miSkill: miSkill
+					
+					console.log('codEmpleados hay: ', auxData.length);
+					resolve({auxData: auxData, data : data, preferencias : preferencias});
 				});
 
 			}
@@ -359,35 +442,27 @@ sap.ui.define([
 				
 
 			}).then(function(){
-
 				var data = that._Model.getProperty('/data');
-
-				//that._Model.setProperty('/loading', true);
-
-				//console.log("'/loading', true", " get ", that._Model.getProperty('/loading'));
-			    console.log("set visible true");
 			    
 				matchingPreferences(data,preferencias).then(function(data){
 					var aSorters = [];
+					var endList = {};
+					
 					aSorters.push(new Sorter('preferencia', true));
 					that._aSorters = aSorters;
-					that._Model.setProperty('/data',data.data);
+					
+					endList = data.auxData;
+					
+					that._Model.setProperty('/data', endList);
 					that.applyFilterSorters();
 					that._eventBus.publish(dataEvents.asignacion_preferencias_totales.channel,dataEvents.asignacion_preferencias_totales.name,data.preferencias);
 					that.publishAasignacionSelected("holla");
-					//that._Model.setProperty('/loading', false);
-					//console.log("'/loading', get ", that._Model.getProperty('/loading'));
-
-
 				});
 
 			});
 
-				
-
-			});
-
 			
+			});
 
 		},
 

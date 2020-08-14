@@ -18,9 +18,10 @@
 		includeItemInSelection="false"
 		rememberSelections="false"
 		updateFinished="updateFinished">
-		<headerToolbar>
+				<headerToolbar>
+		<!-- "sap-icon://action-settings" -->
 			<Toolbar>
-				<Button icon="sap-icon://action-settings" press="onPressConfig" >
+				<Button icon="sap-icon://add-filter" text="Filtrar Level" press="onPressConfig" >
 					<layoutData>
 						<OverflowToolbarLayoutData priority="NeverOverflow" />
 					</layoutData>

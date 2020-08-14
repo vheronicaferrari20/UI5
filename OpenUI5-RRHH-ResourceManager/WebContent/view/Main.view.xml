@@ -13,7 +13,7 @@
 		<customHeader>
 		    <Bar>
 		    	<contentLeft>
-		    		<ToggleButton text="" type="Transparent" press="navTo" id="home" class="botonHeaderLogo1  botonHeaderHover" icon="img/logoHeader.png">
+		    		<ToggleButton text="" type="Transparent" press="navTo" id="home" class="botonHeaderLogo1  botonHeaderHover" icon="img/gAtalentLogo.png">
 						<layoutData>
 							<OverflowToolbarLayoutData priority="Low" />
 						</layoutData>

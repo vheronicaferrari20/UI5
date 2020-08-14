@@ -133,6 +133,14 @@ sap.ui.define([
 			}
 		},
 		
+		//Funcionalidad para el historico de oportunidades:
+		seeHistoryOpportunities: function (oEvent) {
+			if (oEvent.getSource()) {	
+			 sap.ui.getCore()._hFlag = true;
+			 this.getData(true);
+			}
+		},
+		
 		onConfirmViewSettingsDialog : function (oEvent) {
 			var oModelFilter = new JSONModel(this._Model);
 	          this.getView().setModel(oModelFilter);
@@ -443,6 +451,7 @@ sap.ui.define([
 		},	 
 
 		onPressRefresh : function(oEvent){
+			sap.ui.getCore()._hFlag = false; //Vuelve a la lista acotada de oportunidades
 			this.getData(true);
 		},
 

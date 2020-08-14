@@ -21,7 +21,6 @@ sap.ui.define([
 		formatter : formatter,
 
 		onInit : function() {
-			console.log('Hola Git, o hellow Git aja');
 			this._employeesViewSettingsDialog = this.getOwnerComponent().getEmployeesViewSettingsDialog();
 			this._ViewSettingsDialog = this.getOwnerComponent().getEmployeesViewSettingsDialog();
 			this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
