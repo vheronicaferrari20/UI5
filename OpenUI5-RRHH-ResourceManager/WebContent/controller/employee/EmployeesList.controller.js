@@ -114,7 +114,7 @@ sap.ui.define([
 		// Inicio Test Vero
 		onSuscribeBinding : function(channel, event, data) {
 			
-			this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")"); // Comentado para testing-Vero
+			//this._infoFilterLabelTotal.setText("Total ("+data.aIndices.length +")"); // Comentado para testing-Vero
 
 		},
 		// Fin test Vero

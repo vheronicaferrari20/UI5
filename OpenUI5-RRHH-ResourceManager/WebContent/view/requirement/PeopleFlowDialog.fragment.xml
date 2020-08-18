@@ -26,26 +26,14 @@
 							<Label text ="Seniority"/>
 							<Select
 								width="100%"
-								id="senioritySelect" >
-								<core:Item key="110" text="Asistente"/>
-								<core:Item key="120" text="Consultor"/>
-								<core:Item key="130" text="Consultor Experimentado"/>
-								<core:Item key="210" text="Consultor Senior"/>
-								<core:Item key="220" text="Consultor Senior Experimentado"/>
-								<core:Item key="230" text="Lider"/>
-								<core:Item key="231" text="Lider Especialista"/>
-								<core:Item key="233" text="Especialista Senior"/>
-								<core:Item key="310" text="Gerente"/>
-								<core:Item key="311" text="Gerente Especialista"/>
-								<core:Item key="320" text="Gerente Senior"/>
-								
-							<!-- 	items="{
+								id="senioritySelect"	
+								items="{
 									path: 'CategoriaMasterModel>/',
 									sorter: {path:'name'}
 								}">
 								<core:Item 
 									key="{CategoriaMasterModel>codCategoria}" 
-									text="{CategoriaMasterModel>name}" />  -->
+									text="{CategoriaMasterModel>name}" />  
 							</Select>
 						</VBox>
 
@@ -243,21 +231,13 @@
 								width="100%"
 								id="idiomaSelect"
 								selectedKey="0"
-								forceSelection="false">
-								<core:Item key="4" text="Español"/>
-								<core:Item key="1" text="Inglés"/>
-								<core:Item key="2" text="Portugués"/>
-								<core:Item key="3" text="Alemán"/>
-								<core:Item key="7" text="Italeano"/>
-								<core:Item key="15" text="Francés"/>
-								<core:Item key="9" text="Chino"/>
-								<core:Item key="8" text="Chino Mandarin"/>
-						<!-- 		items="{
+								forceSelection="false"
+								items="{
 									path: 'MyKLanguagesMasterModel>/'
 								}">
 								<core:Item 
 									key="{MyKLanguagesMasterModel>Catalogue_Code}" 
-									text="{MyKLanguagesMasterModel>Description_Code}" />  -->
+									text="{MyKLanguagesMasterModel>Description_Code}" />  
 							</Select>
 						</VBox>
 						

@@ -52,9 +52,23 @@ sap.ui.define([
 					};
 				}));
 			}
+			/* Comentado para test
 			var sPath = mParams.sortItem.getKey();
 			var bDescending = mParams.sortDescending;
-			aSorters.push(new Sorter(sPath, bDescending));
+			aSorters.push(new Sorter(sPath, bDescending)); */
+			
+			//Agregado para test
+			var sPath 
+			var bDescending
+			
+			if (mParams.sortItem){
+				sPath = mParams.sortItem.getKey();
+				bDescending = mParams.sortDescending;
+			} else {
+				sPath = "level/name";
+				bDescending = false;
+			}
+			//fin agregado para test
 			
  
 			// apply filters to binding

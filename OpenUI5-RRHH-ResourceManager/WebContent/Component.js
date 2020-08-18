@@ -175,8 +175,10 @@ sap.ui.define([
 
 			////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Ver desde aca!
 			this._CategoriaMasterModel = new JSONModel();
 			this.setModel(this._CategoriaMasterModel, 'CategoriaMasterModel');
+//Ver aca
 
 			this._IndustriaMasterModel = new JSONModel();
 			this.setModel(this._IndustriaMasterModel, 'IndustriaMasterModel');
@@ -294,7 +296,17 @@ sap.ui.define([
 		},
 
 		loadDataMyKLanguages: function(){
-			this._MyKLanguages.loadData('http://api.grupoassa.com:1337/MyKLanguages');
+			this._MyKLanguages.setData([
+				{'Catalogue_Code': '4', 'Description_Code': 'Español'},
+				{'Catalogue_Code': '1', 'Description_Code': 'Inglés'},
+				{'Catalogue_Code': '2', 'Description_Code': 'Portugués'},
+				{'Catalogue_Code': '3', 'Description_Code': 'Alemán'},
+				{'Catalogue_Code': '7', 'Description_Code': 'Italeano'},
+				{'Catalogue_Code': '15', 'Description_Code': 'Francés'},
+				{'Catalogue_Code': '9', 'Description_Code': 'Chino'},
+				{'Catalogue_Code': '8', 'Description_Code': 'Chino Mandarín'}
+			]);
+			//this._MyKLanguages.loadData('http://api.grupoassa.com:1337/MyKLanguages');//--->Se comenta para pruebas en locales
 			//(PROXY + '/MyKLanguages'); //--->Se comenta para pruebas en locales
 		},
 
@@ -361,11 +373,25 @@ sap.ui.define([
 			//(PROXY + '/idioma?limit=false');  //--->Se comenta para pruebas en locales
 		},
 
+//Ver desde aca
 		loadDataCategoriaMasterModel : function(){
-			this._CategoriaMasterModel.loadData('http://api.grupoassa.com:1337/categoria?limit=false');
+			this._CategoriaMasterModel.setData([
+				{'codCategoria': '110', 'name': 'Asistente'}, 
+				{'codCategoria': '120', 'name': 'Consultor'}, 
+				{'codCategoria': '130', 'name': 'Consultor Experimentado'}, 
+				{'codCategoria': '210', 'name': 'Consultor Senior'}, 
+				{'codCategoria': '220', 'name': 'Consultor Senior Experimentado'}, 
+				{'codCategoria': '230', 'name': 'Lider'}, 
+				{'codCategoria': '231', 'name': 'Lider Especialista'}, 
+				{'codCategoria': '233', 'name': 'Especialista Senior'}, 
+				{'codCategoria': '310', 'name': 'Gerente'},
+				{'codCategoria': '311', 'name': 'Gerente Especialista'}, 
+				{'codCategoria': '320', 'name': 'Gerente Senior'}
+			]);
+			//this._CategoriaMasterModel.loadData('http://api.grupoassa.com:1337/categoria?limit=false');//--->Se comenta para pruebas en locales
 			//(PROXY + '/categoria?limit=false'); //--->Se comenta para pruebas en locales
 		},
-
+//Ver aca
 		loadDataIndustriaMasterModel : function(){
 			this._IndustriaMasterModel.loadData('http://api.grupoassa.com:1337/industria?limit=false');
 			//(PROXY + '/industria?limit=false'); //--->Se comenta para pruebas en locales
